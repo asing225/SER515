@@ -1,15 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>CLUE!</title>
+    <meta charset="utf-8">
+    <title>DRAG-ONS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
- <body>
-        <h1>Clue Game</h1>
-        <form method="POST" action="login">
-	        <label>Please enter your name </label>
-	        <input required type="text" name="firstName">
-	        <input type="submit"/>
-        </form>
+<body>
+
+
+<div id="particles-js"></div>
+<div class="container">
+
+  <div style="display:inline-block">
+    <img src="AI.png" style="display:inline-block; align-content:center; width:15%;padding:center;">
+    <p  style="text-align:left;display:inline;  margin:30px;font-size: 30px;color:rgb(180, 178, 178)">DRAG-ONS</p>
+  </div>
+
+	<div id="login-box">
+		<div class="logo">
+            <form class="signUp", method="post", enctype="multipart/form-data", action="/SignUp">
+         <h3>Create Your Account</h3>
+         <p>Just enter your email address</br>
+ and your password to join.
+         </p>
+         <input class="w100" name="email" type="email" placeholder="Insert eMail" reqired autocomplete='off' />
+         <input type="password" name="password" placeholder="Insert Password" reqired />
+
+         <button class="form-btn sx log-in" type="button" type="submit">Log In</button>
+         <button class="form-btn dx" type="submit">Sign Up</button>
+     </form>
+     <form class="signIn", method="post", enctype="multipart/form-data", action="/LogIn">
+         <h3>Welcome </br>Back !</h3>
+         <input type="email" name="email" placeholder="Insert eMail" autocomplete='off' reqired /></br>
+         <input type="password" name="password" placeholder="Insert Password" reqired />
+         <button class="form-btn sx back" type="button">Back</button>
+         <button class="form-btn dx" type="submit" type="submit">Log In</button>
+     </form></div><!-- /.container -->
+
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>-->
+<script src="./js/index.js"></script>
 </body>
 </html>
