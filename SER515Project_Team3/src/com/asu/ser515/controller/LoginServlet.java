@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * */
 
 @SuppressWarnings("serial")
-public class LoginServlet extends HttpServlet{
+public class LoginServlet extends HttpServlet {
 	
 	private String adminPage = "admin.html";
 	
@@ -27,12 +27,16 @@ public class LoginServlet extends HttpServlet{
 	// doPost method to handle form submit coming from web page
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
         String firstname = req.getParameter("firstName");
+        String lastName = req.getParameter("lastName");
+        String userType = req.getParameter("userType");
+        String password = req.getParameter("password");
+        String userName = req.getParameter("userName");
         try {
 			req.getRequestDispatcher(adminPage).forward(req, res);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ServletException e) {
-			e.printStackTrace();
+		} catch (IOException ioExc) {
+			ioExc.printStackTrace();
+		} catch (ServletException servletExc) {
+			servletExc.printStackTrace();
 		}
 	}
 }
