@@ -5,11 +5,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
 /**
+ * Controller class to handle the new user registration functionality of the application. 
+ * It will send a request to administrator to accept or reject new user
+ * 
  * @author amanjotsingh
  * date 09/26/2019
  * 
- * Controller class to handle the new user registration functionality of the application. 
- * It will send a request to administrator to accept or reject new user
  * */
 
 @SuppressWarnings("serial")

@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author amanjotsingh
- * date 09/25/2019
- * 
  * Controller class to handle the login functionality of the application. It will authenticate the
  * user and redirect to their respective web pages. 
+ * 
+ * @author amanjotsingh
+ * @date 09/25/2019
+ * 
  * */
 
 @SuppressWarnings("serial")
@@ -26,11 +27,11 @@ public class LoginServlet extends HttpServlet {
 	
 	// doPost method to handle form submit coming from web page
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
-        String firstname = req.getParameter("firstName");
-        String lastName = req.getParameter("lastName");
-        String userType = req.getParameter("userType");
-        String password = req.getParameter("password");
-        String userName = req.getParameter("userName");
+//        String firstname = req.getParameter("firstName");
+//        String lastName = req.getParameter("lastName");
+//        String userType = req.getParameter("userType");
+//        String password = req.getParameter("password");
+//        String userName = req.getParameter("userName");
         try {
 			req.getRequestDispatcher(adminPage).forward(req, res);
 		} catch (IOException ioExc) {
