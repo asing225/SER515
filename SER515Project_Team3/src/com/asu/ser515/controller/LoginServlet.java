@@ -27,9 +27,6 @@ public class LoginServlet extends HttpServlet {
 	
 	// doPost method to handle form submit coming from web page
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
-//        String firstname = req.getParameter("firstName");
-//        String lastName = req.getParameter("lastName");
-//        String userType = req.getParameter("userType");
 //        String password = req.getParameter("password");
 //        String userName = req.getParameter("userName");
         try {
