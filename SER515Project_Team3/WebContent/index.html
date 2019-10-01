@@ -17,6 +17,7 @@
       </ul>
       
       <div class="tab-content">
+        <!--SIGNUP DIVISION-->
         <div id="signup">   
           <h1>Sign Up for Free</h1>
           
@@ -68,7 +69,7 @@
           </form>
 
         </div>
-        
+        <!--LOGIN DIVISION-->
         <div id="login">   
           <h1>Welcome Back!</h1>
           
@@ -102,23 +103,5 @@
 <!-- partial -->
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script  src="./js/index.js"></script>
-<script type="text/javascript">
-function validatePassword() {
-  var newPassword = document.getElementById('password').newPassword.value;
-  console.log("hello world");
-  var minNumberofChars = 6;
-  var maxNumberofChars = 16;
-  var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-  alert(newPassword); 
-  if(newPassword.length < minNumberofChars || newPassword.length > maxNumberofChars){
-      return false;
-  }
-  if(!regularExpression.test(newPassword)) {
-      alert("password should contain atleast one number and one special character");
-      return false;
-  }
-}
-</script>
-
 </body>
 </html>

@@ -1,4 +1,4 @@
-
+// Developed By Akshay Kumar Dileep; Dated 09/30/2019
 $('.form').find('input, textarea').on('keyup blur focus', function (e) {
   
   var $this = $(this),
@@ -43,7 +43,7 @@ $('.tab a').on('click', function (e) {
   $(target).fadeIn(600);
   
 });
-
+//PARTICLE.JS CDN TO MAKE CHANGES RELATEBLE TO THE CSS
 $.getScript("https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js", function(){
     particlesJS('particles-js',
       {
