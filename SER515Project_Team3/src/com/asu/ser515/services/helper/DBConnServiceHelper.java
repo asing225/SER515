@@ -28,6 +28,7 @@ public class DBConnServiceHelper {
 		}
 		return 0;
 	}
+	
 	public String mapDBtoUsertype(int usertype) {
 		if(usertype==1) {
 			return "admin";
@@ -40,8 +41,7 @@ public class DBConnServiceHelper {
 		}
 		else if(usertype==4) {
 			return "studentGrade_6";
-		}
-		
+		}	
 		return "Others";
 	}
 }

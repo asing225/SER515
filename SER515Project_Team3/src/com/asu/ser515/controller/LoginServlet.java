@@ -26,6 +26,8 @@ import com.asu.ser515.services.impl.DBConnServiceImpl;
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
 	
+	private String errorPage = "error.html";
+	private String exceptionPage = "exception.html";
 	private String adminPage = "admin.html";
 	private String teacherPage = "teacher.html";
 	private String studentGrade_1Page = "student1.html";
@@ -39,15 +41,29 @@ public class LoginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
         String password = req.getParameter("password");
         String userName = req.getParameter("userName");
-		User oldUser = new User(userName, password);
+		User oldUser = new User(userName,password);
         DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
         int dbResult = serviceImpl.authenticateUser(oldUser);
         
         if(dbResult ==0) {
         	//User not present
+        	try {
+				req.getRequestDispatcher(errorPage).forward(req, res);
+			} catch (IOException ioExc) {
+				ioExc.printStackTrace();
+			} catch (ServletException servletExc) {
+				servletExc.printStackTrace();
+			}
         }
         if(dbResult == -1) {
         	//Exception in database
+        	try {
+				req.getRequestDispatcher(exceptionPage).forward(req, res);
+			} catch (IOException ioExc) {
+				ioExc.printStackTrace();
+			} catch (ServletException servletExc) {
+				servletExc.printStackTrace();
+			}
         }
         else {
         	DBConnServiceHelper dbHelper = new DBConnServiceHelper();
@@ -88,7 +104,6 @@ public class LoginServlet extends HttpServlet {
     				servletExc.printStackTrace();
     			}
     		}
-        }
-        
+        }        
 	}
 }

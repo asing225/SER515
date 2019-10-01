@@ -74,7 +74,7 @@ public class DBConnServiceImpl implements DBConnService{
 			ps.executeUpdate();
 			return 1;
 		} catch (SQLException sqe) {
-			sqe.printStackTrace();
+			//sqe.printStackTrace();
 			return -1;
 		} finally {
 			try {
