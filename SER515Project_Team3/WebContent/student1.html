@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Student | Grade 1</title>
+  <script src="./lib/blockly-master/blockly_compressed.js"></script>
+  <script src="./lib/blockly-master/blocks_compressed.js"></script>
+  <script src="./lib/blockly-master/msg/js/en.js"></script>
+</head>
+<body>
+  <h1>Student</h1>
+  <h3>Grade 1</h3>
+
+  <p>Demo sanbox</p>
+
+  <div id="blocklyDiv" style="height: 600px; width: 800px;"></div>
+
+  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+    <!-- Dropdown for basic math operators -->
+    <category name="Math" colour="%{BKY_MATH_HUE}">
+      <block type="math_number">
+        <field name="NUM">123</field>
+      </block>
+      <block type="math_arithmetic"></block>
+    </category>
+    <sep></sep>
+  </xml>
+
+  <!--<script>
+    var demoWorkspace = Blockly.inject('blocklyDiv',
+        {media: './lib/blockly-master/media/',
+         toolbox: document.getElementById('toolbox')});
+  </script> -->
+
+  <script src="./js/student1.js"></script>
+
+</body>
+</html>
