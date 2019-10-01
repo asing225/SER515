@@ -27,6 +27,12 @@ public class User {
 		this.password = password;
 		this.userType = userType;
 	}
+	
+	// class constructor
+		public User(String userName, String password) {
+			this.userName = userName;
+			this.password = password;
+		}
 
 	// getters and setters
 	public String getFirstName() {

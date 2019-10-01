@@ -41,9 +41,10 @@ async function runLangGeneratorInBrowser(browser, filename, codegenFn) {
   fs.writeFile(filename, result, function(err) {
     if (err) {
       return console.log(err);
-    }
+    };
   });
-}
+};
+
 
 /**
  * Runs the generator tests in Firefox. It uses webdriverio to
