@@ -35,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
 	        String userType = req.getParameter("userType");
 	        String password = req.getParameter("password");
 	        String userName = req.getParameter("userName");
-	        User newUser = new User(firstName, lastName, userName, userType, password);
+	        User newUser = new User(firstName, lastName, userName, password, userType);
 	        DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
 	        int dbResult = serviceImpl.registerUser(newUser);
 	        if(dbResult == 1) {
