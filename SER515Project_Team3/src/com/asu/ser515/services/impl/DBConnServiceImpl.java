@@ -115,8 +115,8 @@ public class DBConnServiceImpl implements DBConnService{
 				//ps.setInt(3, dbHelper.mapUserTypeToDB(oldUser.getUserType()));
 				ResultSet rs = ps.executeQuery();
 				while (rs.next()) {
-					oldUser.setFirstName(rs.getString("firstName"));
-				    oldUser.setFirstName(rs.getString("lastName"));
+					oldUser.setFirstName(rs.getString(1));
+				    oldUser.setFirstName(rs.getString(2));
 					return  rs.getInt(1);
 				}
 				return 0;
