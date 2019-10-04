@@ -40,12 +40,12 @@ public class LoginServlet extends HttpServlet {
 	// doPost method to handle form submit coming from web page
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
         String password = req.getParameter("password");
-        String userName = req.getParameter("userName");
+        String userName = req.getParameter("username");
 		User oldUser = new User(userName,password);
         DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
         int dbResult = serviceImpl.authenticateUser(oldUser);
-        
-        if(dbResult ==0) {
+        System.out.println("-------->" + dbResult);
+        if(dbResult == 0) {
         	//User not present
         	try {
 				req.getRequestDispatcher(errorPage).forward(req, res);

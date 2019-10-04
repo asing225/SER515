@@ -14,7 +14,5 @@ import com.asu.ser515.model.User;
  * */
 
 public interface DBConnService {
-	//public void dbPing();
-	public int registerUser(User newUser);
 	public int authenticateUser(User oldUser);
 }
