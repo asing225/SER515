@@ -65,18 +65,12 @@ public class DBConnServiceImpl implements DBConnService{
 			ps = conn.prepareStatement(__getUser);
 			ps.setString(1, oldUser.getUserName());
 			ps.setString(2, oldUser.getPassword());
-			//DBConnServiceHelper dbHelper = new DBConnServiceHelper();
-			//ps.setInt(3, dbHelper.mapUserTypeToDB(oldUser.getUserType()));
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-//				oldUser.setFirstName(rs.getString(1));
-//			    oldUser.setLastName(rs.getString(2));
 				int res = rs.getInt(1);
-				System.out.println("the result is" + res);
 			    return  res;
 			}
-			return 0;
-			
+			return 0;			
 		} catch (SQLException sqe) {
 			sqe.printStackTrace();
 			return -1;
