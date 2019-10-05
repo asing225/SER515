@@ -44,7 +44,6 @@ public class LoginServlet extends HttpServlet {
 		User oldUser = new User(userName,password);
         DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
         int dbResult = serviceImpl.authenticateUser(oldUser);
-        System.out.println("-------->" + dbResult);
         if(dbResult == 0) {
         	//User not present
         	try {
