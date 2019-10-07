@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Sign-Up/Login Form</title>
+  <title>Login Page</title>
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -12,64 +12,8 @@
 <div class="form">
       
       <ul class="tab-group">
-        <li class="tab active"><a href="#signup">Sign Up</a></li>
         <li class="tab"><a href="#login">Log In</a></li>
       </ul>
-      
-      <div class="tab-content">
-        <!--SIGNUP DIVISION-->
-        <div id="signup">   
-          <h1>Sign Up for Free</h1>
-          
-          <form action="register" method="post">
-          
-          <div class="top-row">
-            <div class="field-wrap">
-              <label>
-                First Name<span class="req">*</span>
-              </label>
-              <input type="text" name="firstName" required autocomplete="off" />
-            </div>
-        
-            <div class="field-wrap">
-              <label>
-                Last Name<span class="req">*</span>
-              </label>
-              <input type="text" name="lastName" required autocomplete="off"/>
-            </div>
-          </div>
-
-          <div class="middle-row">
-          <div class="field-wrap">
-            <label>
-              Username<span class="req">*</span>
-            </label>
-            <input type="text" name="userName" required autocomplete="off"/>
-          </div>
-          <div class="field-wrap">
-            <input list="userType" name="userType">Select User Type
-            	<datalist id="userType">
-              		<option value="studentGrade_1">
-              		<option value="studentGrade_6">
-              		<option value="teacher">
-            	</datalist>
-            </input>	            
-        </div>
-        </div>
-          
-          <div class="field-wrap">
-            <label>
-              Set A Password<span class="req">*</span>
-            </label>
-            <input type="password" name="password" required autocomplete="off"/>
-
-          </div>
-          
-          <button  onclick="validatePassword()"class="button button-block">Get Started</button>
-          
-          </form>
-
-        </div>
         <!--LOGIN DIVISION-->
         <div id="login">   
           <h1>Welcome Back!</h1>
@@ -80,15 +24,17 @@
             <label>
               Username<span class="req">*</span>
             </label>
-            <input type="text" name="userName" required autocomplete="off"/>
+            <input type="text"required autocomplete="off" name="username"/>
           </div>
           
           <div class="field-wrap">
             <label>
               Password<span class="req">*</span>
             </label>
-            <input type="password" name="password" required autocomplete="off"/>
-          </div>          
+            <input type="password"required autocomplete="off" name="password"/>
+          </div>
+          
+          <p class="forgot"><a href="student1.html">Demo Project</a></p>
           <button class="button button-block">Log In</button>
           
           </form>
