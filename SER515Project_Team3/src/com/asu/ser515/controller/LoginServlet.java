@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
 	private String errorPage = "error.html";
 	private String exceptionPage = "exception.html";
 	private String adminPage = "admin.html";
-	private String teacherPage = "teacher.html";
+	private String teacherPage = "teacherHomePage.html";
 	private String studentGrade_1Page = "student1.html";
 	private String studentGrade_6Page = "student2.html";
 
