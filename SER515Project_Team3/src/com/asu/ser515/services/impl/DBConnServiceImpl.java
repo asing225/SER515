@@ -11,10 +11,10 @@ import com.asu.ser515.services.DBConnService;
 import com.asu.ser515.services.helper.DBConnServiceHelper;
 
 /**
- * Implementation to handle DB connectivity 
+ * Implementation to handle DB connectivity
  * 
  * @author anurag mishra
- * @date 09/28/2019 
+ * @date 09/28/2019
  * 
  * Edit @author amanjotsingh
  * @date 09/28/2019
@@ -22,22 +22,22 @@ import com.asu.ser515.services.helper.DBConnServiceHelper;
  * Edit @author kushagrjolly
  * @date 09/29/2019
  * 
- * */
+ */
 
-public class DBConnServiceImpl implements DBConnService{
-	
+public class DBConnServiceImpl implements DBConnService {
+
 	private static String __jdbcUrl;
 	private static String __jdbcUser;
 	private static String __jdbcPasswd;
 	private static String __jdbcDriver;
 	private static String __getUser;
-	
-	// static block to be executed when class loads to read DB configs from properties file.
+
+	// static block to be executed when class loads to read DB configs from
+	// properties file.
 	static {
 		try {
 			Properties dbProperties = new Properties();
-			dbProperties.load(DBConnServiceImpl.class.getClassLoader()
-					.getResourceAsStream("rdbm.properties"));
+			dbProperties.load(DBConnServiceImpl.class.getClassLoader().getResourceAsStream("rdbm.properties"));
 			__jdbcUrl = dbProperties.getProperty("jdbcUrl");
 			__jdbcUser = dbProperties.getProperty("jdbcUser");
 			__jdbcPasswd = dbProperties.getProperty("jdbcPasswd");
@@ -49,7 +49,7 @@ public class DBConnServiceImpl implements DBConnService{
 		}
 	}
 
-	//Authenticate User in the database
+	// Authenticate User in the database
 	@Override
 	public int authenticateUser(User oldUser) {
 		Connection conn = null;
@@ -57,8 +57,7 @@ public class DBConnServiceImpl implements DBConnService{
 		try {
 			try {
 				Class.forName(__jdbcDriver);
-			}
-			catch(Throwable t) {
+			} catch (Throwable t) {
 				t.printStackTrace();
 			}
 			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
@@ -68,27 +67,26 @@ public class DBConnServiceImpl implements DBConnService{
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				int res = rs.getInt(1);
-			    return  res;
+				return res;
 			}
-			return 0;			
+			return 0;
 		} catch (SQLException sqe) {
 			sqe.printStackTrace();
 			return -1;
 		} finally {
 			try {
-				if (ps != null) { 
-					ps.close(); 
+				if (ps != null) {
+					ps.close();
 				}
-			} catch (Exception e2) { 
-				e2.printStackTrace(); 
-			}
-			finally {
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			} finally {
 				try {
-					if (conn != null) { 
-						conn.close(); 
+					if (conn != null) {
+						conn.close();
 					}
-				} catch (Exception e3) { 
-					e3.printStackTrace(); 
+				} catch (Exception e3) {
+					e3.printStackTrace();
 				}
 			}
 		}
