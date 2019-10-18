@@ -22,21 +22,17 @@ $(function() {
     for (var i = 1; i <= userNumber; i++) {
     $("#userForm").fadeIn(600);
     $("userForm").append($("#userFields").append($("<div/>", {
-      id: 'heading'}).append($("<h3/>").text("User " + i)), 
+      id: 'heading'}).append($("<h3/>").text("Question " + i)), 
+       
       $("<input/>", {
         type: 'text',
-        placeholder: 'Name ' + i,
-        name: 'name_' + i
-        }), $("<br/>"), 
-      $("<input/>", {
-        type: 'text',
-        placeholder: 'Email ' + i,
-        name: 'email_' + i
+        placeholder: 'Question ' + i,
+        name: 'Question' + i
         }), $("<br/>"), 
       $("<textarea/>", {
-        placeholder: 'Message' + i,
+        placeholder: 'Solution' + i,
         type: 'text',
-        name: 'msg_' + i
+        name: 'Solution' + i
         }), 
       $("<hr/>")))
       }
