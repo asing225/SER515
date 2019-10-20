@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Student | Grade 1</title>
-  <script src="./lib/blockly-master/blockly_compressed.js"></script>
-  <script src="./lib/blockly-master/blocks_compressed.js"></script>
-  <script src="./lib/blockly-master/msg/js/en.js"></script>
-  <script src="./lib/blockly-master/javascript_compressed.js"></script>
+<meta charset="utf-8">
+<title>Student | Grade 1</title>
+<script src="./lib/blockly-master/blockly_compressed.js"></script>
+<script src="./lib/blockly-master/blocks_compressed.js"></script>
+<script src="./lib/blockly-master/msg/js/en.js"></script>
+<script src="./lib/blockly-master/javascript_compressed.js"></script>
+<script type="text/javascript" src="./lib/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="./js/header.js"></script>
 </head>
 </head>
 <body>
-  <h1>Student</h1>
-  <h3>Grade 1</h3>
+	<div id="header"></div>
+	<h1>Student</h1>
+	<h3>Grade 1</h3>
 
-  <p>Demo sanbox</p>
-  <p>
-    <button onclick="runCode()">Calculate</button>
-  </p>
-  <input type="text" name="textbox3" id="textbox3"  value="" readonly="true" />
-  <div id="blocklyDiv" style="height: 600px; width: 800px;"></div>
+	<p>Demo sanbox</p>
+	<p>
+		<button onclick="runCode()">Calculate</button>
+	</p>
+	<input type="text" name="textbox3" id="textbox3" value=""
+		readonly="true" />
+	<div id="blocklyDiv" style="height: 600px; width: 800px;"></div>
 
-  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-    <!-- Dropdown for basic math operators -->
-    <category name="Blocks" colour="%{BKY_MATH_HUE}">
-      <block type="math_number">
-        <field name="NUM">123</field>
-      </block>
-      <block type="math_arithmetic"></block>
-    <sep></sep>
-      <block type="text_print"></block>
-    </category>
-    <sep></sep>
-  </xml>
+	<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox"
+		style="display: none"> <!-- Dropdown for basic math operators -->
+	<category name="Blocks" colour="%{BKY_MATH_HUE}"> <block
+		type="math_number"> <field name="NUM">123</field> </block> <block
+		type="math_arithmetic"></block> <sep></sep> <block type="text_print"></block>
+	</category> <sep></sep> </xml>
 
-  <!--<script>
+	<!--<script>
     var demoWorkspace = Blockly.inject('blocklyDiv',
         {media: './lib/blockly-master/media/',
          toolbox: document.getElementById('toolbox')});
-  </script> -->
-
-  <script src="./js/student1.js"></script>
-
+  </script> --><xml xmlns="https://developers.google.com/blockly/xml" id="toolbox"
+		style="display: none"> <!-- Dropdown for basic math operators -->
+	<category name="Math" colour="%{BKY_MATH_HUE}"> <block
+		type="math_number"> <field name="NUM">123</field> </block> <block
+		type="math_arithmetic"></block> </category> <sep></sep> </xml>
+	<script src="./js/student1.js"></script>
 </body>
 </html>
