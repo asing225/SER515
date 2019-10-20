@@ -3,43 +3,52 @@
 <head>
 <meta charset="utf-8">
 <title>Student | Grade 1</title>
-<script src="./lib/blockly-master/blockly_compressed.js"></script>
-<script src="./lib/blockly-master/blocks_compressed.js"></script>
-<script src="./lib/blockly-master/msg/js/en.js"></script>
-<script src="./lib/blockly-master/javascript_compressed.js"></script>
-<script type="text/javascript" src="./lib/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="./js/header.js"></script>
-</head>
+<link rel="stylesheet" href="./css/bootstrap.min.css">
 </head>
 <body>
+	<include src="header.html">
 	<div id="header"></div>
-	<h1>Student</h1>
-	<h3>Grade 1</h3>
-
-	<p>Demo sanbox</p>
-	<p>
-		<button onclick="runCode()">Calculate</button>
-	</p>
-	<input type="text" name="textbox3" id="textbox3" value=""
-		readonly="true" />
-	<div id="blocklyDiv" style="height: 600px; width: 800px;"></div>
-
+	<div><h3>Student Grade 1</h3></div>
+	<div class="row" style="height:30vh;">
+		<div class="col-sm-6">
+			<h1>Space for questions</h1>
+		</div>
+	</div>
+	<div class="row" style="height:40vh;">
+		<div class="col-md-6" id="blocklyDiv" style="height:40vh;"></div>
+		<div class="col-md-6" style="height:40vh;; background-color: black;">
+			<p style="color: white;">Console</p>
+			<p style="color: white;" id="console">This tag has id "console".
+				To be used to print dynamic output</p>
+		</div>
+	</div>
+	<button class="btn btn-primary" onclick="runCode()" id="runButton">Calculate</button>
+	<div class="row">
+		<input type="text" name="textbox3" id="textbox3" value=""
+			readonly="true" />
+	</div>
 	<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox"
 		style="display: none"> <!-- Dropdown for basic math operators -->
 	<category name="Blocks" colour="%{BKY_MATH_HUE}"> <block
 		type="math_number"> <field name="NUM">123</field> </block> <block
 		type="math_arithmetic"></block> <sep></sep> <block type="text_print"></block>
-	</category> <sep></sep> </xml>
-
+	</category> <sep></sep> </xml> 
 	<!--<script>
-    var demoWorkspace = Blockly.inject('blocklyDiv',
+    	var demoWorkspace = Blockly.inject('blocklyDiv',
         {media: './lib/blockly-master/media/',
          toolbox: document.getElementById('toolbox')});
-  </script> --><xml xmlns="https://developers.google.com/blockly/xml" id="toolbox"
-		style="display: none"> <!-- Dropdown for basic math operators -->
+  	</script> --> <xml xmlns="https://developers.google.com/blockly/xml"
+		id="toolbox" style="display: none"> <!-- Dropdown for basic math operators -->
 	<category name="Math" colour="%{BKY_MATH_HUE}"> <block
 		type="math_number"> <field name="NUM">123</field> </block> <block
-		type="math_arithmetic"></block> </category> <sep></sep> </xml>
-	<script src="./js/student1.js"></script>
+		type="math_arithmetic"></block> </category> <sep></sep> </xml> <script
+		src="./lib/blockly-master/blockly_compressed.js"></script> <script
+		src="./lib/blockly-master/blocks_compressed.js"></script> <script
+		src="./lib/blockly-master/msg/js/en.js"></script> <script
+		src="./lib/blockly-master/javascript_compressed.js"></script> <script
+		type="text/javascript" src="./js/jquery-2.1.3.min.js"></script> <script
+		type="text/javascript" src="./js/bootstrap.min.js"></script> <script
+		type="text/javascript" src="./js/header.js"></script> <script
+		src="./js/student1.js"></script>
 </body>
 </html>
