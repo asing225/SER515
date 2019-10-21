@@ -23,10 +23,6 @@
 		</div>
 	</div>
 	<button class="btn btn-primary" onclick="runCode()" id="runButton">Calculate</button>
-	<div class="row">
-		<input type="text" name="textbox3" id="textbox3" value=""
-			readonly="true" />
-	</div>
 	<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox"
 		style="display: none"> <!-- Dropdown for basic math operators -->
 	<category name="Blocks" colour="%{BKY_MATH_HUE}"> <block
@@ -44,7 +40,15 @@
 		type="math_number"> <field name="NUM">123</field> </block> <block
 		type="math_arithmetic"></block> </category> <sep></sep> </xml>
 	<script src="./lib/blockly-master/blockly_compressed.js"></script>
-	<script src="./lib/blockly-master/blocks_compressed.js"></script>
+	<script src="./lib/blockly-master/blocks/colour.js"></script>
+  <script src="./lib/blockly-master/blocks/math.js"></script>
+  <script src="./lib/blockly-master/blocks/logic.js"></script>
+  <script src="./lib/blockly-master/blocks/loops.js"></script>
+  <script src="./lib/blockly-master/blocks/list.js"></script>
+  <script src="./lib/blockly-master/blocks/procedures.js"></script>
+  <script src="./lib/blockly-master/blocks/text.js"></script>
+  <script src="./lib/blockly-master/blocks/variables_dynamic.js"></script>
+  <script src="./lib/blockly-master/blocks/variables.js"></script>
 	<script src="./lib/blockly-master/msg/js/en.js"></script>
 	<script src="./lib/blockly-master/javascript_compressed.js"></script>
 	<script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
