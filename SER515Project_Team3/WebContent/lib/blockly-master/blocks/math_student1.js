@@ -1,4 +1,7 @@
 /**
+* Authors - Mahendra Rao, Kushagr Jolly, Anurag Mishra, Amanjot Singh, Akshay Kumar Dileep
+
+/**
  * @license
  * Visual Blocks Editor
  *
