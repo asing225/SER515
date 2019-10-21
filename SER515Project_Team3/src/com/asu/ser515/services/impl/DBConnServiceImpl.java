@@ -6,9 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import com.asu.ser515.model.QuestionAnswer;
 import com.asu.ser515.model.User;
 import com.asu.ser515.services.DBConnService;
-import com.asu.ser515.services.helper.DBConnServiceHelper;
 
 /**
  * Implementation to handle DB connectivity
@@ -91,4 +91,12 @@ public class DBConnServiceImpl implements DBConnService {
 			}
 		}
 	}
+
+	@Override
+	public int questionairecreation(QuestionAnswer questionaire) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 }
