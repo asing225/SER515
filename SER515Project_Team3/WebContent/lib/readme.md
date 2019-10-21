@@ -26,11 +26,11 @@ compress all the scripts in "blocks" into a single script file. For the project,
 Instead we have made plugged in each individual script in Blocks directory to accommodate the custom JS files.
 
 ## Guide to generate blocks_compressed.js from all scripts in blockly-master/blocks
-``cd <where you put your github prjoects>
-git clone https://github.com/google/closure-library.git
-git clone https://github.com/LLK/scratch-blocks.git
-cd scratch-blocks
-python build.py``
+``cd <where you put your github prjoects>``
+``git clone https://github.com/google/closure-library.git``
+``git clone https://github.com/LLK/scratch-blocks.git``
+``cd scratch-blocks``
+``python build.py``
 
 ## What build.py does
 This script generates two versions of Blockly's core files:
