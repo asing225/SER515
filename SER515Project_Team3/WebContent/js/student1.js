@@ -47,3 +47,7 @@ function runCode() {
 		alert(e);
 	}
 }
+
+function clearConsole() {
+    document.getElementById("console").innerHTML="";
+}
