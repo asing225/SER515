@@ -46,10 +46,10 @@ This script generates two versions of Blockly's core files:
  cycle since there is no need to rebuild or recompile, just reload.
 ##
  This script also generates:
-###  blocks_compressed.js: The compressed Blockly language blocks.
-###   javascript_compressed.js: The compressed JavaScript generator.
-###   python_compressed.js: The compressed Python generator.
-###   php_compressed.js: The compressed PHP generator.
-###  lua_compressed.js: The compressed Lua generator.
-###  dart_compressed.js: The compressed Dart generator.
-###  msg/js/<LANG>.js for every language <LANG> defined in msg/js/<LANG>.json.
+#####  blocks_compressed.js: The compressed Blockly language blocks.
+#####  javascript_compressed.js: The compressed JavaScript generator.
+#####   python_compressed.js: The compressed Python generator.
+#####   php_compressed.js: The compressed PHP generator.
+#####  lua_compressed.js: The compressed Lua generator.
+#####  dart_compressed.js: The compressed Dart generator.
+#####  msg/js/<LANG>.js for every language <LANG> defined in msg/js/<LANG>.json.
