@@ -27,20 +27,18 @@
 
 	<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox"
 		style="display: none"> <!-- Dropdown for basic math operators -->
-	<category name="Blocks" colour="%{BKY_MATH_HUE}"> <block
-		type="math_number"> <field name="NUM">123</field> </block> <block
-		type="math_arithmetic"></block> <sep></sep> <block type="text_print"></block>
+	<category name="Blocks" colour="%{BKY_MATH_HUE}">
+    <block type="math_number"> <field name="NUM">123</field> </block>
+    <block type="math_arithmetic"></block>
+    <sep></sep>
+    <block type="text_print"></block>
+    <block type="math_single"></block>
 	</category> <sep></sep> </xml>
 	<!--<script>
     	var demoWorkspace = Blockly.inject('blocklyDiv',
         {media: './lib/blockly-master/media/',
          toolbox: document.getElementById('toolbox')});
   	</script> -->
-	<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox"
-		style="display: none"> <!-- Dropdown for basic math operators -->
-	<category name="Math" colour="%{BKY_MATH_HUE}"> <block
-		type="math_number"> <field name="NUM">123</field> </block> <block
-		type="math_arithmetic"></block> </category> <sep></sep> </xml>
 	<script src="./lib/blockly-master/blockly_compressed.js"></script>
 	<script src="./lib/blockly-master/blocks/colour.js"></script>
   <script src="./lib/blockly-master/blocks/math_student1.js"></script>
