@@ -95,6 +95,15 @@ public class DBConnServiceImpl implements DBConnService {
 	@Override
 	public int questionairecreation(QuestionAnswer questionaire) {
 		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			try {
+				Class.forName(__jdbcDriver);
+			} catch (Throwable t) {
+				t.printStackTrace();
+			}
+			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
 		return 0;
 	}
 
