@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.asu.ser515.model.User;
-import com.asu.ser515.services.helper.DBConnServiceHelper;
+import com.asu.ser515.services.helper.LoginServletHelper;
 import com.asu.ser515.services.impl.DBConnServiceImpl;
 
 /**
@@ -26,13 +26,6 @@ import com.asu.ser515.services.impl.DBConnServiceImpl;
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
 
-	private String errorPage = "error.html";
-	private String exceptionPage = "exception.html";
-	private String adminPage = "admin.html";
-	private String teacherPage = "teacherHomePage.html";
-	private String studentGrade_1Page = "student1.html";
-	private String studentGrade_6Page = "student2.html";
-
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 	}
@@ -44,64 +37,15 @@ public class LoginServlet extends HttpServlet {
 		User oldUser = new User(userName, password);
 		DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
 		int dbResult = serviceImpl.authenticateUser(oldUser);
-		if (dbResult == 0) {
-			// User not present
-			try {
-				req.getRequestDispatcher(errorPage).forward(req, res);
-			} catch (IOException ioExc) {
-				ioExc.printStackTrace();
-			} catch (ServletException servletExc) {
-				servletExc.printStackTrace();
-			}
-		}
-		if (dbResult == -1) {
-			// Exception in database
-			try {
-				req.getRequestDispatcher(exceptionPage).forward(req, res);
-			} catch (IOException ioExc) {
-				ioExc.printStackTrace();
-			} catch (ServletException servletExc) {
-				servletExc.printStackTrace();
-			}
-		} else {
-			DBConnServiceHelper dbHelper = new DBConnServiceHelper();
-			String role = dbHelper.mapDBtoUsertype(dbResult);
-			if (role.equalsIgnoreCase("admin")) {
-				try {
-					req.getRequestDispatcher(adminPage).forward(req, res);
-				} catch (IOException ioExc) {
-					ioExc.printStackTrace();
-				} catch (ServletException servletExc) {
-					servletExc.printStackTrace();
-				}
-			}
-			if (role.equalsIgnoreCase("teacher")) {
-				try {
-					req.getRequestDispatcher(teacherPage).forward(req, res);
-				} catch (IOException ioExc) {
-					ioExc.printStackTrace();
-				} catch (ServletException servletExc) {
-					servletExc.printStackTrace();
-				}
-			}
-			if (role.equalsIgnoreCase("studentGrade_1")) {
-				try {
-					req.getRequestDispatcher(studentGrade_1Page).forward(req, res);
-				} catch (IOException ioExc) {
-					ioExc.printStackTrace();
-				} catch (ServletException servletExc) {
-					servletExc.printStackTrace();
-				}
-			}
-			if (role.equalsIgnoreCase("studentGrade_6")) {
-				try {
-					req.getRequestDispatcher(studentGrade_6Page).forward(req, res);
-				} catch (IOException ioExc) {
-					ioExc.printStackTrace();
-				} catch (ServletException servletExc) {
-					servletExc.printStackTrace();
-				}
-			}
+		LoginServletHelper loginServletHelper = new LoginServletHelper();
+		String userPage = loginServletHelper.mapUserToPage(dbResult);
+		try {
+			req.getRequestDispatcher(userPage).forward(req, res);
+		} catch (IOException ioExc) {
+			ioExc.printStackTrace();
+		} catch (ServletException servletExc) {
+			servletExc.printStackTrace();
 		}
 	}
 }
+	
