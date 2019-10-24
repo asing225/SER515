@@ -31,6 +31,7 @@ public class DBConnServiceImpl implements DBConnService {
 	private static String __jdbcPasswd;
 	private static String __jdbcDriver;
 	private static String __getUser;
+	private static String __insertQuiz;
 
 	// static block to be executed when class loads to read DB configs from
 	// properties file.
@@ -43,6 +44,7 @@ public class DBConnServiceImpl implements DBConnService {
 			__jdbcPasswd = dbProperties.getProperty("jdbcPasswd");
 			__jdbcDriver = dbProperties.getProperty("jdbcDriver");
 			__getUser = dbProperties.getProperty("getUser");
+			__insertQuiz=dbProperties.getProperty("insertQuiz");
 		} catch (Throwable t) {
 			t.printStackTrace();
 		} finally {
@@ -104,7 +106,23 @@ public class DBConnServiceImpl implements DBConnService {
 				t.printStackTrace();
 			}
 			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
-		return 0;
+			ps = conn.prepareStatement(__insertQuiz);
+			ps.setString(1, questionaire.getQuestion());
+			ps.setString(2, questionaire.getAnswer());
+			int rs= ps.executeUpdate();
+			if(rs == 1) {
+				return rs;
+			}
+			else {
+				return 0;
+			}
+			
+		} catch (SQLException sqe) {
+			sqe.printStackTrace();
+			return -1;
+		}
+		
+		//return 0;
 	}
 
 

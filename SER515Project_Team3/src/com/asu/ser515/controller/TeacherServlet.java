@@ -1,6 +1,8 @@
 package com.asu.ser515.controller;
 
 
+import java.io.IOException;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,23 +28,53 @@ import com.asu.ser515.services.impl.DBConnServiceImpl;
 @SuppressWarnings("serial")
 public class TeacherServlet extends HttpServlet{
 
+	private String teacherPage = "teacherHomePage.html";
+	private String errorPage = "error.html";
+	private String exceptionPage = "exception.html";
 	
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 	}
 	
 	// doPost method to handle form submit coming from web page
-		public void doPost(HttpServletRequest req, HttpServletResponse res) {		
+		public void doPost(HttpServletRequest req, HttpServletResponse res) {
 			for( int i = 1; i <= 10; i++) {
 				if(req.getParameter("Question"+i)!=null)  {
 					if(req.getParameter("Solution"+i)!=null) {
-						System.out.println("Total Question present:"+i);
 						String question = req.getParameter("Question"+i);
 						String solution = req.getParameter("Solution"+i);
 						QuestionAnswer questionaire = new QuestionAnswer(question, solution);
 						DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
 						int dbResult = serviceImpl.questionairecreation(questionaire);
-						System.out.println(dbResult);
+						if (dbResult == 1) {
+							try {
+								req.getRequestDispatcher(teacherPage).forward(req, res);
+							} catch (IOException ioExc) {
+								ioExc.printStackTrace();
+							} catch (ServletException servletExc) {
+								servletExc.printStackTrace();
+							}
+						}
+						else if(dbResult == 0) {
+							// Error in database
+							try {
+								req.getRequestDispatcher(errorPage).forward(req, res);
+							} catch (IOException ioExc) {
+								ioExc.printStackTrace();
+							} catch (ServletException servletExc) {
+								servletExc.printStackTrace();
+							}
+						}
+						else {
+							// Exception in database
+							try {
+								req.getRequestDispatcher(exceptionPage).forward(req, res);
+							} catch (IOException ioExc) {
+								ioExc.printStackTrace();
+							} catch (ServletException servletExc) {
+								servletExc.printStackTrace();
+							}
+						}
 					}
 				}
 			}
