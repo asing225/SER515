@@ -16,6 +16,6 @@ import com.asu.ser515.model.User;
 
 public interface DBConnService {
 	public int authenticateUser(User oldUser);
-	public int questionairecreation(QuestionAnswer questionaire);
+	public int questionairecreation(QuestionAnswer questionaire, String quizname, String instructions);
 
 }

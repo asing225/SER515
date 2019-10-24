@@ -25,7 +25,7 @@ import com.asu.ser515.services.impl.DBConnServiceImpl;
 
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
-
+	public static String userName;
 	private String errorPage = "error.html";
 	private String exceptionPage = "exception.html";
 	private String adminPage = "admin.html";
@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 	// doPost method to handle form submit coming from web page
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
 		String password = req.getParameter("password");
-		String userName = req.getParameter("username");
+		userName = req.getParameter("username");
 		User oldUser = new User(userName, password);
 		DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
 		int dbResult = serviceImpl.authenticateUser(oldUser);

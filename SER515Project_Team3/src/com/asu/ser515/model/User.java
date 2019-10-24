@@ -15,6 +15,7 @@ public class User {
 	private String userName;
 	private String password;
 	private String userType;
+	private String U_ID;
 
 	// default constructor
 	public User() {
@@ -74,5 +75,12 @@ public class User {
 
 	public void setUserType(String userType) {
 		this.userType = userType;
+	}
+	public String getU_ID() {
+		return U_ID;
+	}
+
+	public void setU_ID(String U_ID) {
+		this.U_ID = U_ID;
 	}
 }
