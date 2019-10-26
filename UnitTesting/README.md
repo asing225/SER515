@@ -22,16 +22,26 @@ The same goes for the Node_modules directory.
 
 Unit Testing  
     |
-    |- - - -> node-v12.13.0.pkg
+
+    | - - - -> node-v12.13.0.pkg
+
     |
-    |- - - -> first.js
+
+    | - - - -> first.js
+    
     |
-    |- - - -> package.json
+
+    | - - - -> package.json
+
     |
-    |- - - -> node_modules
+
+    | - - - -> node_modules
+
     |
+
     |- - - -> test
                 |
+
                 |- - - -> firsttest.js
 
 Do not change directory name for "test"
