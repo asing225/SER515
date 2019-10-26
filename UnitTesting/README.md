@@ -16,11 +16,11 @@ This file is generated when you download Node JS and npm. It is specific to each
 It is recommended you use the file generated from the installations instead of the copy on the repository, which is the one generated on the developer's system. The same goes for the Node_modules directory.
 Add the below to your package.json file:
 
-`"scripts": {
+`"scripts": {'
 
-    "test": "mocha"
+    '"test": "mocha"'
 
-  }`
+  '}`
 
 so that you can successfully execute:
 
