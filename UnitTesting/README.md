@@ -1,14 +1,14 @@
 ### Before you proceed to execute the test scripts, please make a note of the below:
 
-###### Install Node JS and npm
+##### Install Node JS and npm
 Install globally on your system from : https://nodejs.org/en/download/
 The node package contains npm as well.
 The repo contains node-v12.13.0.pkg which is the installation file for 64bit MacOS. You can use the appropriate file from the link above.
 
 ##### Install mocha and chai JS
 
-`npm install --global mocha
- npm install --save-dev mocha`
+`npm install --global mocha`
+`npm install --save-dev mocha`
 
 ##### package.json
 This file is generated when you download Node JS and npm. It is specific to each system/directory.
