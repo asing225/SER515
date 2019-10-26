@@ -1,6 +1,6 @@
 package test.com.asu.ser515.services.helper;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import com.asu.ser515.services.helper.LoginServletHelper;
