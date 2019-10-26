@@ -43,7 +43,6 @@ public class TeacherServlet extends HttpServlet{
 			String quizname=req.getParameter("quizname");
 			String instructions=req.getParameter("instructions");
 			DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
-			System.out.println("Teacher Servelet"+U_ID);
 			int dbResult = serviceImpl.quizCreation(U_ID, quizname, instructions);
 			for( int i = 1; i <= 10; i++) {
 				if(req.getParameter("Question"+i)!=null)  {
@@ -89,6 +88,5 @@ public class TeacherServlet extends HttpServlet{
 		public void doGet(HttpServletRequest req, HttpServletResponse res) {
 			HttpSession session=req.getSession(true);
 		    U_ID=(int)session.getAttribute("u_id");
-		    
 		}
 }
