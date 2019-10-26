@@ -18,28 +18,28 @@ class TestLoginServletHelper {
 	private int dbResultTestValue = 0;
 	
 	@Test
-	void testMapTeacherToPage() {
+	void testMapTeacherToPage_success() {
 		dbResultTestValue = 2;
 		String teacherPage = loginServletHelper.mapUserToPage(dbResultTestValue);
 		assertEquals("teacherHomePage.html", teacherPage);
 	}
 	
 	@Test
-	void testMapAdminPage() {
+	void testMapAdminPage_success() {
 		dbResultTestValue = 1;
 		String adminPage = loginServletHelper.mapUserToPage(dbResultTestValue);
 		assertEquals("admin.html", adminPage);
 	}
 
 	@Test
-	void testMapStudentGrade1Page() {
+	void testMapStudentGrade1Page_success() {
 		dbResultTestValue = 3;
 		String student1Page = loginServletHelper.mapUserToPage(dbResultTestValue);
 		assertEquals("student1.html", student1Page);
 	}
 	
 	@Test
-	void testMapStudentGrade6Page() {
+	void testMapStudentGrade6Page_success() {
 		dbResultTestValue = 4;
 		String student2Page = loginServletHelper.mapUserToPage(dbResultTestValue);
 		assertEquals("student2.html", student2Page);
