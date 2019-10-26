@@ -21,14 +21,14 @@ The same goes for the Node_modules directory.
 ### Setup
 
 Unit Testing  
-    |
+    
 
     | - - - -> node-v12.13.0.pkg
 
     |
 
     | - - - -> first.js
-    
+
     |
 
     | - - - -> package.json
