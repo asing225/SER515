@@ -1,8 +1,8 @@
 var assert = require('../node_modules/chai').assert;
-var first = require('../first');
+var setup_check = require('../setup_check');
 
-describe('First', function () {
-  it('first should return hello world', function () {
-    assert.equal(first(), 'hello world')
+describe('Setup', function () {
+  it('This functions checks if the test setup is working correctly with the required dependencies', function () {
+    assert.equal(setup_check(), 'hello world')
   });
 });
