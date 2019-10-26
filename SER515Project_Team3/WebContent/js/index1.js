@@ -5,7 +5,7 @@
  * @date - 10/07/2019
  * 
  */
-count = 1
+count = 0
 
   $(document).ready(function () {
     $('#btAdd').click(function () {

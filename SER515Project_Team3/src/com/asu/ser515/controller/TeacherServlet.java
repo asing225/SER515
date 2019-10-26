@@ -40,8 +40,8 @@ public class TeacherServlet extends HttpServlet{
 	
 	// doPost method to handle form submit coming from web page
 		public void doPost(HttpServletRequest req, HttpServletResponse res) {
-			String quizname="new"; //req.getParameter("quizname");
-			String instructions="ins"; //req.getParameter("instructions");
+			String quizname=req.getParameter("quizname");
+			String instructions=req.getParameter("instructions");
 			DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
 			System.out.println("Teacher Servelet"+U_ID);
 			int dbResult = serviceImpl.quizCreation(U_ID, quizname, instructions);
