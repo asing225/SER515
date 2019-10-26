@@ -21,14 +21,17 @@ The same goes for the Node_modules directory.
 ### Setup
 
 Unit Testing  
-              -> first.js		
-
-              -> node-v12.13.0.pkg
-
-              -> node_modules		
-
-              -> package.json		
-
-              -> test -> firsttest.js
+    |
+    |- - - -> node-v12.13.0.pkg
+    |
+    |- - - -> first.js
+    |
+    |- - - -> package.json
+    |
+    |- - - -> node_modules
+    |
+    |- - - -> test
+                |
+                |- - - -> firsttest.js
 
 Do not change directory name for "test"
