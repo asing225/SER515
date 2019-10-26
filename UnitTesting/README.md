@@ -8,6 +8,7 @@ The repo contains node-v12.13.0.pkg which is the installation file for 64bit Mac
 ##### Install mocha and chai JS
 
 `npm install --global mocha`
+
 `npm install --save-dev mocha`
 
 ##### package.json
