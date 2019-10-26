@@ -17,9 +17,7 @@ It is recommended you use the file generated from the installations instead of t
 Add the below to your package.json file:
 
 `"scripts": {`
-
     `"test": "mocha"`
-
   `}`
 
 so that you can successfully execute:
