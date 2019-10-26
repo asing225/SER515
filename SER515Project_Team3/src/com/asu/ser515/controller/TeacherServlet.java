@@ -38,8 +38,8 @@ public class TeacherServlet extends HttpServlet{
 	
 	// doPost method to handle form submit coming from web page
 		public void doPost(HttpServletRequest req, HttpServletResponse res) {
-			String quizname="new"; //req.getParameter("quizname");
-			String instructions="ins"; //req.getParameter("instructions");
+			String quizname=req.getParameter("quizname");
+			String instructions=req.getParameter("instructions");
 			for( int i = 1; i <= 10; i++) {
 				if(req.getParameter("Question"+i)!=null)  {
 					if(req.getParameter("Solution"+i)!=null) {
