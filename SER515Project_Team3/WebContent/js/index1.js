@@ -5,7 +5,7 @@
  * @date - 10/07/2019
  * 
  */
-count = 1
+count = 0
 
   $(document).ready(function () {
     $('#btAdd').click(function () {
@@ -24,7 +24,7 @@ count = 1
       var val = "head"
       var value = val.concat(count);
       console.log(value);
-      if(count>1){
+      if(count>0){
       var element = document.getElementById(value);
       document.getElementById("wrapper1").removeChild(element)
       count = count - 1;
