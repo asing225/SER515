@@ -102,7 +102,6 @@ public class DBConnServiceImpl implements DBConnService {
 
 	@Override
 	public int quizCreation(int U_ID, String quizname, String instructions) {	
-		// TODO Auto-generated method stub
 		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
@@ -151,7 +150,6 @@ public class DBConnServiceImpl implements DBConnService {
 
 	@Override
 	public int questionaireCreation(int U_ID, QuestionAnswer questionaire) {
-		// TODO Auto-generated method stub
 		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
