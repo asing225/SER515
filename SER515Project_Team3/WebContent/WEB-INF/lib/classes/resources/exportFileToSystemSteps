@@ -1,0 +1,5 @@
+1) Login to PhpMyAdmin DB using the credentials we have
+2) Select the source database on the left panel
+3) Click Export button and there select Quick
+4) You can choose type of file to be downloaded, ex. sql, csv, pdf, etc.
+5) Click the GO button to confirm.
