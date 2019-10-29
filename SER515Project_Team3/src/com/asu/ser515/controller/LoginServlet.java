@@ -37,17 +37,16 @@ public class LoginServlet extends HttpServlet {
 		String password = req.getParameter("password");
 		String userName = req.getParameter("username");
 		DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
-		User olduser = serviceImpl.authenticateUser(userName, password);
-		System.out.println(olduser.getU_ID());
+		User user = serviceImpl.authenticateUser(userName, password);
 		LoginServletHelper loginServletHelper = new LoginServletHelper();
-		String userPage = loginServletHelper.mapUserToPage(olduser.getUserType());
+		String userPage = loginServletHelper.mapUserToPage(user.getUserType());
 		try {
 			HttpSession session = req.getSession(true);
-			session.setAttribute("firstname", olduser.getFirstName());
-			session.setAttribute("lastname", olduser.getLastName());
-			session.setAttribute("usertype", olduser.getUserType());
-			session.setAttribute("u_id", olduser.getU_ID());
-			session.setAttribute("username", olduser.getUserName());
+			session.setAttribute("firstname", user.getFirstName());
+			session.setAttribute("lastname", user.getLastName());
+			session.setAttribute("usertype", user.getUserType());
+			session.setAttribute("u_id", user.getU_ID());
+			session.setAttribute("username", user.getUserName());
 			req.getRequestDispatcher(userPage).forward(req, res);
 		} catch (IOException ioExc) {
 			ioExc.printStackTrace();
