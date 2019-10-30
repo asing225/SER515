@@ -36,6 +36,7 @@
     border-radius: 4px;
     box-shadow: 0 4px 10px 4px rgba(46, 48, 49, 0.3);
   }
+
   
   .tab-group {
     list-style: none;
@@ -55,7 +56,7 @@
     color: #a0b3b0;
     font-size: 20px;
     float: left;
-    width: 50%;
+    width: 100%;
     text-align: center;
     cursor: pointer;
     transition: .5s ease;
