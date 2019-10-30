@@ -1,5 +1,6 @@
 package com.asu.ser515.services;
 
+import com.asu.ser515.model.QuestionAnswer;
 import com.asu.ser515.model.User;
 
 /**
@@ -14,5 +15,8 @@ import com.asu.ser515.model.User;
  */
 
 public interface DBConnService {
-	public int authenticateUser(User oldUser);
+	public User authenticateUser(String username, String password);
+	public int quizCreation(int U_ID, String quizname, String instructions);
+	public int questionaireCreation(int U_ID, QuestionAnswer questionaire);
+
 }
