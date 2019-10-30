@@ -1,0 +1,6 @@
+1)	Please go to the location of the .sql file containing the database in your system.
+2)	Open PhpMyAdmin site on the DB where you want to import.
+3)	Click Import in the Top Menu
+4)	Under File to Import, click Browse and select the .sql file you wish to import
+5)	Click Go at the bottom right to import the database file
+6)	When the database has been imported successfully, you should see a message at the top of the page similar to: Import has been successfully finished, ## queries executed.

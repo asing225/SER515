@@ -1,5 +1,10 @@
-// Developed By Akshay Kumar Dileep; Dated 09/30/2019
-$('.form').find('input, textarea').on('keyup blur focus', function (e) {
+/**
+ * This file contains the javascript code for the application header
+ * 
+ * @author - akshaykumardileep
+ * @date - 09/30/2019
+ * 
+ */$('.form').find('input, textarea').on('keyup blur focus', function (e) {
   
   var $this = $(this),
       label = $this.prev('label');
