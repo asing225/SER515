@@ -6,33 +6,36 @@ package com.asu.ser515.model;
  * @author amanjotsingh
  * @date - 09/27/2019
  * 
- * */
+ */
 
 public class User {
-	
+
 	private String firstName;
 	private String lastName;
 	private String userName;
 	private String password;
-	private String userType;
-	
+	private int userType;
+	private int U_ID;
+
 	// default constructor
-	public User() {}
-	
+	public User() {
+	}
+
 	// class constructor
-	public User(String firstName, String lastName, String userName, String password, String userType) {
+	public User(String firstName, String lastName, String userName, String password, int userType, int U_ID) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userName = userName;
 		this.password = password;
 		this.userType = userType;
+		this.U_ID = U_ID;
 	}
-	
+
 	// class constructor
-		public User(String userName, String password) {
-			this.userName = userName;
-			this.password = password;
-		}
+	public User(String userName, String password) {
+		this.userName = userName;
+		this.password = password;
+	}
 
 	// getters and setters
 	public String getFirstName() {
@@ -67,11 +70,18 @@ public class User {
 		this.password = password;
 	}
 
-	public String getUserType() {
+	public int getUserType() {
 		return userType;
 	}
 
-	public void setUserType(String userType) {
+	public void setUserType(int userType) {
 		this.userType = userType;
+	}
+	public int getU_ID() {
+		return U_ID;
+	}
+
+	public void setU_ID(int U_ID) {
+		this.U_ID = U_ID;
 	}
 }

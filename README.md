@@ -12,9 +12,12 @@ Project setup and deployment guide
 11)	Select Dynamic Web Module-3.0
 12)	Select JavaScript 1.0
 13)	Click Apply and then OK.
-14)	Right click Properties-> JavaScript->IncludePath->Source-> Expand SER515Project_Team3/WebContent
+14)	Right click on Project -> Properties-> Expand JavaScript->IncludePath->Source-> Expand SER515Project_Team3/WebContent
 15)	Double click Excluded 
-16)	In Exclusion Pattern -> Click on Add-> Select Lib Directory-> Enter->Click Finish
-17)	Right Click ->Properties-> JavaScript->Validation -> Errors/warnings and uncheck “Strict validation of JavaScript keywords usage”.
+16)	In Exclusion Pattern -> Click on Add-> Browse Web Content/Lib Directory-> Click Ok->Click Finish
+17)	Right Click on Project -> Properties-> JavaScript->Validation -> Errors/warnings and uncheck “Strict validation of JavaScript keywords usage”.
 18)	Apply and Close.
-19)	Now build the project and Run on Apache Tomcat.
+19) Go to Eclipse preferences -> Validation -> uncheck build for "XML Validator"
+19) Go to Eclipse Preferences -> Validation -> Uncheck build for "HTML syntax validator".
+20) Click Apply and Close.
+21)	Now build the project and Run on Apache Tomcat.
