@@ -41,8 +41,7 @@ function runCode() {
 	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
 	Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
 	try {
-		document.getElementById("console").innerHTML += eval(code.substring(code
-				.indexOf("(") + 1, code.length - 3));
+		document.getElementById("console").innerHTML = code.substring(code.indexOf("(") + 1, code.length - 3)+ ' = ' + eval(code.substring(code.indexOf("(") + 1, code.length - 3));
 	} catch (e) {
 		alert(e);
 	}
