@@ -41,7 +41,10 @@ function runCode() {
 	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
 	Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
 	try {
-		document.getElementById("console").innerHTML = code.substring(code.indexOf("(") + 1, code.length - 3)+ ' = ' + eval(code.substring(code.indexOf("(") + 1, code.length - 3));
+		if ((eval(code.substring(code.indexOf("(") + 1, code.length - 3))) > 0)
+			document.getElementById("console").innerHTML = code.substring(code.indexOf("(") + 1, code.length - 3)+ ' = ' + eval(code.substring(code.indexOf("(") + 1, code.length - 3));
+		else
+			document.getElementById("console").innerHTML = "You can't subtract a larger number from a smaller one!"
 	} catch (e) {
 		alert(e);
 	}
