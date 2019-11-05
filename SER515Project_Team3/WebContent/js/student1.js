@@ -48,5 +48,5 @@ function runCode() {
 }
 
 function clearConsole() {
-    document.getElementById("console").innerHTML="";
+  document.getElementById("console").innerHTML="";
 }

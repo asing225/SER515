@@ -95,6 +95,55 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "extensions": ["math_op_tooltip"]
   },
 
+  // Block for basic arithmetic operator to subtract.
+  {
+    "type": "math_summation",
+    "message0": "%1 %2 %3",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "A",
+        "check": "Number"
+      },
+      {
+        "type": "field_dropdown",
+        "name": "OP",
+        "options": [
+          ["%{BKY_MATH_SUBTRACTION_SYMBOL}", "MINUS"]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "B",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "style": "math_blocks",
+    "helpUrl": "%{BKY_MATH_ARITHMETIC_HELPURL}",
+    "extensions": ["math_op_tooltip"]
+  },
+  //Block for numbers
+  {
+  "type": "block_type",
+  "message0": "%1",
+  "args0": [
+    {
+      "type": "field_number",
+      "name": "ONE",
+      "value": 1,
+      "min": 1,
+      "max": 1,
+      "precision": 1
+    }
+  ],
+  "output": "Number",
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+
   // Block for advanced math operators with single operand.
   {
     "type": "math_single",
@@ -440,7 +489,11 @@ Blockly.Constants.Math.TOOLTIPS_BY_OP = {
   'MEDIAN': '%{BKY_MATH_ONLIST_TOOLTIP_MEDIAN}',
   'MODE': '%{BKY_MATH_ONLIST_TOOLTIP_MODE}',
   'STD_DEV': '%{BKY_MATH_ONLIST_TOOLTIP_STD_DEV}',
-  'RANDOM': '%{BKY_MATH_ONLIST_TOOLTIP_RANDOM}'
+  'RANDOM': '%{BKY_MATH_ONLIST_TOOLTIP_RANDOM}',
+
+  //math_summation
+  'SUMM': '%{BKY_MATH_SUMMATION_TOOLTIP_MINUS}'
+
 };
 
 Blockly.Extensions.register('math_op_tooltip',
