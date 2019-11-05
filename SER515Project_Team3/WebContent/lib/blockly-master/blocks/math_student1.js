@@ -53,7 +53,10 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "args0": [{
       "type": "field_number",
       "name": "NUM",
-      "value": 0
+      "value": 0,
+      "min": 1,
+      "max": 20,
+      "precision": 1
     }],
     "output": "Number",
     "helpUrl": "%{BKY_MATH_NUMBER_HELPURL}",
