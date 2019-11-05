@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("firstname", user.getFirstName());
 			session.setAttribute("lastname", user.getLastName());
 			session.setAttribute("usertype", user.getUserType());
-			session.setAttribute("u_id", user.getU_ID());
+			session.setAttribute("u_id", user.getUser_Id());
 			session.setAttribute("username", user.getUserName());
 			req.getRequestDispatcher(userPage).forward(req, res);
 		} catch (IOException ioExc) {

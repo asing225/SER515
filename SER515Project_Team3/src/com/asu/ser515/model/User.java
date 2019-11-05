@@ -15,20 +15,20 @@ public class User {
 	private String userName;
 	private String password;
 	private int userType;
-	private int U_ID;
+	private int user_Id;
 
 	// default constructor
 	public User() {
 	}
 
 	// class constructor
-	public User(String firstName, String lastName, String userName, String password, int userType, int U_ID) {
+	public User(String firstName, String lastName, String userName, String password, int userType, int user_Id) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userName = userName;
 		this.password = password;
 		this.userType = userType;
-		this.U_ID = U_ID;
+		this.user_Id = user_Id;
 	}
 
 	// class constructor
@@ -77,11 +77,11 @@ public class User {
 	public void setUserType(int userType) {
 		this.userType = userType;
 	}
-	public int getU_ID() {
-		return U_ID;
+	public int getUser_Id() {
+		return user_Id;
 	}
 
-	public void setU_ID(int U_ID) {
-		this.U_ID = U_ID;
+	public void setUser_Id(int user_Id) {
+		this.user_Id = user_Id;
 	}
 }
