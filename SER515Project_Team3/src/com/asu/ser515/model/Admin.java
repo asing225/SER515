@@ -9,7 +9,7 @@ package com.asu.ser515.model;
  * 
  */
 
-public class Admin {
+public class Admin extends User{
 
 	private String firstName;
 	private String lastName;

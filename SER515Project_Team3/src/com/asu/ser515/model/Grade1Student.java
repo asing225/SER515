@@ -9,7 +9,7 @@ package com.asu.ser515.model;
  * 
  */
 
-public class Grade1Student {
+public class Grade1Student extends User{
 
 	private String firstName;
 	private String lastName;

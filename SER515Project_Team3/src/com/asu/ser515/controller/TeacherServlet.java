@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.asu.ser515.model.QuestionAnswer;
+import com.asu.ser515.model.Teacher;
 import com.asu.ser515.model.User;
 import com.asu.ser515.services.helper.TeacherServletHelper;
 import com.asu.ser515.services.impl.DBConnServiceImpl;
@@ -39,22 +40,22 @@ public class TeacherServlet extends HttpServlet {
 		String quizname = req.getParameter("quizname");
 		String instructions = req.getParameter("instructions");
 		HttpSession session = req.getSession(false);
-		User user = new User();
+		User teacher = new Teacher();
 		System.out.println("---->" + session.getAttribute("firstname"));
-		user.setFirstName((String) session.getAttribute("firstname"));
-		user.setLastName((String) session.getAttribute("lastname"));
-		user.setUserName((String) session.getAttribute("username"));
-		user.setUser_Id((int) session.getAttribute("u_id"));
-		user.setUserType((int) session.getAttribute("usertype"));
+		teacher.setFirstName((String) session.getAttribute("firstname"));
+		teacher.setLastName((String) session.getAttribute("lastname"));
+		teacher.setUserName((String) session.getAttribute("username"));
+		teacher.setUser_Id((int) session.getAttribute("u_id"));
+		teacher.setUserType((int) session.getAttribute("usertype"));
 		DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
-		int quizCreated = serviceImpl.quizCreation(user.getUser_Id(), quizname, instructions);
+		int quizCreated = serviceImpl.quizCreation(teacher.getUser_Id(), quizname, instructions);
 		for (int i = 1; i <= 10; i++) {
 			if (req.getParameter("Question" + i) != null) {
 				if (req.getParameter("Solution" + i) != null) {
 					String question = req.getParameter("Question" + i);
 					String solution = req.getParameter("Solution" + i);
 					QuestionAnswer questionaire = new QuestionAnswer(question, solution);
-					int questionsCreated = serviceImpl.questionaireCreation(user.getUser_Id(), questionaire);
+					int questionsCreated = serviceImpl.questionaireCreation(teacher.getUser_Id(), questionaire);
 					TeacherServletHelper teacherHelper = new TeacherServletHelper();
 					String teacherRouter = teacherHelper.mapTeacherToPage(quizCreated, questionsCreated);
 					try {
