@@ -32,6 +32,22 @@ var demoWorkspace = Blockly.inject('blocklyDiv', {
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
 		demoWorkspace);
 
+function checkCode(x){
+	document.getElementById("console").innerHTML="";
+	document.getElementById("check").innerHTML = "Checking expression:";
+	var array = x.replace("window.alert(","");
+	array = array.replace(");","");
+	array = array.split('+').join(',').split('-').join(',').split('(').join(',').split(')').join(',').split(',');
+	for(var c=0; c<array.length; c++){
+			if(array[c] <= 0){
+				document.getElementById("check").innerHTML += "Blocks aren't correct"
+				return 0;
+			}
+	}
+	document.getElementById("check").innerHTML += "Blocks are correct"
+	return 1;
+}
+
 function runCode() {
 	// Generate JavaScript code and run it.
 
@@ -39,17 +55,22 @@ function runCode() {
 	window.LoopTrap = 1000;
 	Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
 	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-	Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-	try {
-		if ((eval(code.substring(code.indexOf("(") + 1, code.length - 3))) > 0)
-			document.getElementById("console").innerHTML = code.substring(code.indexOf("(") + 1, code.length - 3)+ ' = ' + eval(code.substring(code.indexOf("(") + 1, code.length - 3));
-		else
-			document.getElementById("console").innerHTML = "You can't subtract a larger number from a smaller one!"
-	} catch (e) {
-		alert(e);
+	answer = checkCode(code);
+	if(answer != 0){
+		Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+		try {
+			if ((eval(code.substring(code.indexOf("(") + 1, code.length - 3))) >= 0)
+				document.getElementById("console").innerHTML += code.substring(code.indexOf("(") + 1, code.length - 3)+ ' = ' + eval(code.substring(code.indexOf("(") + 1, code.length - 3));
+			else
+				document.getElementById("console").innerHTML += "You can't subtract a larger number from a smaller one!"
+		} catch (e) {
+			alert(e);
+		}
 	}
 }
 
 function clearConsole() {
+	//to clear the console when the button is clicked
   document.getElementById("console").innerHTML="";
+	document.getElementById("check").innerHTML="";
 }

@@ -80,9 +80,9 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
         "name": "OP",
         "options": [
           ["%{BKY_MATH_ADDITION_SYMBOL}", "ADD"],
-          ["%{BKY_MATH_SUBTRACTION_SYMBOL}", "MINUS"],
-          ["%{BKY_MATH_MULTIPLICATION_SYMBOL}", "MULTIPLY"],
-          ["%{BKY_MATH_DIVISION_SYMBOL}", "DIVIDE"]
+          ["%{BKY_MATH_SUBTRACTION_SYMBOL}", "MINUS"]
+          //["%{BKY_MATH_MULTIPLICATION_SYMBOL}", "MULTIPLY"],
+          //["%{BKY_MATH_DIVISION_SYMBOL}", "DIVIDE"]
         ]
       },
       {
@@ -93,6 +93,7 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     ],
     "inputsInline": true,
     "output": "Number",
+    "precision": 3,
     "style": "math_blocks",
     "helpUrl": "%{BKY_MATH_ARITHMETIC_HELPURL}",
     "extensions": ["math_op_tooltip"]
@@ -492,10 +493,7 @@ Blockly.Constants.Math.TOOLTIPS_BY_OP = {
   'MEDIAN': '%{BKY_MATH_ONLIST_TOOLTIP_MEDIAN}',
   'MODE': '%{BKY_MATH_ONLIST_TOOLTIP_MODE}',
   'STD_DEV': '%{BKY_MATH_ONLIST_TOOLTIP_STD_DEV}',
-  'RANDOM': '%{BKY_MATH_ONLIST_TOOLTIP_RANDOM}',
-
-  //math_summation
-  'SUMM': '%{BKY_MATH_SUMMATION_TOOLTIP_MINUS}'
+  'RANDOM': '%{BKY_MATH_ONLIST_TOOLTIP_RANDOM}'
 
 };
 
