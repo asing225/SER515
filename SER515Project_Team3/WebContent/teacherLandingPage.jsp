@@ -4,11 +4,26 @@
 <html>
 <head>
 <title>Teacher Home</title>
+<script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="./js/header.js"></script>
 </head>
 <body>
+	<div id="header"></div>
+	<h1>Welcome Teacher</h1>
+	<div>
+		<a class="btn" href="teacher.html">Create Quiz</a>
+	</div>
 	<%
-		List<String> quizNames = (ArrayList<String>) request.getSession().getAttribute("quizNames");
-		List<Integer> quizIds = (ArrayList<Integer>) request.getSession().getAttribute("quizIds");
+		//List<String> quizNames = (ArrayList<String>) request.getSession().getAttribute("quizNames");
+		//List<Integer> quizIds = (ArrayList<Integer>) request.getSession().getAttribute("quizIds");
+		List<String> quizNames = new ArrayList();
+		List<Integer> quizIds = new ArrayList();
+		quizNames.add("Quiz 1");
+		quizNames.add("Quiz 2");
+		quizNames.add("Quiz 3");
+		quizIds.add(1);
+		quizIds.add(2);
+		quizIds.add(3);
 	%>
 	<div class="container">
 		<h2>Quiz</h2>
@@ -35,7 +50,7 @@
 				%>
 				<tr>
 					<td><%=quizNames.get(i)%> <a id="quizURLRow<%=i%>"
-						href="student/?id=<%=quizIds.get(i)%>">Click here to start the
+						href="quiz/?id=<%=quizIds.get(i)%>">Click here to start the
 							quiz</a></td>
 				</tr>
 

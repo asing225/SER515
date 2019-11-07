@@ -11,7 +11,8 @@ public class TeacherServletHelper {
 
 	private static String errorPage = "error.html";
 	private static String exceptionPage = "exception.html";
-	private String teacherPage = "teacherHomePage.html";
+//	private String teacherPage = "teacherHomePage.html";
+	private String teacherPage = "teacherLandingPage.jsp";
 	
 	// method to map the user to it's page
 	public String mapTeacherToPage(int quizCreated, int questionsCreated) {

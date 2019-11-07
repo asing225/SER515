@@ -36,12 +36,11 @@ public class TeacherServlet extends HttpServlet {
 	}
 
 	// doPost method to handle form submit coming from web page
-	public void doPost(HttpServletRequest req, HttpServletResponse res) {
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String quizname = req.getParameter("quizname");
 		String instructions = req.getParameter("instructions");
 		HttpSession session = req.getSession(false);
 		User teacher = new Teacher();
-		System.out.println("---->" + session.getAttribute("firstname"));
 		teacher.setFirstName((String) session.getAttribute("firstname"));
 		teacher.setLastName((String) session.getAttribute("lastname"));
 		teacher.setUserName((String) session.getAttribute("username"));
@@ -49,24 +48,31 @@ public class TeacherServlet extends HttpServlet {
 		teacher.setUserType((int) session.getAttribute("usertype"));
 		DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
 		int quizCreated = serviceImpl.quizCreation(teacher.getUser_Id(), quizname, instructions);
-		for (int i = 1; i <= 10; i++) {
-			if (req.getParameter("Question" + i) != null) {
-				if (req.getParameter("Solution" + i) != null) {
-					String question = req.getParameter("Question" + i);
-					String solution = req.getParameter("Solution" + i);
-					QuestionAnswer questionaire = new QuestionAnswer(question, solution);
-					int questionsCreated = serviceImpl.questionaireCreation(teacher.getUser_Id(), questionaire);
-					TeacherServletHelper teacherHelper = new TeacherServletHelper();
-					String teacherRouter = teacherHelper.mapTeacherToPage(quizCreated, questionsCreated);
-					try {
-						req.getRequestDispatcher(teacherRouter).forward(req, res);
-					} catch (IOException ioExc) {
-						ioExc.printStackTrace();
-					} catch (ServletException servletExc) {
-						servletExc.printStackTrace();
-					}
+		
+//		for (int i = 1; i <= 10; i++) {
+//			if (req.getParameter("Question" + i) != null) {
+//				if (req.getParameter("Solution" + i) != null) {
+//					String question = req.getParameter("Question" + i);
+//					String solution = req.getParameter("Solution" + i);
+//					QuestionAnswer questionaire = new QuestionAnswer(question, solution);
+//					int questionsCreated = serviceImpl.questionaireCreation(teacher.getUser_Id(), questionaire);
+					//TeacherServletHelper teacherHelper = new TeacherServletHelper();
+					//String teacherRouter = teacherHelper.mapTeacherToPage(quizCreated, questionsCreated);
+//					try {
+//						
+//						req.getRequestDispatcher(teacherRouter).forward(req, res);
+//					} catch (IOException ioExc) {
+//						ioExc.printStackTrace();
+//					} catch (ServletException servletExc) {
+//						servletExc.printStackTrace();
+//					}
 				}
-			}
-		}
+//			}
+//		}
+//	}
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse res) {
+		int quizId = Integer.parseInt(req.getParameter("id"));
+		System.out.println("quiz id is : -->" + quizId);
 	}
 }
