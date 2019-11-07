@@ -37,9 +37,11 @@ function checkCode(x){
 	document.getElementById("check").innerHTML = "Checking expression:";
 	var array = x.replace("window.alert(","");
 	array = array.replace(");","");
+	array = array.replace(/\s+/g, '');
 	array = array.split('+').join(',').split('-').join(',').split('(').join(',').split(')').join(',').split(',');
+	console.log(array);
 	for(var c=0; c<array.length; c++){
-			if(array[c] <= 0){
+			if(array[c] == 0 & array[c] != ''){
 				document.getElementById("check").innerHTML += "Blocks aren't correct"
 				return 0;
 			}
