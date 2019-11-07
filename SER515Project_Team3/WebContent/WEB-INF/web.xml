@@ -12,14 +12,14 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     
-    <servlet>
-        <servlet-name>RegisterController</servlet-name>
-        <servlet-class>com.asu.ser515.controller.RegisterServlet</servlet-class>
+   <servlet>
+        <servlet-name>QuizController</servlet-name>
+        <servlet-class>com.asu.ser515.controller.TeacherServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>RegisterController</servlet-name>
-        <url-pattern>/register</url-pattern>
+        <servlet-name>QuizController</servlet-name>
+        <url-pattern>/quiz</url-pattern>
     </servlet-mapping>
   
   <welcome-file-list>
