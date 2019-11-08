@@ -9,12 +9,12 @@ package com.asu.ser515.services.helper;
 
 public class LoginServletHelper {
 	
-	private static String errorPage = "error.html";
-	private static String exceptionPage = "exception.html";
-	private static String adminPage = "admin.html";
-	private static String teacherPage = "teacherHomePage.html";
-	private static String studentGrade_1_Page = "student1.html";
-	private static String studentGrade_6_Page = "student2.html";
+	private static String errorPage = "/error.html";
+	private static String exceptionPage = "/exception.html";
+	private static String adminPage = "/admin.html";
+	private static String teacherPage = "/teacherLandingPage.jsp";
+	private static String studentGrade_1_Page = "/student1.html";
+	private static String studentGrade_6_Page = "/student2.html";
 	
 	// method to map the user to it's page
 	public String mapUserToPage(int dbResult) {

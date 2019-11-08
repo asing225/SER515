@@ -73,7 +73,7 @@ public class DBConnServiceImpl implements DBConnService {
 			ps.setString(2, password);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				user.setU_ID(rs.getInt(1));
+				user.setUser_Id(rs.getInt(1));
 				user.setUserType(rs.getInt(2));
 				user.setFirstName(rs.getString(3));
 				user.setLastName(rs.getString(4));
@@ -149,7 +149,7 @@ public class DBConnServiceImpl implements DBConnService {
 	}
 
 	@Override
-	public int questionaireCreation(int U_ID, QuestionAnswer questionaire) {
+	public int questionaireCreation(int user_Id, QuestionAnswer questionaire) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
@@ -162,7 +162,7 @@ public class DBConnServiceImpl implements DBConnService {
 			ps = conn.prepareStatement(__insertQuestion);
 			ps.setString(1, questionaire.getQuestion());
 			ps.setString(2, questionaire.getAnswer());
-			ps.setInt(3, U_ID);
+			ps.setInt(3, user_Id);
 			int rs= ps.executeUpdate();
 			if(rs == 1 ) {
 				return 1;

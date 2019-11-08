@@ -2,7 +2,7 @@
 
 /*
  *@title : JS file to inject the toolbox element
- *@Authors : Mahendra Rao, Kushagr Jolly, Anurag Mishra, Amanjot Singh, Akshay Kmar Dileep
+ *@Authors : Mahendra Rao, Kushagr Jolly, Anurag Mishra, Amanjot Singh, Akshay Kumar Dileep
  *@Project - SER515 Team 3 "DragOn"
 
  * @license
@@ -32,6 +32,24 @@ var demoWorkspace = Blockly.inject('blocklyDiv', {
 Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
 		demoWorkspace);
 
+function checkCode(x){
+	clearConsole();
+	document.getElementById("check").innerHTML = "Checking...";
+	var array = x.replace("window.alert(","").replace(");","").replace(/\s+/g, '');
+	//array = array.replace(");","").replace(/\s+/g, '');
+	//array = array.replace(/\s+/g, '');
+	array = array.split('+').join(',').split('-').join(',').split('(').join(',').split(')').join(',').split(',');
+	console.log(array);
+	for(var c=0; c<array.length; c++){
+			if(array[c] == 0 & array[c] != ''){
+				document.getElementById("error").innerHTML += "Blocks aren't correct"
+				return 0;
+			}
+	}
+	document.getElementById("error").innerHTML += "Blocks are correct"
+	return 1;
+}
+
 function runCode() {
 	// Generate JavaScript code and run it.
 
@@ -39,15 +57,23 @@ function runCode() {
 	window.LoopTrap = 1000;
 	Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
 	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-	Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-	try {
-		document.getElementById("console").innerHTML += eval(code.substring(code
-				.indexOf("(") + 1, code.length - 3));
-	} catch (e) {
-		alert(e);
+	answer = checkCode(code);
+	if(answer != 0){
+		Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+		try {
+			if ((eval(code.substring(code.indexOf("(") + 1, code.length - 3))) >= 0)
+				document.getElementById("console").innerHTML += code.substring(code.indexOf("(") + 1, code.length - 3)+ ' = ' + eval(code.substring(code.indexOf("(") + 1, code.length - 3));
+			else
+				document.getElementById("error").innerHTML += "You can't subtract a larger number from a smaller one!"
+		} catch (e) {
+			alert(e);
+		}
 	}
 }
 
 function clearConsole() {
-    document.getElementById("console").innerHTML="";
+	//to clear the console when the button is clicked
+  document.getElementById("console").innerHTML="";
+	document.getElementById("check").innerHTML="";
+	document.getElementById("error").innerHTML="";
 }
