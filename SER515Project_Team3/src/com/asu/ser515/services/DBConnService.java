@@ -18,5 +18,6 @@ public interface DBConnService {
 	public User authenticateUser(String username, String password);
 	public int quizCreation(int U_ID, String quizname, String instructions);
 	public int questionaireCreation(int U_ID, QuestionAnswer questionaire);
-
+	public String teacherQuizJsonExtraction();
+	public String quizQuestionJsonExtraction(int quizId);
 }

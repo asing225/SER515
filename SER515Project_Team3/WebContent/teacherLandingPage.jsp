@@ -16,8 +16,9 @@
 	<%
 		//List<String> quizNames = (ArrayList<String>) request.getSession().getAttribute("quizNames");
 		//List<Integer> quizIds = (ArrayList<Integer>) request.getSession().getAttribute("quizIds");
-		List<String> quizNames = new ArrayList();
-		List<Integer> quizIds = new ArrayList();
+		String json = (String)request.getAttribute("json");
+		List<String> quizNames = new ArrayList<String>();
+		List<Integer> quizIds = new ArrayList<Integer>();
 		quizNames.add("Quiz 1");
 		quizNames.add("Quiz 2");
 		quizNames.add("Quiz 3");
@@ -28,6 +29,7 @@
 	<div class="container">
 		<h2>Quiz</h2>
 		<form method="GET">
+		<p><%out.print(json); %></p>
 			<table id="quizTable" class="table table-bordered">
 				<%
 					session.setAttribute("action", "load");

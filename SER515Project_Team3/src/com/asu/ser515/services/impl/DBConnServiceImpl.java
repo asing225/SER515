@@ -9,6 +9,8 @@ import java.util.Properties;
 import com.asu.ser515.model.QuestionAnswer;
 import com.asu.ser515.model.User;
 import com.asu.ser515.services.DBConnService;
+import com.github.cliftonlabs.json_simple.JsonObject;
+import com.github.cliftonlabs.json_simple.JsonArray;
 
 /**
  * Implementation to handle DB connectivity
@@ -34,6 +36,8 @@ public class DBConnServiceImpl implements DBConnService {
 	private static String __getUser;
 	private static String __insertQuiz;
 	private static String __insertQuestion;
+	private static String __selectQuiz;
+	private static String __selectQuestionTable;
 
 	// static block to be executed when class loads to read DB configs from
 	// properties file.
@@ -48,6 +52,8 @@ public class DBConnServiceImpl implements DBConnService {
 			__getUser = dbProperties.getProperty("getUser");
 			__insertQuiz=dbProperties.getProperty("insertQuiz");
 			__insertQuestion=dbProperties.getProperty("insertQuestion");
+			__selectQuiz=dbProperties.getProperty("selectQuiz");
+			__selectQuestionTable=dbProperties.getProperty("selectQuestion");
 
 		} catch (Throwable t) {
 			t.printStackTrace();
@@ -191,7 +197,109 @@ public class DBConnServiceImpl implements DBConnService {
 			}
 		}
 	}
-
-
+	
+		public String teacherQuizJsonExtraction() {
+			JsonObject quizObject = new JsonObject();
+			JsonArray quizArray = new JsonArray();
+			Connection conn = null;
+			Statement stmt = null;
+			try {
+				try {
+					Class.forName(__jdbcDriver);
+				} catch (Throwable t) {
+					t.printStackTrace();
+				}
+			
+				conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
+				stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(__selectQuiz);
+				while(rs.next()) {
+					JsonObject quizRecord = new JsonObject();
+					quizRecord.put("quizId", rs.getInt("Quiz_id"));
+					quizRecord.put("userId", rs.getInt("User_id"));
+					quizRecord.put("quizName", rs.getString("quizName"));
+					quizRecord.put("instructions", rs.getString("instructions"));
+					quizArray.add(quizRecord);
+				}
+				quizObject.put("quizData", quizArray);		    
+				String quiz = quizObject.toString();
+				return quiz;
+			}
+			catch (SQLException sqe) {
+				sqe.printStackTrace();
+				return null;
+			}finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				} finally {
+					try {
+						if (conn != null) {
+							conn.close();
+						}
+					} catch (Exception e3) {
+						e3.printStackTrace();
+					}
+				}
+			}
+		}
+		
+		public String quizQuestionJsonExtraction(int quizId) {
+			JsonObject questionObject = new JsonObject();
+			JsonArray questionArray = new JsonArray();
+			Connection conn = null;
+			PreparedStatement ps = null;
+			try {
+				try {
+					Class.forName(__jdbcDriver);
+				} catch (Throwable t) {
+					t.printStackTrace();
+				}
+			
+				conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
+				ps = conn.prepareStatement(__selectQuestionTable);
+				ps.setInt(1, quizId);
+				ResultSet rs = ps.executeQuery();
+				int questionCounter = 0;
+				while(rs.next()) {
+					questionCounter += 1;
+					JsonObject questionRecord = new JsonObject();
+					questionRecord.put("questionId", questionCounter);
+					questionRecord.put("question", rs.getString("question"));
+					questionRecord.put("solution", rs.getString("solution"));
+					questionArray.add(questionRecord);
+				}
+				questionObject.put("quizData", questionArray);
+				//questionCounter = 0;
+				
+				
+			    
+				String quiz = null;
+				return quiz;
+			}
+			catch (SQLException sqe) {
+				sqe.printStackTrace();
+				return null;
+			}finally {
+				try {
+					if (ps != null) {
+						ps.close();
+					}
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				} finally {
+					try {
+						if (conn != null) {
+							conn.close();
+						}
+					} catch (Exception e3) {
+						e3.printStackTrace();
+					}
+				}
+			}
+		}
 
 }

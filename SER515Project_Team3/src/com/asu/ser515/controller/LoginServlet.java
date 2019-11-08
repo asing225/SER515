@@ -1,6 +1,9 @@
 package com.asu.ser515.controller;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.asu.ser515.model.User;
+import com.asu.ser515.services.DBConnService;
 import com.asu.ser515.services.helper.LoginServletHelper;
 import com.asu.ser515.services.impl.DBConnServiceImpl;
 
@@ -34,20 +38,24 @@ public class LoginServlet extends HttpServlet {
 
 	// doPost method to handle form submit coming from web page
 	public void doPost(HttpServletRequest req, HttpServletResponse res) {
+		HttpSession session = req.getSession(true);
 		String password = req.getParameter("password");
 		String userName = req.getParameter("username");
-		DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
+		DBConnService serviceImpl = new DBConnServiceImpl();
 		User user = serviceImpl.authenticateUser(userName, password);
 		LoginServletHelper loginServletHelper = new LoginServletHelper();
 		String userPage = loginServletHelper.mapUserToPage(user.getUserType());
+		String data = serviceImpl.teacherQuizJsonExtraction();
+//		System.out.println(data);
 		try {
-			HttpSession session = req.getSession(true);
 			session.setAttribute("firstname", user.getFirstName());
 			session.setAttribute("lastname", user.getLastName());
 			session.setAttribute("usertype", user.getUserType());
 			session.setAttribute("u_id", user.getUser_Id());
 			session.setAttribute("username", user.getUserName());
-//			req.getRequestDispatcher(userPage).forward(req, res);
+			if(userPage.equals("/teacherLandingPage.jsp")) {
+				req.setAttribute("json", data);
+			}
 			getServletContext().getRequestDispatcher(userPage).forward(req,res);
 		} catch (IOException ioExc) {
 			ioExc.printStackTrace();
