@@ -4,6 +4,8 @@ import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.asu.ser515.model.QuestionAnswer;
@@ -198,11 +200,12 @@ public class DBConnServiceImpl implements DBConnService {
 		}
 	}
 	
-		public String teacherQuizJsonExtraction() {
-			JsonObject quizObject = new JsonObject();
-			JsonArray quizArray = new JsonArray();
+		public List<String>[] teacherQuizJsonExtraction() {
 			Connection conn = null;
 			Statement stmt = null;
+			ArrayList<String> quizIds = new ArrayList<String>();
+			ArrayList<String> quizNames = new ArrayList<String>();
+			ArrayList<String> instructions = new ArrayList<String>();
 			try {
 				try {
 					Class.forName(__jdbcDriver);
@@ -213,17 +216,19 @@ public class DBConnServiceImpl implements DBConnService {
 				conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(__selectQuiz);
+				//int counter = 0;
 				while(rs.next()) {
-					JsonObject quizRecord = new JsonObject();
-					quizRecord.put("quizId", rs.getInt("Quiz_id"));
-					quizRecord.put("userId", rs.getInt("User_id"));
-					quizRecord.put("quizName", rs.getString("quizName"));
-					quizRecord.put("instructions", rs.getString("instructions"));
-					quizArray.add(quizRecord);
+					quizIds.add(String.valueOf(rs.getInt("Quiz_id")));
+					quizNames.add(rs.getString("quizName"));
+					instructions.add( rs.getString("instructions"));
+					//counter +=1;
 				}
-				quizObject.put("quizData", quizArray);		    
-				String quiz = quizObject.toString();
-				return quiz;
+				@SuppressWarnings("unchecked")
+				List<String>[] res = new ArrayList[3];
+				res[0] = quizIds;
+				res[1] = quizNames;
+				res[2] = instructions;
+				return res;
 			}
 			catch (SQLException sqe) {
 				sqe.printStackTrace();

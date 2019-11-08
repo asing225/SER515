@@ -3,6 +3,7 @@ package com.asu.ser515.controller;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -45,7 +46,9 @@ public class LoginServlet extends HttpServlet {
 		User user = serviceImpl.authenticateUser(userName, password);
 		LoginServletHelper loginServletHelper = new LoginServletHelper();
 		String userPage = loginServletHelper.mapUserToPage(user.getUserType());
-		String data = serviceImpl.teacherQuizJsonExtraction();
+		List<String>[] data = serviceImpl.teacherQuizJsonExtraction();
+		req.setAttribute("quizNames", data[0]);
+		req.setAttribute("quizIds", data[1]);
 //		System.out.println(data);
 		try {
 			session.setAttribute("firstname", user.getFirstName());
@@ -53,9 +56,6 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("usertype", user.getUserType());
 			session.setAttribute("u_id", user.getUser_Id());
 			session.setAttribute("username", user.getUserName());
-			if(userPage.equals("/teacherLandingPage.jsp")) {
-				req.setAttribute("json", data);
-			}
 			getServletContext().getRequestDispatcher(userPage).forward(req,res);
 		} catch (IOException ioExc) {
 			ioExc.printStackTrace();

@@ -1,5 +1,7 @@
 package com.asu.ser515.services;
 
+import java.util.List;
+
 import com.asu.ser515.model.QuestionAnswer;
 import com.asu.ser515.model.User;
 
@@ -18,6 +20,6 @@ public interface DBConnService {
 	public User authenticateUser(String username, String password);
 	public int quizCreation(int U_ID, String quizname, String instructions);
 	public int questionaireCreation(int U_ID, QuestionAnswer questionaire);
-	public String teacherQuizJsonExtraction();
+	public List<String>[] teacherQuizJsonExtraction();
 	public String quizQuestionJsonExtraction(int quizId);
 }
