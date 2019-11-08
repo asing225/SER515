@@ -1,7 +1,6 @@
 package com.asu.ser515.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -49,27 +48,27 @@ public class TeacherServlet extends HttpServlet {
 		DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
 		int quizCreated = serviceImpl.quizCreation(teacher.getUser_Id(), quizname, instructions);
 		
-//		for (int i = 1; i <= 10; i++) {
-//			if (req.getParameter("Question" + i) != null) {
-//				if (req.getParameter("Solution" + i) != null) {
-//					String question = req.getParameter("Question" + i);
-//					String solution = req.getParameter("Solution" + i);
-//					QuestionAnswer questionaire = new QuestionAnswer(question, solution);
-//					int questionsCreated = serviceImpl.questionaireCreation(teacher.getUser_Id(), questionaire);
-					//TeacherServletHelper teacherHelper = new TeacherServletHelper();
-					//String teacherRouter = teacherHelper.mapTeacherToPage(quizCreated, questionsCreated);
-//					try {
-//						
-//						req.getRequestDispatcher(teacherRouter).forward(req, res);
-//					} catch (IOException ioExc) {
-//						ioExc.printStackTrace();
-//					} catch (ServletException servletExc) {
-//						servletExc.printStackTrace();
-//					}
+		for (int i = 1; i <= 10; i++) {
+			if (req.getParameter("Question" + i) != null) {
+				if (req.getParameter("Solution" + i) != null) {
+					String question = req.getParameter("Question" + i);
+					String solution = req.getParameter("Solution" + i);
+					QuestionAnswer questionaire = new QuestionAnswer(question, solution);
+					int questionsCreated = serviceImpl.questionaireCreation(teacher.getUser_Id(), questionaire);
+					TeacherServletHelper teacherHelper = new TeacherServletHelper();
+					String teacherRouter = teacherHelper.mapTeacherToPage(quizCreated, questionsCreated);
+					try {
+						
+						req.getRequestDispatcher(teacherRouter).forward(req, res);
+					} catch (IOException ioExc) {
+						ioExc.printStackTrace();
+					} catch (ServletException servletExc) {
+						servletExc.printStackTrace();
+					}
 				}
-//			}
-//		}
-//	}
+			}
+		}
+	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) {
 		int quizId = Integer.parseInt(req.getParameter("id"));
