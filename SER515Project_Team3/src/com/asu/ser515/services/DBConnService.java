@@ -22,5 +22,6 @@ public interface DBConnService {
 	public int quizCreation(int U_ID, String quizname, String instructions);
 	public int questionaireCreation(int U_ID, QuestionAnswer questionaire);
 	public ArrayList<Quiz> getQuiz();
+	public Quiz getQuestion(String quiz_id);
 
 }
