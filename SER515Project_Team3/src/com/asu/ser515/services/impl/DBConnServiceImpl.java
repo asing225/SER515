@@ -4,9 +4,11 @@ import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import com.asu.ser515.model.QuestionAnswer;
+import com.asu.ser515.model.Quiz;
 import com.asu.ser515.model.User;
 import com.asu.ser515.services.DBConnService;
 
@@ -34,7 +36,9 @@ public class DBConnServiceImpl implements DBConnService {
 	private static String __getUser;
 	private static String __insertQuiz;
 	private static String __insertQuestion;
+	private static String __getQuiz;
 
+	
 	// static block to be executed when class loads to read DB configs from
 	// properties file.
 	static {
@@ -48,6 +52,7 @@ public class DBConnServiceImpl implements DBConnService {
 			__getUser = dbProperties.getProperty("getUser");
 			__insertQuiz=dbProperties.getProperty("insertQuiz");
 			__insertQuestion=dbProperties.getProperty("insertQuestion");
+			__getQuiz=dbProperties.getProperty("getQuiz");
 
 		} catch (Throwable t) {
 			t.printStackTrace();
@@ -190,6 +195,55 @@ public class DBConnServiceImpl implements DBConnService {
 				}
 			}
 		}
+	}
+
+	@Override
+	public ArrayList<Quiz> getQuiz() {
+		// TODO Auto-generated method stub
+		ArrayList<Quiz> listquiz= new ArrayList<Quiz>();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			try {
+				Class.forName(__jdbcDriver);
+			} catch (Throwable t) {
+				t.printStackTrace();
+			}
+			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
+			ps = conn.prepareStatement(__getQuiz);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Quiz quiz=new Quiz();
+				quiz.setQuiz_id(rs.getInt("quiz_id"));
+				quiz.setQuizname(rs.getString("quizname"));
+				quiz.setInstructions(rs.getString("instructions"));
+				System.out.println(quiz.getQuiz_id());
+				System.out.println(quiz.getQuizname());
+				System.out.println(quiz.getInstructions());
+				listquiz.add(quiz);
+			}			
+		} catch (SQLException sqe) {
+			sqe.printStackTrace();
+		}finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			} finally {
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e3) {
+					e3.printStackTrace();
+				}
+			}
+		}
+		
+		return listquiz;
+		
 	}
 
 

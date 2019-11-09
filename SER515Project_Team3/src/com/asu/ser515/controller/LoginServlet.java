@@ -38,6 +38,7 @@ public class LoginServlet extends HttpServlet {
 		String userName = req.getParameter("username");
 		DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
 		User user = serviceImpl.authenticateUser(userName, password);
+		
 		LoginServletHelper loginServletHelper = new LoginServletHelper();
 		String userPage = loginServletHelper.mapUserToPage(user.getUserType());
 		try {
@@ -47,6 +48,10 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("usertype", user.getUserType());
 			session.setAttribute("u_id", user.getUser_Id());
 			session.setAttribute("username", user.getUserName());
+			if(user.getUserType()==3 || user.getUserType()==4) {
+				//session.setAttribute("ListQuiz", serviceImpl.getQuiz());
+				System.out.println(serviceImpl.getQuiz());
+			}
 //			req.getRequestDispatcher(userPage).forward(req, res);
 			getServletContext().getRequestDispatcher(userPage).forward(req,res);
 		} catch (IOException ioExc) {
