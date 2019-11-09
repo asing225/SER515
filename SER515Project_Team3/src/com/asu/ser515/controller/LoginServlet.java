@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("u_id", user.getUser_Id());
 			session.setAttribute("username", user.getUserName());
 			if(user.getUserType()==3 || user.getUserType()==4) {
-				//session.setAttribute("ListQuiz", serviceImpl.getQuiz());
+				session.setAttribute("ListQuiz", serviceImpl.getQuiz());
 				System.out.println(serviceImpl.getQuiz());
 			}
 //			req.getRequestDispatcher(userPage).forward(req, res);

@@ -22,6 +22,17 @@
         <url-pattern>/quiz</url-pattern>
     </servlet-mapping>
   
+    <servlet>
+        <servlet-name>StudentController</servlet-name>
+        <servlet-class>com.asu.ser515.controller.StudentServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>StudentController</servlet-name>
+        <url-pattern>/student</url-pattern>
+    </servlet-mapping>
+  
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
