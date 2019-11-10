@@ -8,22 +8,32 @@ package com.asu.ser515.services.helper;
 
 public class StudentServletHelper {
 
-	private static String errorPage = "error.html";
-	private static String exceptionPage = "exception.html";
-//	private String teacherPage = "teacherHomePage.html";
-	private String studentPage = "studentLandingPage.jsp";
-	
-	// method to map the user to it's page
-	public String mapTeacherToPage(int quizCreated, int questionsCreated) {
-		if (quizCreated == 1 && questionsCreated == 1) {
-			return studentPage;
-		}
-		else if(quizCreated == 0) {
-			// Error in database
+	private static String errorPage = "/error.html";
+	private static String exceptionPage = "/exception.html";
+	private String student1Page = "/student1.jsp";
+	private String student6Page = "/student6.jsp";	
+
+	/**
+	 * @param userType
+	 * @return
+	 */
+	public String mapUserToPage(int userType) {
+		if (userType == 0) {
 			return errorPage;
 		}
-		else {
+		if (userType == -1) {
 			return exceptionPage;
 		}
+		else {
+			DBConnServiceHelper dbHelper = new DBConnServiceHelper();
+			String role = dbHelper.mapDBtoUsertype(userType);
+			if (role.equalsIgnoreCase("studentGrade_1")) {
+				return student1Page;
+			}
+			if (role.equalsIgnoreCase("studentGrade_6")) {
+				return student6Page;
+			}
+		}
+		return null;
 	}
 }
