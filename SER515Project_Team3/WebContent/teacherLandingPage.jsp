@@ -4,14 +4,13 @@
 <html>
 <head>
 <title>Teacher Home</title>
-<script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="./js/header.js"></script>
+<link rel="stylesheet" href="./css/bootstrap.min.css">
 </head>
 <body>
 	<div id="header"></div>
 	<h1>Welcome Teacher</h1>
 	<div>
-		<a class="btn" href="teacher.html">Create Quiz</a>
+		<a class="btn btn-primary" href="teacher.html">Create Quiz</a>
 	</div>
 	<%
 		List<String> quizNames = (ArrayList<String>) request.getAttribute("quizNames");
@@ -20,7 +19,7 @@
 	<div class="container">
 		<h2>Quiz</h2>
 		<form method="GET">
-			<table id="quizTable" class="table table-bordered">
+			<table class="table table-bordered" id="quizTable">
 				<%
 					if (quizNames.size() == 0) {
 				%>
@@ -45,5 +44,8 @@
 		</form>
 	</div>
 </body>
+<script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/header.js"></script>
 </html>
 

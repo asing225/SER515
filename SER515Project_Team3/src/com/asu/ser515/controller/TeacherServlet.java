@@ -58,7 +58,6 @@ public class TeacherServlet extends HttpServlet {
 					TeacherServletHelper teacherHelper = new TeacherServletHelper();
 					String teacherRouter = teacherHelper.mapTeacherToPage(quizCreated, questionsCreated);
 					try {
-						
 						req.getRequestDispatcher(teacherRouter).forward(req, res);
 					} catch (IOException ioExc) {
 						ioExc.printStackTrace();

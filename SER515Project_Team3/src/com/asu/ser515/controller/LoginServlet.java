@@ -49,7 +49,6 @@ public class LoginServlet extends HttpServlet {
 		List<String>[] data = serviceImpl.teacherQuizJsonExtraction();
 		req.setAttribute("quizNames", data[0]);
 		req.setAttribute("quizIds", data[1]);
-//		System.out.println(data);
 		try {
 			session.setAttribute("firstname", user.getFirstName());
 			session.setAttribute("lastname", user.getLastName());
