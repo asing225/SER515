@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div id="header"></div>
-	<h1>Welcome Teacher</h1>
+	<h1>Welcome <%= (String) session.getAttribute("firstname") %></h1>
 	<div>
 		<a class="btn btn-primary" href="teacher.html">Create Quiz</a>
 	</div>
