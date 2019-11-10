@@ -6,8 +6,11 @@
 <html>
 <head>
 <title>Student Home</title>
+
 <script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="./js/header.js"></script>
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/studentLandingPage.css">
 </head>
 <body>
 	<div id="header"></div>
@@ -23,7 +26,7 @@
 			quizIds.add(quiz.getQuiz_id());
 		}
 	%>
-	<div class="container">
+	<div class="container row">
 		<h2>Quiz</h2>
 		<form method="GET">
 			<table id="quizTable" class="table table-bordered">
@@ -46,10 +49,10 @@
 				<%
 					for (int i = 0; i < quizNames.size(); i++) {
 				%>
-				<tr>
-					<td><a id="quizURLRow<%=i%>"
+				<div class="list-group">
+					<a class="list-group-item" id="quizURLRow<%=i%>"
 						href="student/?id=<%=quizIds.get(i)%>"><%=quizNames.get(i)%></a></td>
-				</tr>
+				</div>
 
 				<%
 					}
@@ -57,21 +60,7 @@
 				%>
 			</table>
 		</form>
-		<style>
-a {
-	position: relative;
-	display: inline-block;
-	margin-top: 20px;
-}
-
-a[title]:hover:after {
-	content: attr(title);
-	color: #ff0509;
-	position: absolute;
-	top: -100%;
-	left: 0;
-}
-</style>
+		
 	</div>
 </body>
 </html>
