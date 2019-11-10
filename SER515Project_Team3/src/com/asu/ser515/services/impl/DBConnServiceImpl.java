@@ -8,16 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.asu.ser515.model.QuestionAnswer;
+import com.asu.ser515.model.Question;
 import com.asu.ser515.model.User;
 import com.asu.ser515.services.DBConnService;
-import com.github.cliftonlabs.json_simple.JsonObject;
-import com.github.cliftonlabs.json_simple.JsonArray;
-
 /**
  * Implementation to handle DB connectivity
  * 
- * @author anurag mishra
+ * @author anurag933103
  * @date 09/28/2019
  * 
  * Edit @author amanjotsingh
@@ -25,6 +22,10 @@ import com.github.cliftonlabs.json_simple.JsonArray;
  * 
  * Edit @author kushagrjolly
  * @date 09/29/2019
+ * 
+ * @author anurag933103
+ * @date 11/10/2019
+ * 
  * 
  */
 
@@ -157,7 +158,7 @@ public class DBConnServiceImpl implements DBConnService {
 	}
 
 	@Override
-	public int questionaireCreation(int user_Id, QuestionAnswer questionaire) {
+	public int questionaireCreation(int user_Id, Question questionaire) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
@@ -224,11 +225,11 @@ public class DBConnServiceImpl implements DBConnService {
 					//counter +=1;
 				}
 				@SuppressWarnings("unchecked")
-				List<String>[] res = new ArrayList[3];
-				res[0] = quizIds;
-				res[1] = quizNames;
-				res[2] = instructions;
-				return res;
+				List<String>[] quizEntry = new ArrayList[3];
+				quizEntry[0] = quizIds;
+				quizEntry[1] = quizNames;
+				quizEntry[2] = instructions;
+				return quizEntry;
 			}
 			catch (SQLException sqe) {
 				sqe.printStackTrace();
@@ -252,11 +253,11 @@ public class DBConnServiceImpl implements DBConnService {
 			}
 		}
 		
-		public String quizQuestionJsonExtraction(int quizId) {
-			JsonObject questionObject = new JsonObject();
-			JsonArray questionArray = new JsonArray();
+		public List<String>[] quizQuestionJsonExtraction(int quizId) {
 			Connection conn = null;
 			PreparedStatement ps = null;
+			ArrayList<String> question = new ArrayList<String>();
+			ArrayList<String> solution = new ArrayList<String>();
 			try {
 				try {
 					Class.forName(__jdbcDriver);
@@ -268,22 +269,18 @@ public class DBConnServiceImpl implements DBConnService {
 				ps = conn.prepareStatement(__selectQuestionTable);
 				ps.setInt(1, quizId);
 				ResultSet rs = ps.executeQuery();
-				int questionCounter = 0;
 				while(rs.next()) {
-					questionCounter += 1;
-					JsonObject questionRecord = new JsonObject();
-					questionRecord.put("questionId", questionCounter);
-					questionRecord.put("question", rs.getString("question"));
-					questionRecord.put("solution", rs.getString("solution"));
-					questionArray.add(questionRecord);
+					question.add(rs.getString("question"));
+					solution.add(rs.getString("solution"));
 				}
-				questionObject.put("quizData", questionArray);
+				
+				@SuppressWarnings("unchecked")
+				List<String>[] questionObject = new ArrayList[2];
+				questionObject[0] = question;
+				questionObject[1] = solution;
 				//questionCounter = 0;
-				
-				
-			    
-				String quiz = null;
-				return quiz;
+
+				return questionObject;
 			}
 			catch (SQLException sqe) {
 				sqe.printStackTrace();
