@@ -50,7 +50,7 @@
 				%>
 				<tr>
 					<td><%=quizNames.get(i)%> <a id="quizURLRow<%=i%>"
-						href="quiz/?id=<%=quizIds.get(i)%>">Click here to start the
+						href="quiz?id=<%=quizIds.get(i)%>">Click here to start the
 							quiz</a></td>
 				</tr>
 

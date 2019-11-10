@@ -24,21 +24,19 @@ public class StudentServlet extends HttpServlet {
 		super.init(config);
 	}
 	
-	/* (non-Javadoc)
-		 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-		 */
-		@Override
-		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			// TODO Auto-generated method stub
-			quiz_id = Integer.parseInt(req.getParameter("id"));
-			System.out.println("quiz id is : -->" + quiz_id);
-			DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
-			Quiz quiz= serviceImpl.getQuestion(quiz_id);
-			HttpSession session = req.getSession(true);
-			session.setAttribute("quiz", quiz);
-			getServletContext().getRequestDispatcher("/student1.jsp").forward(req,resp);
-			super.doGet(req, resp);
+	public void doGet(HttpServletRequest req, HttpServletResponse res) {
+		quiz_id = Integer.parseInt(req.getParameter("id"));
+		DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
+		Quiz quiz= serviceImpl.getQuestion(quiz_id);
+		HttpSession session = req.getSession(true);
+		session.setAttribute("quiz", quiz);
+		try {
+			getServletContext().getRequestDispatcher("/student1.jsp").forward(req,res);
+		} catch (ServletException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	}
 	
 
 }
