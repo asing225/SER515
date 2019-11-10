@@ -250,8 +250,9 @@ public class DBConnServiceImpl implements DBConnService {
 	 * @see com.asu.ser515.services.DBConnService#getQuestion(java.lang.String)
 	 */
 	@Override
-	public Quiz getQuestion(String quiz_id) {
+	public Quiz getQuestion(int quiz_id) {
 		// TODO Auto-generated method stub
+		System.out.println("Hello");
 		ArrayList<String> listquestion = new ArrayList<String>();
 		ArrayList<String> listanswer = new ArrayList<String>();
 		Quiz quiz = new Quiz();
@@ -264,7 +265,8 @@ public class DBConnServiceImpl implements DBConnService {
 				t.printStackTrace();
 			}
 			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
-			ps = conn.prepareStatement(__getQuiz);
+			ps = conn.prepareStatement(__getQuestions);
+			ps.setInt(1, quiz_id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				listanswer.add(rs.getString("solution"));

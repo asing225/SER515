@@ -48,7 +48,7 @@
 				%>
 				<tr>
 					<td><a id="quizURLRow<%=i%>"
-						href="quiz/?id=<%=quizIds.get(i)%>"><%=quizNames.get(i)%></a></td>
+						href="student/?id=<%=quizIds.get(i)%>"><%=quizNames.get(i)%></a></td>
 				</tr>
 
 				<%

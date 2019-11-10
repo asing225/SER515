@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.asu.ser515.model.Quiz;
-import com.asu.ser515.model.User;
 import com.asu.ser515.services.impl.DBConnServiceImpl;
 
 /**
@@ -19,7 +18,7 @@ import com.asu.ser515.services.impl.DBConnServiceImpl;
  */
 @SuppressWarnings("serial")
 public class StudentServlet extends HttpServlet {
-	private String quiz_id;
+	private int quiz_id;
 	
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -31,12 +30,13 @@ public class StudentServlet extends HttpServlet {
 		@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			// TODO Auto-generated method stub
-			quiz_id=req.getParameter("id");
+			quiz_id = Integer.parseInt(req.getParameter("id"));
+			System.out.println("quiz id is : -->" + quiz_id);
 			DBConnServiceImpl serviceImpl = new DBConnServiceImpl();
 			Quiz quiz= serviceImpl.getQuestion(quiz_id);
 			HttpSession session = req.getSession(true);
 			session.setAttribute("quiz", quiz);
-//				getServletContext().getRequestDispatcher(userPage).forward(req,res);
+			getServletContext().getRequestDispatcher("/student1.jsp").forward(req,resp);
 			super.doGet(req, resp);
 		}
 	
