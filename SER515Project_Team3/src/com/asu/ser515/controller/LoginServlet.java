@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import com.asu.ser515.model.User;
 import com.asu.ser515.services.DBConnService;
 import com.asu.ser515.services.helper.LoginServletHelper;
@@ -42,6 +41,7 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = req.getSession(true);
 		String password = req.getParameter("password");
 		String userName = req.getParameter("username");
+		System.out.println(req.getParameter("action"));
 		DBConnService serviceImpl = new DBConnServiceImpl();
 		User user = serviceImpl.authenticateUser(userName, password);
 		LoginServletHelper loginServletHelper = new LoginServletHelper();
