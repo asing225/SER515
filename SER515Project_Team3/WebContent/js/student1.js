@@ -47,41 +47,56 @@ function checkCode(x){
 				document.getElementById("error1").innerHTML += "Blocks aren't correct"
 				return 0;
 			}
-			var eq = array[c];
-			if(eq[(eq.length)-1] == '-')
+			if(lessThanZero(array[c]) == 0)
+				return 0;
+			/* var eq = array[c];
+			if (eq[(eq.length)-1] == '-' )
 				eq = eq.substring(0,(eq.length-1));
+			if (eq[0] == '-')
+				eq = eq.substring(1,(eq.length-1));
 			console.log(eq);
 			if (eval(eq) < 0){
 				document.getElementById("error1").innerHTML += "Blocks are correct"
 				document.getElementById("error2").innerHTML += "You can't subtract a larger number from a smaller one!"
 				return 0;
-			}
+			}*/
 	}
 	document.getElementById("error1").innerHTML += "Blocks are correct"
 	return 1;
 }
 
+function lessThanZero(eq){
+	if(eq[(eq.length)-1] == '-')
+		eq = eq.substring(0,(eq.length-1));
+	if (eq[0] == '-')
+		eq = eq.substring(1,(eq.length-1));
+	//console.log(eq);
+	if (eval(eq) < 0){
+		document.getElementById("error2").innerHTML += "You can't subtract a larger number from a smaller one!"
+		return 0;
+	}
+	else
+		return 1;
+}
+
 function runCode() {
 	// Generate JavaScript code and run it.
-
-	var answer;
 	window.LoopTrap = 1000;
 	Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
 	var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-	answer = checkCode(code);
-	if(answer != 0){
-		Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-		try {
-			if ((eval(code)) >= 0)
-				document.getElementById("console").innerHTML = code.substring(0, code.length - 2) + ' = ' + eval(code);
+	Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+	try {
+		if((checkCode(code) & lessThanZero(code)) != 0)
+			document.getElementById("console").innerHTML = code.substring(0, code.length - 2) + ' = ' + eval(code);
 				//document.getElementById("console").innerHTML += code.substring(code.indexOf("(") + 1, code.length - 2)+ ' = ' + eval(code.substring(code.indexOf("(") + 1, code.length - 2));
-			else
-				document.getElementById("error2").innerHTML += "You can't subtract a larger number from a smaller one!"
-		} catch (e) {
-			alert(e);
-		}
+			//else {
+				//document.getElementById("error2").innerHTML += "You can't subtract a larger number from a smaller one!"
+			//}
+	} catch (e) {
+		alert(e);
 	}
 }
+
 
 function clearConsole() {
 	//to clear the console when the button is clicked
