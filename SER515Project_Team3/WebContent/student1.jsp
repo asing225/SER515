@@ -11,12 +11,9 @@
 <body>
 	<div id="header"></div>
 	<%
-		Quiz quiz = new Quiz();
-		//(Quiz) request.getSession().getAttribute("quiz");
-		List<String> questions = new ArrayList<String>(); 
-				//quiz.getQuestions();
-		List<String> answers =  new ArrayList<String>();
-				//quiz.getAnswers();
+		Quiz quiz = (Quiz) request.getSession().getAttribute("quiz");
+		List<String> questions = quiz.getQuestions();
+		List<String> answers =  quiz.getAnswers();
 		//List<Integer> quizIds = (ArrayList<Integer>) request.getSession().getAttribute("quizIds");
 		/* for (int i = 0; i < questions.size(); i++) {
 			Quiz quiz = listofQuiz.get(i);

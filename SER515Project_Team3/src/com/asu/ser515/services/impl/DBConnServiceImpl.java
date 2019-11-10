@@ -215,9 +215,6 @@ public class DBConnServiceImpl implements DBConnService {
 				quiz.setQuiz_id(rs.getInt("quiz_id"));
 				quiz.setQuizname(rs.getString("quizname"));
 				quiz.setInstructions(rs.getString("instructions"));
-				System.out.println(quiz.getQuiz_id());
-				System.out.println(quiz.getQuizname());
-				System.out.println(quiz.getInstructions());
 				listquiz.add(quiz);
 			}
 		} catch (SQLException sqe) {
@@ -252,7 +249,6 @@ public class DBConnServiceImpl implements DBConnService {
 	@Override
 	public Quiz getQuestion(int quiz_id) {
 		// TODO Auto-generated method stub
-		System.out.println("Hello");
 		ArrayList<String> listquestion = new ArrayList<String>();
 		ArrayList<String> listanswer = new ArrayList<String>();
 		Quiz quiz = new Quiz();
