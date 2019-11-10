@@ -35,18 +35,29 @@ Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
 function checkCode(x){
 	clearConsole();
 	document.getElementById("check").innerHTML = "Checking...";
+	//console.log(x);
 	var array = x.replace("window.alert(","").replace(");","").replace(/\s+/g, '');
 	//array = array.replace(");","").replace(/\s+/g, '');
 	//array = array.replace(/\s+/g, '');
-	array = array.split('+').join(',').split('-').join(',').split('(').join(',').split(')').join(',').split(',');
+	array = array.split('+').join(',').split('(').join(',').split(')').join(',').split(';').join(',').split(',');
 	console.log(array);
+	//document.getElementById("console").innerHTML += array;
 	for(var c=0; c<array.length; c++){
 			if(array[c] == 0 & array[c] != ''){
-				document.getElementById("error").innerHTML += "Blocks aren't correct"
+				document.getElementById("error1").innerHTML += "Blocks aren't correct"
+				return 0;
+			}
+			var eq = array[c];
+			if(eq[(eq.length)-1] == '-')
+				eq = eq.substring(0,(eq.length-1));
+			console.log(eq);
+			if (eval(eq) < 0){
+				document.getElementById("error1").innerHTML += "Blocks are correct"
+				document.getElementById("error2").innerHTML += "You can't subtract a larger number from a smaller one!"
 				return 0;
 			}
 	}
-	document.getElementById("error").innerHTML += "Blocks are correct"
+	document.getElementById("error1").innerHTML += "Blocks are correct"
 	return 1;
 }
 
@@ -61,10 +72,11 @@ function runCode() {
 	if(answer != 0){
 		Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
 		try {
-			if ((eval(code.substring(code.indexOf("(") + 1, code.length - 3))) >= 0)
-				document.getElementById("console").innerHTML += code.substring(code.indexOf("(") + 1, code.length - 3)+ ' = ' + eval(code.substring(code.indexOf("(") + 1, code.length - 3));
+			if ((eval(code)) >= 0)
+				document.getElementById("console").innerHTML = code.substring(0, code.length - 2) + ' = ' + eval(code);
+				//document.getElementById("console").innerHTML += code.substring(code.indexOf("(") + 1, code.length - 2)+ ' = ' + eval(code.substring(code.indexOf("(") + 1, code.length - 2));
 			else
-				document.getElementById("error").innerHTML += "You can't subtract a larger number from a smaller one!"
+				document.getElementById("error2").innerHTML += "You can't subtract a larger number from a smaller one!"
 		} catch (e) {
 			alert(e);
 		}
@@ -75,5 +87,6 @@ function clearConsole() {
 	//to clear the console when the button is clicked
   document.getElementById("console").innerHTML="";
 	document.getElementById("check").innerHTML="";
-	document.getElementById("error").innerHTML="";
+	document.getElementById("error1").innerHTML="";
+	document.getElementById("error2").innerHTML="";
 }
