@@ -13,13 +13,16 @@
 		<a class="btn btn-primary" href="teacher.html">Create Quiz</a>
 	</div>
 	<%
-		List<String> quizNames = (ArrayList<String>) request.getAttribute("quizNames");
-		List<Integer> quizIds = (ArrayList<Integer>) request.getAttribute("quizIds");
+		List<String> quizNames = (ArrayList<String>) request.getSession().getAttribute("quizNames");
+		List<Integer> quizIds = (ArrayList<Integer>) request.getSession().getAttribute("quizIds");
 	%>
 	<div class="container">
 		<h2>Quiz</h2>
 		<form method="GET">
 			<table class="table table-bordered" id="quizTable">
+			<% System.out.println(quizNames.size()); 
+				int size = quizNames.size();
+			%>
 				<%
 					if (quizNames.size() == 0) {
 				%>
@@ -30,10 +33,10 @@
 
 				<p align="center">You have following quizzes for the course!!</p>
 				<%
-					for (int i = 0; i < quizNames.size(); i++) {
+					for (int i = 0; i < size; i++) {
 				%>
 				<tr>
-					<td><a href="quiz/?id=<%=quizNames.get(i)%>"><%=quizIds.get(i)%></a></td>
+					<td><a href="quiz?id=<%=quizIds.get(i)%>"><%=quizNames.get(i)%></a></td>
 				</tr>
 
 				<%

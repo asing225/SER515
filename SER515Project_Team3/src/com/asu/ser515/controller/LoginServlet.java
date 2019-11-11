@@ -47,8 +47,8 @@ public class LoginServlet extends HttpServlet {
 		LoginServletHelper loginServletHelper = new LoginServletHelper();
 		String userPage = loginServletHelper.mapUserToPage(user.getUserType());
 		List<String>[] data = serviceImpl.teacherQuizJsonExtraction();
-		req.setAttribute("quizNames", data[0]);
-		req.setAttribute("quizIds", data[1]);
+		session.setAttribute("quizNames", data[0]);
+		session.setAttribute("quizIds", data[1]);
 		try {
 			session.setAttribute("firstname", user.getFirstName());
 			session.setAttribute("lastname", user.getLastName());

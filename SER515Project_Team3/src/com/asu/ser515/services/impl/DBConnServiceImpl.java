@@ -207,6 +207,8 @@ public class DBConnServiceImpl implements DBConnService {
 			ArrayList<String> quizIds = new ArrayList<String>();
 			ArrayList<String> quizNames = new ArrayList<String>();
 			ArrayList<String> instructions = new ArrayList<String>();
+			@SuppressWarnings("unchecked")
+			List<String>[] quizEntry = new ArrayList[3];
 			try {
 				try {
 					Class.forName(__jdbcDriver);
@@ -224,16 +226,12 @@ public class DBConnServiceImpl implements DBConnService {
 					instructions.add( rs.getString("instructions"));
 					//counter +=1;
 				}
-				@SuppressWarnings("unchecked")
-				List<String>[] quizEntry = new ArrayList[3];
-				quizEntry[0] = quizIds;
-				quizEntry[1] = quizNames;
+				quizEntry[0] = quizNames;
+				quizEntry[1] = quizIds;
 				quizEntry[2] = instructions;
-				return quizEntry;
 			}
 			catch (SQLException sqe) {
 				sqe.printStackTrace();
-				return null;
 			}finally {
 				try {
 					if (stmt != null) {
@@ -251,6 +249,7 @@ public class DBConnServiceImpl implements DBConnService {
 					}
 				}
 			}
+			return quizEntry;
 		}
 		
 		public List<String>[] quizQuestionJsonExtraction(int quizId) {
