@@ -267,6 +267,8 @@ public class DBConnServiceImpl implements DBConnService {
 			while (rs.next()) {
 				listanswer.add(rs.getString("solution"));
 				listquestion.add(rs.getString("question"));
+				System.out.println(rs.getString("solution"));
+				System.out.println(rs.getString("question"));
 			}
 			quiz.setAnswers(listanswer);
 			quiz.setQuestions(listquestion);

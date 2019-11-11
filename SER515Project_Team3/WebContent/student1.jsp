@@ -7,6 +7,7 @@
 <meta charset="utf-8">
 <title>Student | Grade 1</title>
 <link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/student1.css">
 </head>
 <body>
 	<div id="header"></div>
@@ -24,52 +25,55 @@
 	<div>
 		<h3>Student Grade 1</h3>
 	</div>
-	<div class="row" style="height: 30vh;">
-		<div class="col-sm-6">
-			<h1>Space for questions</h1>
-			<form method="GET">
-			<table id="quizTable" class="table table-bordered">
-				<%
-					session.setAttribute("action", "load");
+		<div class="row" style="height: 30vh;">
+        	<div id = "container">
+				<form method="GET">
+				<table id="quizTable" class="table table-bordered">
+				<a id="size"><% questions.size(); %></a>
+					<%
+						session.setAttribute("action", "load");
 					if (questions.size() == 0) {
-				%>
-				<p align="center">
-				<h3>No questions found!!</h3>
-				</p>
-				<%
-					} else {
-				%>
-
-				<p align="center">
-				<h3>
-					You have following quizzes for the course!! <br>
-				</h3>
-				</p>
-				<%
+					%>
+					<p align="center">
+					<h3>No questions found!!</h3>
+					</p>
+					<%
+						} else {
+					%>
+					<div id="questions">
+					<%
 					for (int i = 0; i < questions.size(); i++) {
-				%>
-				<tr>
-					<td><a id="quizURLRow<%=i%>"><%=questions.get(i)%>
+					%>
 					
-					</a></td>
-				</tr>
-				<tr>
-				<td>
-				<p>
-				Hint:<%=answers.get(i)%>
-				</p>				
-				</td>
-				</tr>
-
-				<%
-					}
-					}
-				%>
-			</table>
-		</form>
-
+						<div id =  "problem<%=i%>" ><div id="quizURLRow<%=i%>"><%=questions.get(i)%>
+					
+						</div>
+						<p>
+						Hint:<%=answers.get(i)%>
+						</p>
+						</div>
+					
+					<%
+						}
+					%>
+					<input class="btn " id = "next" onclick = "nextQuestion()" style = "text-color: white;" placeholder = "Next">
+					<input class="btn " id = "prev" onclick = "prevQuestion()" style = "text-color: white;" placeholder = "Prev">
+					</div>
+					<% 
+						}
+					%>
+				</table>
+				</form>
 		</div>
-	</div>
+          	
+        </div>
+		<br>
+       
+    
+			
+
+	
+	
 	<div class="row" style="height: 40vh;">
 		<div class="col-md-6" id="blocklyDiv" style="height: 40vh;"></div>
 		<div class="col-md-6" style="height: 40vh;; background-color: green;">
@@ -132,6 +136,7 @@
 	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./js/header.js"></script>
 	<script src="./js/student1.js"></script>
+	
 </body>
 </html>
 

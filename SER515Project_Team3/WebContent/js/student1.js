@@ -23,6 +23,78 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+count = 1
+var size = document.getElementById("questions").children.length
+size = size - 2
+var val = "problem"
+	if(count == 1){
+		          $('#prev').hide();
+		        } else if(count > 1){
+		          
+		          $('#prev').hide();
+		          $('#next').show();
+		        }
+
+for(i = 1;i<size;i++){
+	var value = val.concat(i);
+	$('#'+value+'').hide();
+}
+console.log(size)
+
+function nextQuestion() {
+var val = "problem"
+	
+if(count<size){
+	
+var value = val.concat(count-1);
+console.log(value)
+$('#'+value+'').hide();
+
+var value1 = val.concat(count);
+console.log(count)
+$('#'+value1+'').show();
+count = count + 1
+console.log(count)
+}
+if(count == 1){
+	          $('#prev').hide();
+	        } else{
+	          
+	          $('#prev').show();
+	          $('#next').show();
+	        }
+if(count == size){
+	$('#prev').show();
+	$('#next').hide();
+}
+}
+function prevQuestion() {
+	var val = "problem"
+		
+	if(count>=1){
+		count = count - 1
+	if(count>=1){
+	var value = val.concat(count-1);
+	console.log(value)
+	$('#'+value+'').show();
+	var value1 = val.concat(count);
+	$('#'+value1+'').hide();
+	}
+	else{
+		count = count + 1
+	}
+	}
+	if(count <= 1){
+		          $('#prev').hide();
+					$('#next').show();
+		        } else if(count > 1){
+		          
+		          $('#prev').hide();
+		          $('#next').show();
+		        }
+	
+	}
 'use strict';
 var demoWorkspace = Blockly.inject('blocklyDiv', {
 	media : './lib/blockly-master/media/',
