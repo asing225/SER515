@@ -4,8 +4,8 @@ package com.asu.ser515.model;
  * Model class for the Question&Answer. This class has all the properties associated
  * with the quiz creation.
  * 
- * @author anurag933103
- * @date 11/10/2019
+ * @author kushagrjolly
+ * @date 10/29/2019
  * 
  */
 
