@@ -41,6 +41,8 @@ public class DBConnServiceImpl implements DBConnService {
 	private static String __insertQuestion;
 	private static String __selectQuiz;
 	private static String __selectQuestionTable;
+	private static String __getQuizID;
+
 
 	// static block to be executed when class loads to read DB configs from
 	// properties file.
@@ -57,6 +59,7 @@ public class DBConnServiceImpl implements DBConnService {
 			__insertQuestion=dbProperties.getProperty("insertQuestion");
 			__selectQuiz=dbProperties.getProperty("selectQuiz");
 			__selectQuestionTable=dbProperties.getProperty("selectQuestion");
+			__getQuizID=dbProperties.getProperty("getQuizID");
 
 		} catch (Throwable t) {
 			t.printStackTrace();
@@ -113,6 +116,8 @@ public class DBConnServiceImpl implements DBConnService {
 	public int quizCreation(int U_ID, String quizname, String instructions) {	
 		Connection conn = null;
 		PreparedStatement ps = null;
+		PreparedStatement ps1 = null;
+
 		try {
 			try {
 				Class.forName(__jdbcDriver);
@@ -124,9 +129,13 @@ public class DBConnServiceImpl implements DBConnService {
 			ps.setInt(1, U_ID);
 			ps.setString(2, quizname);
 			ps.setString(3, instructions);
-			System.out.println(ps);
 			int rs= ps.executeUpdate();
 			if(rs == 1) {
+				ps1 = conn.prepareStatement(__getQuizID);
+				ResultSet rs1 = ps1.executeQuery();
+				while(rs1.next()) {
+					return rs1.getInt(1);
+				}
 				return 1;
 			}
 			else {

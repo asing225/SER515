@@ -42,6 +42,7 @@ public class TeacherServlet extends HttpServlet {
 	}
 
 	// doPost method to handle form submit coming from web page
+	@SuppressWarnings("unchecked")
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String quizname = req.getParameter("quizname");
 		String instructions = req.getParameter("instructions");
@@ -55,8 +56,12 @@ public class TeacherServlet extends HttpServlet {
 		DBConnService serviceImpl = new DBConnServiceImpl();
 		int quizCreated = serviceImpl.quizCreation(teacher.getUser_Id(), quizname, instructions);
 		List<String> quizNames = (List<String>) session.getAttribute("quizNames");
+		List<String> quizIDs = (List<String>) session.getAttribute("quizIds");
+		System.out.println(quizCreated);
+		quizIDs.add(Integer.toString(quizCreated));
 		quizNames.add(quizname);
 		session.setAttribute("quizNames", quizNames);
+		session.setAttribute("quizIds", quizIDs);
 		// This loop needs to be changed so there is only 1 DB connection
 		for (int i = 1; i <= 10; i++) {
 			if (req.getParameter("Question" + i) != null) {

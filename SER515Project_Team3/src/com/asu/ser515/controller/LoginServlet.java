@@ -41,7 +41,6 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = req.getSession(true);
 		String password = req.getParameter("password");
 		String userName = req.getParameter("username");
-		System.out.println(req.getParameter("action"));
 		DBConnService serviceImpl = new DBConnServiceImpl();
 		User user = serviceImpl.authenticateUser(userName, password);
 		LoginServletHelper loginServletHelper = new LoginServletHelper();
