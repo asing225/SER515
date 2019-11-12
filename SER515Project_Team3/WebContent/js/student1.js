@@ -39,7 +39,7 @@ function checkCode(x){
 	var array = x.replace("window.alert(","").replace(");","").replace(/\s+/g, '');
 	//array = array.replace(");","").replace(/\s+/g, '');
 	//array = array.replace(/\s+/g, '');
-	array = array.split('+').join(',').split('(').join(',').split(')').join(',').split(';').join(',').split(',');
+	array = array.split('+').join(',').split('-').join(',').split('(').join(',').split(')').join(',').split(';').join(',').split(',');
 	console.log(array);
 	//document.getElementById("console").innerHTML += array;
 	for(var c=0; c<array.length; c++){
