@@ -79,8 +79,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
         "type": "field_dropdown",
         "name": "OP",
         "options": [
-          ["%{BKY_MATH_ADDITION_SYMBOL}", "ADD"],
-          ["%{BKY_MATH_SUBTRACTION_SYMBOL}", "MINUS"]
+          ["%{BKY_MATH_ADDITION_SYMBOL}", "ADD"]
+          //["%{BKY_MATH_SUBTRACTION_SYMBOL}", "MINUS"]
           //["%{BKY_MATH_MULTIPLICATION_SYMBOL}", "MULTIPLY"],
           //["%{BKY_MATH_DIVISION_SYMBOL}", "DIVIDE"]
         ]
@@ -101,7 +101,7 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
 
   // Block for basic arithmetic operator to subtract.
   {
-    "type": "math_summation",
+    "type": "math_subtraction",
     "message0": "%1 %2 %3",
     "args0": [
       {
