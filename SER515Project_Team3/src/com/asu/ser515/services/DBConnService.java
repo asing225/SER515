@@ -2,6 +2,9 @@ package com.asu.ser515.services;
 
 import java.util.List;
 
+import java.util.ArrayList;
+
+import com.asu.ser515.model.QuestionAnswer;
 import com.asu.ser515.model.Quiz;
 import com.asu.ser515.model.User;
 
@@ -22,4 +25,6 @@ public interface DBConnService {
 	public int questionaireCreation(int U_ID, Quiz quiz);
 	public List<String>[] teacherQuizJsonExtraction();
 	public List<String>[] quizQuestionJsonExtraction(int quizId);
+	public ArrayList<Quiz> getQuiz();
+	public Quiz getQuestion(int quiz_id);
 }

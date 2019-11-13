@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.asu.ser515.model.Question;
 import com.asu.ser515.model.Quiz;
 import com.asu.ser515.model.User;
 import com.asu.ser515.services.DBConnService;
@@ -43,6 +44,8 @@ public class DBConnServiceImpl implements DBConnService {
 	private static String __selectQuiz;
 	private static String __selectQuestionTable;
 	private static String __getQuizID;
+	private static String __getQuiz;
+	private static String __getQuestions;
 
 	// static block to be executed when class loads to read DB configs from
 	// properties file.
@@ -60,6 +63,8 @@ public class DBConnServiceImpl implements DBConnService {
 			__selectQuiz = dbProperties.getProperty("selectQuiz");
 			__selectQuestionTable = dbProperties.getProperty("selectQuestion");
 			__getQuizID = dbProperties.getProperty("getQuizID");
+			__getQuiz = dbProperties.getProperty("getQuiz");
+			__getQuestions = dbProperties.getProperty("getQuestions");
 
 		} catch (Throwable t) {
 			t.printStackTrace();
@@ -176,13 +181,13 @@ public class DBConnServiceImpl implements DBConnService {
 				t.printStackTrace();
 			}
 			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
-			int rs=0;
+			int rs = 0;
 			for (int i = 0; i < quiz.getQuestions().size(); i++) {
 				ps = conn.prepareStatement(__insertQuestion);
 				ps.setString(1, quiz.getQuestions().get(i).getQuestion());
 				ps.setString(2, quiz.getQuestions().get(i).getAnswer());
 				ps.setInt(3, user_Id);
-				rs = ps.executeUpdate();			
+				rs = ps.executeUpdate();
 			}
 			if (rs == 1) {
 				return 1;
@@ -310,5 +315,105 @@ public class DBConnServiceImpl implements DBConnService {
 			}
 		}
 	}
+
+	
+	@Override
+	public ArrayList<Quiz> getQuiz() {
+		// TODO Auto-generated method stub
+		ArrayList<Quiz> listquiz = new ArrayList<Quiz>();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			try {
+				Class.forName(__jdbcDriver);
+			} catch (Throwable t) {
+				t.printStackTrace();
+			}
+			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
+			ps = conn.prepareStatement(__getQuiz);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Quiz quiz = new Quiz();
+				quiz.setQuiz_id(rs.getInt("quiz_id"));
+				quiz.setQuizname(rs.getString("quizname"));
+				quiz.setInstructions(rs.getString("instructions"));
+				listquiz.add(quiz);
+			}
+		} catch (SQLException sqe) {
+			sqe.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			} finally {
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e3) {
+					e3.printStackTrace();
+				}
+			}
+		}
+
+		return listquiz;
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.asu.ser515.services.DBConnService#getQuestion(java.lang.String)
+	 */
+	@Override
+	public Quiz getQuestion(int quiz_id) {
+		// TODO Auto-generated method stub
+		ArrayList<Question> listquestion = new ArrayList<Question>();
+		Quiz quiz = new Quiz();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			try {
+				Class.forName(__jdbcDriver);
+			} catch (Throwable t) {
+				t.printStackTrace();
+			}
+			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
+			ps = conn.prepareStatement(__getQuestions);
+			ps.setInt(1, quiz_id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Question question = new Question();
+				question.setQuestion(rs.getString("question"));
+				question.setAnswer(rs.getString("solution"));
+				listquestion.add(question);
+			}
+			quiz.setQuestions(listquestion);
+		} catch (SQLException sqe) {
+			sqe.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			} finally {
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e3) {
+					e3.printStackTrace();
+				}
+			}
+		}
+
+		return quiz;
+	}
+
 
 }

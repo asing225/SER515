@@ -31,7 +31,6 @@ import com.asu.ser515.services.impl.DBConnServiceImpl;
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
 
-
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 	}
@@ -54,6 +53,9 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("usertype", user.getUserType());
 			session.setAttribute("u_id", user.getUser_Id());
 			session.setAttribute("username", user.getUserName());
+			if (user.getUserType() == 3 || user.getUserType() == 4) {
+				session.setAttribute("ListQuiz", serviceImpl.getQuiz());
+			}
 			getServletContext().getRequestDispatcher(userPage).forward(req,res);
 		} catch (IOException ioExc) {
 			ioExc.printStackTrace();
@@ -62,4 +64,3 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 }
-	
