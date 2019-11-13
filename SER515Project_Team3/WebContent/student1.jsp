@@ -1,3 +1,4 @@
+<%@page import="com.asu.ser515.model.Question"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="com.asu.ser515.model.Quiz"%>
@@ -13,8 +14,7 @@
 	<div id="header"></div>
 	<%
 		Quiz quiz = (Quiz) request.getSession().getAttribute("quiz");
-		List<String> questions = quiz.getQuestions();
-		List<String> answers =  quiz.getAnswers();
+		List<Question> listquestions = quiz.getQuestions();
 		//List<Integer> quizIds = (ArrayList<Integer>) request.getSession().getAttribute("quizIds");
 		/* for (int i = 0; i < questions.size(); i++) {
 			Quiz quiz = listofQuiz.get(i);
@@ -29,10 +29,10 @@
         	<div id = "container">
 				<form method="GET">
 				<table id="quizTable" class="table table-bordered">
-				<a id="size"><% questions.size(); %></a>
+				<a id="size"><% listquestions.size(); %></a>
 					<%
 						session.setAttribute("action", "load");
-					if (questions.size() == 0) {
+					if (listquestions.size() == 0) {
 					%>
 					<p align="center">
 					<h3>No questions found!!</h3>
@@ -42,14 +42,14 @@
 					%>
 					<div id="questions">
 					<%
-					for (int i = 0; i < questions.size(); i++) {
+					for (int i = 0; i < listquestions.size(); i++) {
 					%>
 					
-						<div id =  "problem<%=i%>" ><div id="quizURLRow<%=i%>"><%=questions.get(i)%>
+						<div id =  "problem<%=i%>" ><div id="quizURLRow<%=i%>"><%=listquestions.get(i).getQuestion()%>
 					
 						</div>
 						<p>
-						Hint:<%=answers.get(i)%>
+						Hint:<%=listquestions.get(i).getQuestion()%>
 						</p>
 						</div>
 					
