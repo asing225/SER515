@@ -40,27 +40,31 @@
 					<%
 						} else {
 					%>
-					<div id="questions">
+					<div id = "questions">
 					<%
 					for (int i = 0; i < questions.size(); i++) {
 					%>
 					
 						<div id =  "problem<%=i%>" ><div id="quizURLRow<%=i%>"><%=questions.get(i)%>
-					
 						</div>
-						<p>
-						Hint:<%=answers.get(i)%>
-						</p>
+						
+						
+						<div id = "answer<%=i %>" value = "<%=answers.get(i) %>">
+						<label for="solution<%=i %>">Answer Below:</label>
+  						<input type="text" class="form-control" id="solution<%=i %>">
+						</div>
 						</div>
 					
 					<%
 						}
 					%>
-					<input class="btn " id = "next" onclick = "nextQuestion()" style = "text-color: white;" placeholder = "Next">
-					<input class="btn " id = "prev" onclick = "prevQuestion()" style = "text-color: white;" placeholder = "Prev">
+					<input class="btn btn-primary" id = "next" onclick = "nextQuestion()" style = "color: white;" placeholder = "Next">
+					<input class="btn btn-primary" id = "prev" onclick = "prevQuestion()" style = "color: white;" placeholder = "Prev">
+					
 					</div>
-					<% 
-						}
+					<input class="btn btn-primary" id="submit" onclick = "calculate()" placeholder = "Submit">
+					<%
+					}
 					%>
 				</table>
 				</form>

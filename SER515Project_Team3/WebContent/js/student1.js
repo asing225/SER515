@@ -24,27 +24,52 @@
  * limitations under the License.
  */
 
-count = 1
+var count = 1
+var selections = []; 
+var solution = [];
 var size = document.getElementById("questions").children.length
+console.log(size)
 size = size - 2
 var val = "problem"
+var ans = "answer"
+
 	if(count == 1){
 		          $('#prev').hide();
+		$('#submit').hide();
 		        } else if(count > 1){
 		          
 		          $('#prev').hide();
 		          $('#next').show();
 		        }
-
+console.log(size);
 for(i = 1;i<size;i++){
 	var value = val.concat(i);
 	$('#'+value+'').hide();
 }
-console.log(size)
+for(i=0;i<size;i++){
+	var answer = ans.concat(i);
+	solution[i] = document.getElementById(answer).getAttribute('value');
+}
+console.log(selections[count-1])
+if (isNaN(selections[count-1])) {
+	console.log("chicken")
+      
+    } 
 
+console.log(selections[0])
 function nextQuestion() {
 var val = "problem"
-	
+	choose();
+console.log(size)
+// If no user selection, progress is stopped
+console.log("lolololol")
+console.log(selections[count-1])
+    if (selections[count-1] != solution[count-1]) {
+      alert('Wrong Answer!');
+    } 
+else {
+      
+    	
 if(count<size){
 	
 var value = val.concat(count-1);
@@ -59,16 +84,40 @@ console.log(count)
 }
 if(count == 1){
 	          $('#prev').hide();
+	$('#submit').hide();
 	        } else{
 	          
 	          $('#prev').show();
 	          $('#next').show();
+			$('#submit').hide();
 	        }
 if(count == size){
 	$('#prev').show();
 	$('#next').hide();
+	$('#submit').show();
 }
 }
+}
+function calculate() {
+	
+	choose();
+	if (selections[count-1] != solution[count-1]) {
+		      alert('Wrong Answer!');
+		    } 
+		else {
+			alert('Quiz completed redirecting to Student Landing Page')
+			location.replace("http://localhost:8080/SER515Project_Team3/login")
+		}
+} 
+function choose() {
+		var val = "solution"
+		var valu = val.concat(count-1);
+	    selections[count-1] = document.getElementById(valu).value;
+		console.log("goodyear")
+		console.log(count)
+		console.log(selections[0])
+	  }
+
 function prevQuestion() {
 	var val = "problem"
 		
