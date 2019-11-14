@@ -9,18 +9,20 @@ import java.util.List;
 import java.util.Properties;
 
 import com.asu.ser515.model.Question;
+import com.asu.ser515.model.Quiz;
 import com.asu.ser515.model.User;
 import com.asu.ser515.services.DBConnService;
+
 /**
  * Implementation to handle DB connectivity
  * 
  * @author anurag933103
  * @date 09/28/2019
  * 
- * Edit @author amanjotsingh
+ *       Edit @author amanjotsingh
  * @date 09/28/2019
  * 
- * Edit @author kushagrjolly
+ *       Edit @author kushagrjolly
  * @date 09/29/2019
  * 
  * @author anurag933103
@@ -30,8 +32,8 @@ import com.asu.ser515.services.DBConnService;
  */
 
 public class DBConnServiceImpl implements DBConnService {
-	
-	//private User __userold = new User();
+
+	// private User __userold = new User();
 	private static String __jdbcUrl;
 	private static String __jdbcUser;
 	private static String __jdbcPasswd;
@@ -41,6 +43,9 @@ public class DBConnServiceImpl implements DBConnService {
 	private static String __insertQuestion;
 	private static String __selectQuiz;
 	private static String __selectQuestionTable;
+	private static String __getQuizID;
+	private static String __getQuiz;
+	private static String __getQuestions;
 
 	// static block to be executed when class loads to read DB configs from
 	// properties file.
@@ -53,10 +58,13 @@ public class DBConnServiceImpl implements DBConnService {
 			__jdbcPasswd = dbProperties.getProperty("jdbcPasswd");
 			__jdbcDriver = dbProperties.getProperty("jdbcDriver");
 			__getUser = dbProperties.getProperty("getUser");
-			__insertQuiz=dbProperties.getProperty("insertQuiz");
-			__insertQuestion=dbProperties.getProperty("insertQuestion");
-			__selectQuiz=dbProperties.getProperty("selectQuiz");
-			__selectQuestionTable=dbProperties.getProperty("selectQuestion");
+			__insertQuiz = dbProperties.getProperty("insertQuiz");
+			__insertQuestion = dbProperties.getProperty("insertQuestion");
+			__selectQuiz = dbProperties.getProperty("selectQuiz");
+			__selectQuestionTable = dbProperties.getProperty("selectQuestion");
+			__getQuizID = dbProperties.getProperty("getQuizID");
+			__getQuiz = dbProperties.getProperty("getQuiz");
+			__getQuestions = dbProperties.getProperty("getQuestions");
 
 		} catch (Throwable t) {
 			t.printStackTrace();
@@ -110,9 +118,11 @@ public class DBConnServiceImpl implements DBConnService {
 	}
 
 	@Override
-	public int quizCreation(int U_ID, String quizname, String instructions) {	
+	public int quizCreation(int U_ID, String quizname, String instructions) {
 		Connection conn = null;
 		PreparedStatement ps = null;
+		PreparedStatement ps1 = null;
+
 		try {
 			try {
 				Class.forName(__jdbcDriver);
@@ -124,20 +134,22 @@ public class DBConnServiceImpl implements DBConnService {
 			ps.setInt(1, U_ID);
 			ps.setString(2, quizname);
 			ps.setString(3, instructions);
-			System.out.println(ps);
-			int rs= ps.executeUpdate();
-			if(rs == 1) {
+			int rs = ps.executeUpdate();
+			if (rs == 1) {
+				ps1 = conn.prepareStatement(__getQuizID);
+				ResultSet rs1 = ps1.executeQuery();
+				while (rs1.next()) {
+					return rs1.getInt(1);
+				}
 				return 1;
-			}
-			else {
+			} else {
 				return 0;
 			}
 
-			
 		} catch (SQLException sqe) {
 			sqe.printStackTrace();
 			return -1;
-		}finally {
+		} finally {
 			try {
 				if (ps != null) {
 					ps.close();
@@ -154,11 +166,161 @@ public class DBConnServiceImpl implements DBConnService {
 				}
 			}
 		}
-		
+
 	}
 
 	@Override
-	public int questionaireCreation(int user_Id, Question questionaire) {
+	public int questionaireCreation(int user_Id, Quiz quiz) {
+		Connection conn = null;
+
+		PreparedStatement ps = null;
+		try {
+			try {
+				Class.forName(__jdbcDriver);
+			} catch (Throwable t) {
+				t.printStackTrace();
+			}
+			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
+			int rs = 0;
+			for (int i = 0; i < quiz.getQuestions().size(); i++) {
+				ps = conn.prepareStatement(__insertQuestion);
+				ps.setString(1, quiz.getQuestions().get(i).getQuestion());
+				ps.setString(2, quiz.getQuestions().get(i).getAnswer());
+				ps.setInt(3, user_Id);
+				rs = ps.executeUpdate();
+			}
+			if (rs == 1) {
+				return 1;
+			} else {
+				return 0;
+			}
+		} catch (SQLException sqe) {
+			sqe.printStackTrace();
+			return -1;
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			} finally {
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e3) {
+					e3.printStackTrace();
+				}
+			}
+		}
+	}
+
+	public List<String>[] teacherQuizJsonExtraction() {
+		Connection conn = null;
+		Statement stmt = null;
+		ArrayList<String> quizIds = new ArrayList<String>();
+		ArrayList<String> quizNames = new ArrayList<String>();
+		ArrayList<String> instructions = new ArrayList<String>();
+		@SuppressWarnings("unchecked")
+		List<String>[] quizEntry = new ArrayList[3];
+		try {
+			try {
+				Class.forName(__jdbcDriver);
+			} catch (Throwable t) {
+				t.printStackTrace();
+			}
+
+			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(__selectQuiz);
+			// int counter = 0;
+			while (rs.next()) {
+				quizIds.add(String.valueOf(rs.getInt("Quiz_id")));
+				quizNames.add(rs.getString("quizName"));
+				instructions.add(rs.getString("instructions"));
+				// counter +=1;
+			}
+			quizEntry[0] = quizNames;
+			quizEntry[1] = quizIds;
+			quizEntry[2] = instructions;
+		} catch (SQLException sqe) {
+			sqe.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			} finally {
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e3) {
+					e3.printStackTrace();
+				}
+			}
+		}
+		return quizEntry;
+	}
+
+	public List<String>[] quizQuestionJsonExtraction(int quizId) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ArrayList<String> question = new ArrayList<String>();
+		ArrayList<String> solution = new ArrayList<String>();
+		try {
+			try {
+				Class.forName(__jdbcDriver);
+			} catch (Throwable t) {
+				t.printStackTrace();
+			}
+
+			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
+			ps = conn.prepareStatement(__selectQuestionTable);
+			ps.setInt(1, quizId);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				question.add(rs.getString("question"));
+				solution.add(rs.getString("solution"));
+			}
+
+			@SuppressWarnings("unchecked")
+			List<String>[] questionObject = new ArrayList[2];
+			questionObject[0] = question;
+			questionObject[1] = solution;
+			// questionCounter = 0;
+
+			return questionObject;
+		} catch (SQLException sqe) {
+			sqe.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			} finally {
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e3) {
+					e3.printStackTrace();
+				}
+			}
+		}
+	}
+
+	
+	@Override
+	public ArrayList<Quiz> getQuiz() {
+		// TODO Auto-generated method stub
+		ArrayList<Quiz> listquiz = new ArrayList<Quiz>();
 		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
@@ -168,21 +330,18 @@ public class DBConnServiceImpl implements DBConnService {
 				t.printStackTrace();
 			}
 			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
-			ps = conn.prepareStatement(__insertQuestion);
-			ps.setString(1, questionaire.getQuestion());
-			ps.setString(2, questionaire.getAnswer());
-			ps.setInt(3, user_Id);
-			int rs= ps.executeUpdate();
-			if(rs == 1 ) {
-				return 1;
+			ps = conn.prepareStatement(__getQuiz);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Quiz quiz = new Quiz();
+				quiz.setQuiz_id(rs.getInt("quiz_id"));
+				quiz.setQuizname(rs.getString("quizname"));
+				quiz.setInstructions(rs.getString("instructions"));
+				listquiz.add(quiz);
 			}
-			else {
-				return 0;
-			}			
 		} catch (SQLException sqe) {
 			sqe.printStackTrace();
-			return -1;
-		}finally {
+		} finally {
 			try {
 				if (ps != null) {
 					ps.close();
@@ -199,109 +358,62 @@ public class DBConnServiceImpl implements DBConnService {
 				}
 			}
 		}
-	}
-	
-		public List<String>[] teacherQuizJsonExtraction() {
-			Connection conn = null;
-			Statement stmt = null;
-			ArrayList<String> quizIds = new ArrayList<String>();
-			ArrayList<String> quizNames = new ArrayList<String>();
-			ArrayList<String> instructions = new ArrayList<String>();
-			try {
-				try {
-					Class.forName(__jdbcDriver);
-				} catch (Throwable t) {
-					t.printStackTrace();
-				}
-			
-				conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
-				stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(__selectQuiz);
-				//int counter = 0;
-				while(rs.next()) {
-					quizIds.add(String.valueOf(rs.getInt("Quiz_id")));
-					quizNames.add(rs.getString("quizName"));
-					instructions.add( rs.getString("instructions"));
-					//counter +=1;
-				}
-				@SuppressWarnings("unchecked")
-				List<String>[] quizEntry = new ArrayList[3];
-				quizEntry[0] = quizIds;
-				quizEntry[1] = quizNames;
-				quizEntry[2] = instructions;
-				return quizEntry;
-			}
-			catch (SQLException sqe) {
-				sqe.printStackTrace();
-				return null;
-			}finally {
-				try {
-					if (stmt != null) {
-						stmt.close();
-					}
-				} catch (Exception e2) {
-					e2.printStackTrace();
-				} finally {
-					try {
-						if (conn != null) {
-							conn.close();
-						}
-					} catch (Exception e3) {
-						e3.printStackTrace();
-					}
-				}
-			}
-		}
-		
-		public List<String>[] quizQuestionJsonExtraction(int quizId) {
-			Connection conn = null;
-			PreparedStatement ps = null;
-			ArrayList<String> question = new ArrayList<String>();
-			ArrayList<String> solution = new ArrayList<String>();
-			try {
-				try {
-					Class.forName(__jdbcDriver);
-				} catch (Throwable t) {
-					t.printStackTrace();
-				}
-			
-				conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
-				ps = conn.prepareStatement(__selectQuestionTable);
-				ps.setInt(1, quizId);
-				ResultSet rs = ps.executeQuery();
-				while(rs.next()) {
-					question.add(rs.getString("question"));
-					solution.add(rs.getString("solution"));
-				}
-				
-				@SuppressWarnings("unchecked")
-				List<String>[] questionObject = new ArrayList[2];
-				questionObject[0] = question;
-				questionObject[1] = solution;
-				//questionCounter = 0;
 
-				return questionObject;
+		return listquiz;
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.asu.ser515.services.DBConnService#getQuestion(java.lang.String)
+	 */
+	@Override
+	public Quiz getQuestion(int quiz_id) {
+		// TODO Auto-generated method stub
+		ArrayList<Question> listquestion = new ArrayList<Question>();
+		Quiz quiz = new Quiz();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			try {
+				Class.forName(__jdbcDriver);
+			} catch (Throwable t) {
+				t.printStackTrace();
 			}
-			catch (SQLException sqe) {
-				sqe.printStackTrace();
-				return null;
-			}finally {
+			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
+			ps = conn.prepareStatement(__getQuestions);
+			ps.setInt(1, quiz_id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Question question = new Question();
+				question.setQuestion(rs.getString("question"));
+				question.setAnswer(rs.getString("solution"));
+				listquestion.add(question);
+			}
+			quiz.setQuestions(listquestion);
+		} catch (SQLException sqe) {
+			sqe.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			} finally {
 				try {
-					if (ps != null) {
-						ps.close();
+					if (conn != null) {
+						conn.close();
 					}
-				} catch (Exception e2) {
-					e2.printStackTrace();
-				} finally {
-					try {
-						if (conn != null) {
-							conn.close();
-						}
-					} catch (Exception e3) {
-						e3.printStackTrace();
-					}
+				} catch (Exception e3) {
+					e3.printStackTrace();
 				}
 			}
 		}
+
+		return quiz;
+	}
+
 
 }
