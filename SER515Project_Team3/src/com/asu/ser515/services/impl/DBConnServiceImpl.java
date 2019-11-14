@@ -318,7 +318,7 @@ public class DBConnServiceImpl implements DBConnService {
 
 	
 	@Override
-	public ArrayList<Quiz> getQuiz() {
+	public ArrayList<Quiz> getQuiz(int usertype) {
 		// TODO Auto-generated method stub
 		ArrayList<Quiz> listquiz = new ArrayList<Quiz>();
 		Connection conn = null;
@@ -331,6 +331,7 @@ public class DBConnServiceImpl implements DBConnService {
 			}
 			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
 			ps = conn.prepareStatement(__getQuiz);
+			ps.setInt(1,usertype);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Quiz quiz = new Quiz();

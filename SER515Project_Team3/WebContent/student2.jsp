@@ -17,7 +17,7 @@
 		List<Question> listquestions = quiz.getQuestions();
 	%>
 	<div>
-		<h3>Student Grade 1</h3>
+		<h3>Student Grade 6</h3>
 	</div>
 		<div class="row" style="height: 30vh;">
         	<div id = "container">
@@ -77,50 +77,29 @@
 		<div class="col-md-6" style="height: 40vh;; background-color: green;">
 			<h2 style="color: white;"><b>Console</b></h2>
 			<h4 style="color: white;" id="check"></h3>
-				<h3 style="color: white;" id="error"></h3>
+				<h3 style="color: white;" id="error1"></h3>
+				<h3 style="color: white;" id="error2"></h3>
 			<h3 style="color: white;" id="console"></h3>
 		</div>
 	</div>
 	<button class="btn btn-primary" onclick="runCode()" id="runButton">Calculate</button>
 	<button class="btn btn-primary" onclick="clearConsole()" id="clearButton">Clear</button>
-
 	<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox"
 		style="display: none"> <!-- Dropdown for basic math operators -->
-	<!--- <category name="Blocks" colour="%{BKY_MATH_HUE}"> -->
-    <block type="math_number"> <field name="NUM">1</field> </block>
-		<block type="math_number"> <field name="NUM">2</field> </block>
-		<block type="math_number"> <field name="NUM">3</field> </block>
-		<block type="math_number"> <field name="NUM">4</field> </block>
-		<block type="math_number"> <field name="NUM">5</field> </block>
-		<block type="math_number"> <field name="NUM">6</field> </block>
-		<block type="math_number"> <field name="NUM">7</field> </block>
-		<block type="math_number"> <field name="NUM">8</field> </block>
-		<block type="math_number"> <field name="NUM">9</field> </block>
-		<block type="math_number"> <field name="NUM">10</field> </block>
-		<block type="math_number"> <field name="NUM">11</field> </block>
-		<block type="math_number"> <field name="NUM">12</field> </block>
-		<block type="math_number"> <field name="NUM">13</field> </block>
-		<block type="math_number"> <field name="NUM">14</field> </block>
-		<block type="math_number"> <field name="NUM">15</field> </block>
-		<block type="math_number"> <field name="NUM">16</field> </block>
-		<block type="math_number"> <field name="NUM">17</field> </block>
-		<block type="math_number"> <field name="NUM">18</field> </block>
-		<block type="math_number"> <field name="NUM">19</field> </block>
-		<block type="math_number"> <field name="NUM">20</field> </block>
-		<!-- <block type="block_one"> <field name="NUM">1</field> </block> -->
-		<!--- <block type="math_subtraction"></block> -->
-		<block type="math_arithmetic"></block>
-    <sep></sep>
-    <block type="text_print"></block>
-	<!--</category>--> <sep></sep> </xml>
+	<category name="Blocks" colour="%{BKY_MATH_HUE}"> <block
+		type="math_number"> <field name="NUM">123</field> </block> <block
+		type="math_arithmetic"></block> <sep></sep>
+    <block type="math_single"></block>
+	</category>
+</xml>
 	<!--<script>
     	var demoWorkspace = Blockly.inject('blocklyDiv',
         {media: './lib/blockly-master/media/',
          toolbox: document.getElementById('toolbox')});
   	</script> -->
 	<script src="./lib/blockly-master/blockly_compressed.js"></script>
-	<script src="./lib/blockly-master/blocks/colour.js"></script>
-  <script src="./lib/blockly-master/blocks/math_student1.js"></script>
+  <script src="./lib/blockly-master/blocks/colour.js"></script>
+  <script src="./lib/blockly-master/blocks/math.js"></script>
   <script src="./lib/blockly-master/blocks/logic.js"></script>
   <script src="./lib/blockly-master/blocks/loops.js"></script>
   <script src="./lib/blockly-master/blocks/list.js"></script>
@@ -133,7 +112,7 @@
 	<script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./js/header.js"></script>
-	<script src="./js/student1.js"></script>
+	<script src="./js/student2.js"></script>
 	
 </body>
 </html>

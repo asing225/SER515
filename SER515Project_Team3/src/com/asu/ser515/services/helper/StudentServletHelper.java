@@ -11,7 +11,7 @@ public class StudentServletHelper {
 	private static String errorPage = "/error.html";
 	private static String exceptionPage = "/exception.html";
 	private String student1Page = "/student1.jsp";
-	private String student6Page = "/student6.jsp";	
+	private String student6Page = "/student2.jsp";	
 
 	/**
 	 * @param userType

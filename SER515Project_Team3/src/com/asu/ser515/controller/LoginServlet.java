@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("u_id", user.getUser_Id());
 			session.setAttribute("username", user.getUserName());
 			if (user.getUserType() == 3 || user.getUserType() == 4) {
-				session.setAttribute("ListQuiz", serviceImpl.getQuiz());
+				session.setAttribute("ListQuiz", serviceImpl.getQuiz(user.getUserType()));
 			}
 			getServletContext().getRequestDispatcher(userPage).forward(req,res);
 		} catch (IOException ioExc) {

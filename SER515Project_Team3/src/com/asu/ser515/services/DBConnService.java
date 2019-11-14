@@ -24,6 +24,6 @@ public interface DBConnService {
 	public int questionaireCreation(int U_ID, Quiz quiz);
 	public List<String>[] teacherQuizJsonExtraction();
 	public List<String>[] quizQuestionJsonExtraction(int quizId);
-	public ArrayList<Quiz> getQuiz();
+	public ArrayList<Quiz> getQuiz(int usertype);
 	public Quiz getQuestion(int quiz_id);
 }
