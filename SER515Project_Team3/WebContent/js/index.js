@@ -4,8 +4,13 @@
  * @author - akshaykumardileep
  * @date - 09/30/2019
  * 
- */$('.form').find('input, textarea').on('keyup blur focus', function (e) {
-  
+ */
+
+$(window).load(function(){
+    $('#logout').hide();
+});
+
+$('.form').find('input, textarea').on('keyup blur focus', function (e) {	 
   var $this = $(this),
       label = $this.prev('label');
 
