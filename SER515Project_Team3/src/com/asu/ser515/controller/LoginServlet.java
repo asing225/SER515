@@ -42,6 +42,18 @@ public class LoginServlet extends HttpServlet {
 		String password = req.getParameter("password");
 		String userName = req.getParameter("username");
 		System.out.println(req.getParameter("action"));
+		if ("Logout".equals(req.getParameter("action"))){
+				session.invalidate();
+				try {
+					req.getRequestDispatcher("index.html").forward(req, res);
+				} catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
 		DBConnService serviceImpl = new DBConnServiceImpl();
 		User user = serviceImpl.authenticateUser(userName, password);
 		LoginServletHelper loginServletHelper = new LoginServletHelper();
