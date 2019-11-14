@@ -49,8 +49,8 @@
 				<%
 					for (int i = 0; i < quizNames.size(); i++) {
 				%>
-				<div class="list-group">
-					<div class="list-group-item" style="background-color:black;"><a id="quizURLRow<%=i%>"
+				<div class="list-group" align="center">
+					<div class="list-group-item" align="center"><a id="quizURLRow<%=i%>"
 						href="student?id=<%=quizIds.get(i)%>"><%=quizNames.get(i)%></a></div>
 				</div>
 
