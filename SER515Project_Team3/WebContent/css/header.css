@@ -9,13 +9,13 @@ body {
 
 .header {
 	overflow: hidden;
-	background-color: #f1f1f1;
+	background-color: rgba(45, 46, 46, 0.9);
 	padding: 20px 10px;
 }
 
 .header a {
 	float: left;
-	color: black;
+	color: white;
 	text-align: center;
 	padding: 12px;
 	text-decoration: none;
@@ -42,6 +42,18 @@ body {
 .header-right {
 	float: right;
 }
+
+footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 5vh;
+	background-color: rgba(45, 46, 46, 0.9);
+	color: white;
+	text-align: center;
+	
+  }
 
 @media screen and (max-width: 500px) {
 	.header a {
