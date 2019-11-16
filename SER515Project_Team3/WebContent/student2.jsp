@@ -65,13 +65,6 @@
 		</div>
           	
         </div>
-		<br>
-       
-    
-			
-
-	
-	
 	<div class="row" style="height: 40vh;">
 		<div class="col-md-6" id="blocklyDiv" style="height: 40vh;"></div>
 		<div class="col-md-6" style="height: 40vh;; background-color: green;">
@@ -92,11 +85,6 @@
     <block type="math_single"></block>
 	</category>
 </xml>
-	<!--<script>
-    	var demoWorkspace = Blockly.inject('blocklyDiv',
-        {media: './lib/blockly-master/media/',
-         toolbox: document.getElementById('toolbox')});
-  	</script> -->
 	<script src="./lib/blockly-master/blockly_compressed.js"></script>
   <script src="./lib/blockly-master/blocks/colour.js"></script>
   <script src="./lib/blockly-master/blocks/math.js"></script>
@@ -113,8 +101,5 @@
 	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./js/header.js"></script>
 	<script src="./js/student2.js"></script>
-	
 </body>
 </html>
-
-

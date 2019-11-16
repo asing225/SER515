@@ -65,19 +65,13 @@
 		</div>
           	
         </div>
-		<br>
-       
-    
-			
-
-	
-	
-	<div class="row" style="height: 40vh;">
+<div class="row" style="height: 40vh;">
 		<div class="col-md-6" id="blocklyDiv" style="height: 40vh;"></div>
 		<div class="col-md-6" style="height: 40vh;; background-color: green;">
 			<h2 style="color: white;"><b>Console</b></h2>
 			<h4 style="color: white;" id="check"></h3>
-				<h3 style="color: white;" id="error"></h3>
+				<h3 style="color: white;" id="error1"></h3>
+				<h3 style="color: white;" id="error2"></h3>
 			<h3 style="color: white;" id="console"></h3>
 		</div>
 	</div>
@@ -108,10 +102,10 @@
 		<block type="math_number"> <field name="NUM">19</field> </block>
 		<block type="math_number"> <field name="NUM">20</field> </block>
 		<!-- <block type="block_one"> <field name="NUM">1</field> </block> -->
-		<!--- <block type="math_subtraction"></block> -->
+		<block type="math_subtraction"></block>
+		<sep></sep>
 		<block type="math_arithmetic"></block>
-    <sep></sep>
-    <block type="text_print"></block>
+
 	<!--</category>--> <sep></sep> </xml>
 	<!--<script>
     	var demoWorkspace = Blockly.inject('blocklyDiv',
@@ -134,8 +128,5 @@
 	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./js/header.js"></script>
 	<script src="./js/student1.js"></script>
-	
 </body>
 </html>
-
-
