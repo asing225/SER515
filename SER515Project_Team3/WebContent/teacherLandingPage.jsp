@@ -8,7 +8,9 @@
 </head>
 <body>
 	<div id="header"></div>
-	<h1>Welcome <%= (String) session.getAttribute("firstname") %></h1>
+	<h1>
+		Welcome
+		<%=(String) session.getAttribute("firstname")%></h1>
 	<div>
 		<a class="btn btn-primary" href="teacher.html">Create Quiz</a>
 	</div>
@@ -20,11 +22,9 @@
 		<h2>Quiz</h2>
 		<form method="GET">
 			<table class="table table-bordered" id="quizTable">
-			<% System.out.println(quizNames.size()); 
-				int size = quizNames.size();
-			%>
 				<%
-					if (quizNames.size() == 0) {
+					int size = quizNames.size();
+					if (size == 0) {
 				%>
 				<p align="center">No quizzes found!!</p>
 				<%

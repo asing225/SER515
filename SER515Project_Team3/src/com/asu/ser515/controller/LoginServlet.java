@@ -40,14 +40,16 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = req.getSession(true);
 		String password = req.getParameter("password");
 		String userName = req.getParameter("username");
-		DBConnService serviceImpl = new DBConnServiceImpl();
-		User user = serviceImpl.authenticateUser(userName, password);
-		LoginServletHelper loginServletHelper = new LoginServletHelper();
-		String userPage = loginServletHelper.mapUserToPage(user.getUserType());
-		List<String>[] data = serviceImpl.teacherQuizJsonExtraction();
-		session.setAttribute("quizNames", data[0]);
-		session.setAttribute("quizIds", data[1]);
-		try {
+		String action = req.getParameter("action");
+		String userPage = "";
+		if ("Login".equalsIgnoreCase(action)) {
+			DBConnService serviceImpl = new DBConnServiceImpl();
+			User user = serviceImpl.authenticateUser(userName, password);
+			LoginServletHelper loginServletHelper = new LoginServletHelper();
+			userPage = loginServletHelper.mapUserToPage(user.getUserType());
+			List<String>[] data = serviceImpl.teacherQuizJsonExtraction();
+			session.setAttribute("quizNames", data[0]);
+			session.setAttribute("quizIds", data[1]);
 			session.setAttribute("firstname", user.getFirstName());
 			session.setAttribute("lastname", user.getLastName());
 			session.setAttribute("usertype", user.getUserType());
@@ -56,7 +58,13 @@ public class LoginServlet extends HttpServlet {
 			if (user.getUserType() == 3 || user.getUserType() == 4) {
 				session.setAttribute("ListQuiz", serviceImpl.getQuiz(user.getUserType()));
 			}
-			getServletContext().getRequestDispatcher(userPage).forward(req,res);
+		}
+		else if("Logout".equalsIgnoreCase(action)) {
+			session.invalidate();
+			userPage = "/index.html";
+		}
+		try {
+			getServletContext().getRequestDispatcher(userPage).forward(req, res);
 		} catch (IOException ioExc) {
 			ioExc.printStackTrace();
 		} catch (ServletException servletExc) {
