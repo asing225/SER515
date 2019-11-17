@@ -4,10 +4,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="./css/about.css">
+
 </head>
 <body>
-        <div id="header"></div>
+        <div class="header">
+                <a href="#default" class="logo">Drag-On</a>
+                <div class="header-right">
+                        <a class="anchor" href="#about">About</a> 
+                </div>
+            </div>
     <h1 style="text-align: center; font-size: 40px; padding-top: 4.5cm;"> Drag-On</h1>
 	<div class="parallax">
         <div class="parallax__layer parallax__layer__0">
@@ -32,10 +37,10 @@
             <img src="https://github.com/samdbeckham/blog/blob/master/dev/_assets/images/articles/firewatch/layer_6.png?raw=true" />
         </div>
         <div class="parallax__cover">
-            <div class="row ">
-                    <h1 style="color: aliceblue;">ABOUT</h1>
+            <div class="row " id="about">
+                    
                 <div class="col-md-6"> 
-                
+                        <h1 style="color: rgb(230, 145, 106);">ABOUT</h1>
                 <p>The vision for Drag-On is that this project is a fully functional stand-alone application 
                         to aid students from grades 1 to 6 in applying arithmetic expressions and evaluating their 
                         functionality using visual programming elements such as modules and blocks.
@@ -67,20 +72,18 @@
                                 MySQL<br>
                                 
                         </p>
-                        <button class="btn " id="check">Learning Outcomes </button>
-                        <button class="btn " id="check">Login </button>
+                        <a class="btn " id="check" href="https://tree.taiga.io/project/mahendrarrao-ser515-fall-2019-team-3/wiki/learning-outcomes">Learning Outcomes </a>
+                        <a class="btn " id="check" href="index.html">Login </a>
                     </div>
                 </div>
                 
                 <div class="row ">
                     <div class="col-md-6">
-                            <h2 style="color: aliceblue;">LEARNING OUTCOMES FOR GRADE 1</h2>
+                            <h2 style="color: rgb(230, 145, 106);">LEARNING OUTCOMES FOR GRADE 1</h2>
                             <p>
                                     <h2>In first grade math, students will be expected to:</h2>     <br>
                                     <ul> 
                                         <li>and write numerals to 100 and to count objects to 100 or more</li>
-                                    <li>Compare and order whole numbers to 100 or more using a variety of methods including usage of the symbols <, =, and >, and the vocabulary of less than, equal to, and more than
-                                    </li>
                                      <li> Learn ordinal numbers from 1st to 10th or higher</li>  
                                     </ul>
                                 </p>
@@ -89,7 +92,6 @@
                                     <ul>
                                     <li>Count orally to 100 by 2s, 5s, and 10s with or without a hundred chart</li>
                                 <li>Count forward or backward by 1s beginning with any number less than 100</li>
-                            <li> Using a hundred chart they will learn to count forward by 10s starting at any number less than 10</li>
                         </ul>        
                         </p>
                                     <p>
@@ -104,14 +106,7 @@
                                         
                                             <h2>During this year, first-grade math students will learn addition and subtraction. The children will demonstrate that they know addition means putting together, subtraction means taking away, and the following:</h2>  <br>
                                     <ul>
-                                    <li>Solve basic addition facts using concrete objects and thinking strategies such as ‘count on’, ‘countback’, ‘doubles’, ‘doubles plus one’, and ‘make ten’</li>
                                 <li>Learn about the commutative and associative properties of addition and learn fact families up to 18</li>
-                                <li>Using concrete materials such as coins, diagrams, and number expressions to show equivalent forms of the same number</li>
-                                <li>Addition and subtraction of two-digit numbers without regrouping, up to 100, using models and algorithms</li>
-                                <li>Solve simple number problems by selecting the proper operation and to describe their thinking when solving number problems</li>
-                                <li>Write number sentences associated with addition and subtraction and learn to use a calculator to solve problems</li>
-                                <li>Learn about estimation, using it to compare quantities and find reasonable answers to math problems</li>
-                                    
                                 <li>Taught about simple fractions, learning that equivalent fraction parts make a whole</li>
                                     </ul> 
                                 </p> 
@@ -119,18 +114,15 @@
                                             <h2>Algebraic Thinking:</h2>   <br>
                                             <h2>Children in first-grade math will predict, extend, and create patterns. They will:</h2>    <br>
                                     <ul>
-                                    <li>Transfer patterns from one medium to another, describe pattern rules, identify and generate patterns in lists of related pairs based on real-life situations</li>
-                                    <li>Explore number patterns on a hundred chart and with a calculator</li>
                                     <li>Solve addition and subtraction sentences where an unknown number is represented by a geometric shape</li>
                                     <li>Use objects to solve number sentences with equalities and inequalities using <, =, and >,</li>
-                                    <li>Solve real-world problems where there is one unknown factor </li> <br>
                                 </ul>
-                                    <p>Reference: https://www.claytonschools.net/Page/13415</p> 
+                                     
                                     
                             </p>
                     </div>
                     <div class="col-md-6">
-                        <h2 style="color: aliceblue;">LEARNING OUTCOMES FOR GRADE 6</h2>
+                        <h2 style="color: rgb(230, 145, 106);">LEARNING OUTCOMES FOR GRADE 6</h2>
                         <p>
                                 <h2>In sixth grade math, students will be expected to:</h2> <br>
                                 <ul> 
@@ -145,8 +137,6 @@
                                         <h2>Basic arithmetic is an important skill for sixth-grade math. The children will learn to:</h2>   
                                         <br>
                                 <ul>
-                                <li>Students will evaluate expressions using exponents and square roots
-                                    </li>
                             <li>Students will apply the order of operations in order to solve problems</li>
                         <li> Students will use variables in order to simplify expressions
                             </li>
@@ -156,8 +146,6 @@
                                 <h2>Sixth-grade math students will be learning about fractions and decimals including:</h2> 
                             <br>
                         <ul>
-                        <li>Identify the least common denominator as well greatest common factor
-                        </li>
                         <li>Students will compare and order fractions including using a number line  </li>
                         <li> Adding, subtracting, multiplying, and dividing fractions with like and unlike denominators
                         </li>
@@ -165,7 +153,6 @@
                             </p>
                                     
                             <h2>Sixth-grade math students will be learning about integers and graphing which includes:</h2> <ul>
-                                <li>Students will use integers to describe real-life situations and show them on a number line  </li>
                             <li>Adding, subtracting, multiplying and dividing using integers </li>
                             <li>Students will use deductive or inductive reasoning, process of elimination or work backward to solve real-life problems</li>
                             
@@ -177,19 +164,18 @@
                                 <ul>
                                 <li>Students will use integers to describe real-life situations and show them on a number line  </li>
                                 <li>Adding, subtracting, multiplying and dividing using integers</li>
-                                <li>Students will use various graphs to analyze and present data</li>
-                                <li>Students will use deductive or inductive reasoning, process of elimination or work backward to solve real-life problems </li>
                                  <br>
                             </ul>
-                                <p>Reference: https://www.claytonschools.net/Page/13415</p> 
+                                 
                                 
                         </p>
                     </div>
                 </div >
             </div>
     </div>
+    <footer><b>Powered by Blockly</b></footer>
 </body>
 <script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="./js/header.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/about.css">
 
 </html>
