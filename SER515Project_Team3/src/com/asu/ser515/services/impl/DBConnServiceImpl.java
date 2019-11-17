@@ -46,6 +46,7 @@ public class DBConnServiceImpl implements DBConnService {
 	private static String __getQuizID;
 	private static String __getQuiz;
 	private static String __getQuestions;
+	private static String __getUserList;
 
 	// static block to be executed when class loads to read DB configs from
 	// properties file.
@@ -65,6 +66,7 @@ public class DBConnServiceImpl implements DBConnService {
 			__getQuizID = dbProperties.getProperty("getQuizID");
 			__getQuiz = dbProperties.getProperty("getQuiz");
 			__getQuestions = dbProperties.getProperty("getQuestions");
+			__getUserList = dbProperties.getProperty("getUserList");
 
 		} catch (Throwable t) {
 			t.printStackTrace();
@@ -416,5 +418,47 @@ public class DBConnServiceImpl implements DBConnService {
 		return quiz;
 	}
 
+	public List<String>[] getUserList() {
+		Connection conn = null;
+		Statement stmt = null;
+		@SuppressWarnings("unchecked")
+		List<String>[] userList = new ArrayList[1];
+		ArrayList<String> userDetail = new ArrayList<String>();
+		//ArrayList<User> userList = new ArrayList<User>();
+		try {
+			try {
+				Class.forName(__jdbcDriver);
+			} catch (Throwable t) {
+				t.printStackTrace();
+			}
+			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(__getUserList);
+			while (rs.next()) {
+				userDetail.add(rs.getString("user"));
+			}
+			userList[0] = userDetail;
 
+			return userList;
+		} catch (SQLException sqe) {
+			sqe.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			} finally {
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e3) {
+					e3.printStackTrace();
+				}
+			}
+		}
+	}
 }

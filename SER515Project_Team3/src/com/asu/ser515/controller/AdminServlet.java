@@ -1,6 +1,7 @@
 package com.asu.ser515.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ import com.asu.ser515.services.impl.DBConnServiceImpl;
 
 /**
  * Controller class to handle the admin functionality of the application. It
- * will authenticate the user and redirect to their respective web pages.
+ * will authenticate the user and redirect to the respective web page.
 
  * @author anurag933103
  * @date 11/16/2019
@@ -31,7 +32,6 @@ public class AdminServlet extends HttpServlet {
 	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) {
-		int userId = Integer.parseInt(req.getParameter("id"));
 		DBConnService serviceImpl = new DBConnServiceImpl();
 		HttpSession session = req.getSession(false);
 		User admin = new Admin();
@@ -40,5 +40,9 @@ public class AdminServlet extends HttpServlet {
 		admin.setUserName((String) session.getAttribute("username"));
 		admin.setUser_Id((int) session.getAttribute("u_id"));
 		admin.setUserType((int) session.getAttribute("usertype"));
+		List<String>[] userEntry =serviceImpl.getUserList();
+		List<String> userDetail = userEntry[0];
+		req.setAttribute("userDetails", userDetail);
+		System.out.println(userDetail);
 	}
 }
