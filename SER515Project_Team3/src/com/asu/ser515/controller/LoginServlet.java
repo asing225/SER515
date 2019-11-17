@@ -1,6 +1,7 @@
 package com.asu.ser515.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletConfig;
@@ -57,6 +58,12 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("username", user.getUserName());
 			if (user.getUserType() == 3 || user.getUserType() == 4) {
 				session.setAttribute("ListQuiz", serviceImpl.getQuiz(user.getUserType()));
+			}
+			else if(user.getUserType()==1) {
+				List<String>[] userEntry =serviceImpl.getUserList();
+				List<String> userDetail = new ArrayList<String>();//userEntry[0];
+				userDetail.add("Mahendru");
+				session.setAttribute("userDetails", userDetail);
 			}
 		}
 		else if("Logout".equalsIgnoreCase(action)) {

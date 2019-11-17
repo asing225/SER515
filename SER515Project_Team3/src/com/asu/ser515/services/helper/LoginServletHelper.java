@@ -11,7 +11,7 @@ public class LoginServletHelper {
 	
 	private static String errorPage = "/error.html";
 	private static String exceptionPage = "/exception.html";
-	private static String adminPage = "/admin.html";
+	private static String adminPage = "/admin.jsp";
 	private static String teacherPage = "/teacherLandingPage.jsp";
 	private static String studentPage= "/studentLandingPage.jsp";
 	
