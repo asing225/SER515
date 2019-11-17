@@ -61,9 +61,16 @@ public class LoginServlet extends HttpServlet {
 			}
 			else if(user.getUserType()==1) {
 				List<String>[] userEntry =serviceImpl.getUserList();
-				List<String> userDetail = new ArrayList<String>();//userEntry[0];
-				userDetail.add("Mahendru");
-				session.setAttribute("userDetails", userDetail);
+				List<String> firstName = userEntry[0];
+				List<String> lastName = userEntry[1];
+				List<String> userType = userEntry[2];
+				List<String> UserNameList = userEntry[3];
+				List<String> passwordList = userEntry[4];
+				session.setAttribute("firstNameList", firstName);
+				session.setAttribute("lastNameList", lastName);
+				session.setAttribute("userTypeList", userType);
+				session.setAttribute("userNameList", UserNameList);
+				session.setAttribute("passwordList", passwordList);
 			}
 		}
 		else if("Logout".equalsIgnoreCase(action)) {

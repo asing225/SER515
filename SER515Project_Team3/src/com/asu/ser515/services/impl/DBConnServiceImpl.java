@@ -12,6 +12,8 @@ import com.asu.ser515.model.Question;
 import com.asu.ser515.model.Quiz;
 import com.asu.ser515.model.User;
 import com.asu.ser515.services.DBConnService;
+import com.asu.ser515.services.helper.DBConnServiceHelper;
+import com.asu.ser515.services.helper.LoginServletHelper;
 
 /**
  * Implementation to handle DB connectivity
@@ -423,8 +425,12 @@ public class DBConnServiceImpl implements DBConnService {
 		Statement stmt = null;
 		@SuppressWarnings("unchecked")
 		List<String>[] userList = new ArrayList[1];
-		ArrayList<String> userDetail = new ArrayList<String>();
-		//ArrayList<User> userList = new ArrayList<User>();
+		ArrayList<String> firstName = new ArrayList<String>();
+		ArrayList<String> lastName = new ArrayList<String>();
+		ArrayList<String> userType = new ArrayList<String>();
+		ArrayList<String> userName = new ArrayList<String>();
+		ArrayList<String> password = new ArrayList<String>();
+		DBConnServiceHelper dbHelper = new DBConnServiceHelper();
 		try {
 			try {
 				Class.forName(__jdbcDriver);
@@ -435,9 +441,17 @@ public class DBConnServiceImpl implements DBConnService {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(__getUserList);
 			while (rs.next()) {
-				userDetail.add(rs.getString("user"));
+				firstName.add(rs.getString("firstName"));
+				lastName.add(rs.getString("lastName"));
+				userType.add(dbHelper.mapDBtoUsertype(rs.getInt("userType")));
+				userName.add(rs.getString("userName"));
+				password.add(rs.getString("password"));
 			}
-			userList[0] = userDetail;
+			userList[0] = firstName;
+			userList[1] = lastName;
+			userList[2] = userType;
+			userList[3] = userName;
+			userList[4] = password;
 
 			return userList;
 		} catch (SQLException sqe) {
