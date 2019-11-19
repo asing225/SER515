@@ -476,7 +476,7 @@ public class DBConnServiceImpl implements DBConnService {
 		}
 	}
 	
-	public void updateUserStatus(String userId, String flag) {
+	public int updateUserStatus(String userId, String flag) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
@@ -489,10 +489,16 @@ public class DBConnServiceImpl implements DBConnService {
 			ps = conn.prepareStatement(__updateUser);
 			ps.setString(1, flag);
 			ps.setString(2, userId);
-			ResultSet rs = ps.executeQuery();
-			
+		    int rs = ps.executeUpdate();
+		    if (rs == 1) {
+		    	return 1;
+		    }
+		    else {
+		    	return 0;
+		    }
 		} catch (SQLException sqe) {
 			sqe.printStackTrace();
+			return -1;
 		} finally {
 			try {
 				if (ps != null) {
@@ -509,5 +515,6 @@ public class DBConnServiceImpl implements DBConnService {
 					e3.printStackTrace();
 				}
 			}
-	}
+		}	
+	}   
 }
