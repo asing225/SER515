@@ -16,7 +16,7 @@ body {
   }
 
 textarea {
-  background-color: rgb(245, 180, 150);;
+  background-color: rgb(245, 180, 150);
 }
 
   select {
@@ -69,8 +69,8 @@ textarea {
     border:1px solid #888;
     background-color:#dbeaf9; 
   } 
-  input[type=submit]{
-    background-color:rgb(245, 160, 110);
+  #submit{
+    background-color:#2D112B;
     border:none;
     box-shadow:1px 1px 1px #222;
     color:#fff;
@@ -81,12 +81,12 @@ textarea {
     display:block;
     transition: ease .3s;
   }
-  input[type=submit]:hover{
+  #submit:hover{
     background-color:#683010;
     cursor:pointer
   }
   input[type=button]{
-    background-color:rgb(245, 160, 110);
+    background-color:#2D112B;
     border:none;
     box-shadow:1px 1px 1px #222;
     color:#fff;

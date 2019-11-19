@@ -10,7 +10,7 @@
 <script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="./js/header.js"></script>
 <link rel="stylesheet" href="./css/bootstrap.min.css">
-<link rel="stylesheet" href="./css/studentLandingPage.css">
+
 </head>
 <body>
 	<div id="header"></div>
@@ -50,7 +50,7 @@
 					for (int i = 0; i < quizNames.size(); i++) {
 				%>
 				<div class="list-group" align="center">
-					<div class="list-group-item" align="center"><a id="quizURLRow<%=i%>"
+					<div class="list-group-item" align="center"><a class="btn" id="quizURLRow<%=i%>"
 						href="student?id=<%=quizIds.get(i)%>"><%=quizNames.get(i)%></a></div>
 				</div>
 
@@ -63,6 +63,7 @@
 		
 	</div>
 </body>
+<link rel="stylesheet" href="./css/studentLandingPage.css">
 </html>
 <script type="text/javascript">
 	// checking if the quiz has been answered or not.
