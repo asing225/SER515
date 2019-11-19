@@ -1,8 +1,8 @@
 body {
     
-background-color: white;
+background-color: rgb(245, 180, 150);
 }
 
-div {
-	pading-left: 5vh;
+.list-group-item {
+	background-color: rgb(241, 199, 179);
 }

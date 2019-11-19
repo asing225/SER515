@@ -41,7 +41,6 @@ var ans = "answer"
 		          $('#prev').hide();
 		          $('#next').show();
 		        }
-console.log(size);
 for(i = 1;i<size;i++){
 	var value = val.concat(i);
 	$('#'+value+'').hide();
@@ -52,7 +51,6 @@ for(i=0;i<size;i++){
 }
 console.log(selections[count-1])
 if (isNaN(selections[count-1])) {
-	console.log("chicken")
       
     } 
 
@@ -62,7 +60,6 @@ var val = "problem"
 	choose();
 console.log(size)
 // If no user selection, progress is stopped
-console.log("lolololol")
 console.log(selections[count-1])
     if (selections[count-1] != solution[count-1]) {
       alert('Wrong Answer!');
