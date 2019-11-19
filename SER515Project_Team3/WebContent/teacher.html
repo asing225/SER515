@@ -8,7 +8,7 @@
 <script type="text/javascript" src='./lib/foundation.min.js'></script>
 <script type="text/javascript" src="./js/quiz.js"></script>
 <link rel="stylesheet" href="./css/bootstrap.min.css">
-<link rel="stylesheet" href="./css/style.css">
+
 </head>
 <body>
 	<div id="header"></div>
@@ -28,14 +28,17 @@
 					<input type="text" placeholder="Instructions" name="instructions">
 				</div>
 				<div class="row"></div>
-				<div id="wrapper1">
-					<div id="heading">
+				<div id="wrapper1" >
+					<div  id="heading">
 						<h3>Question 1</h3>
 					</div>
 					<input type="text" placeholder="Question1" name="Question1">
 					</br>
-					<textarea placeholder="Solution1" name="Solution1" type="text"></textarea>
+					
+					<textarea class="solution"  placeholder="Solution1" name="Solution1" type="text"></textarea>
+				
 					<hr>
+					</div></div></div>
 				</div>
 				<div>
 					<input class="btn btn-primary" type="submit" value="submit"
@@ -51,6 +54,7 @@
 			</form>
 		</div>
 	</div>
+	<link rel="stylesheet" href="./css/style1.css">
 </body>
 
 </html>
