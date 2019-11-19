@@ -13,7 +13,6 @@ import com.asu.ser515.model.Quiz;
 import com.asu.ser515.model.User;
 import com.asu.ser515.services.DBConnService;
 import com.asu.ser515.services.helper.DBConnServiceHelper;
-import com.asu.ser515.services.helper.LoginServletHelper;
 
 /**
  * Implementation to handle DB connectivity
@@ -424,7 +423,7 @@ public class DBConnServiceImpl implements DBConnService {
 		Connection conn = null;
 		Statement stmt = null;
 		@SuppressWarnings("unchecked")
-		List<String>[] userList = new ArrayList[1];
+		List<String>[] userList = new ArrayList[5];
 		ArrayList<String> firstName = new ArrayList<String>();
 		ArrayList<String> lastName = new ArrayList<String>();
 		ArrayList<String> userType = new ArrayList<String>();
@@ -452,7 +451,6 @@ public class DBConnServiceImpl implements DBConnService {
 			userList[2] = userType;
 			userList[3] = userName;
 			userList[4] = password;
-
 			return userList;
 		} catch (SQLException sqe) {
 			sqe.printStackTrace();
