@@ -476,7 +476,7 @@ public class DBConnServiceImpl implements DBConnService {
 		}
 	}
 	
-	public int updateUserStatus(String userId, String flag) {
+	public int updateUserStatus(String userId) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
@@ -487,9 +487,8 @@ public class DBConnServiceImpl implements DBConnService {
 			}
 			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
 			ps = conn.prepareStatement(__updateUser);
-			ps.setString(1, flag);
-			ps.setString(2, userId);
-		    int rs = ps.executeUpdate();
+			ps.setString(1, userId);
+			int rs = ps.executeUpdate();
 		    if (rs == 1) {
 		    	return 1;
 		    }
