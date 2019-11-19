@@ -64,18 +64,4 @@
 	</div>
 </body>
 </html>
-<script type="text/javascript">
-	// checking if the quiz has been answered or not.
-	$(document)
-			.ready(
-					function() {
-						var rowCount = $('#quizTable tr').length;
-						for (var i = 0; i < rowCount; i++) {
-							if (document.getElementById("quizStatus" + i).innerHTML == "Answered") {
-								document.getElementById("quizURLRow" + i).href = "javascript: void(0)";
-								document.getElementById("quizURLRow" + i).title = "Quiz already answered";
-							}
-						}
-					});
-</script>
 

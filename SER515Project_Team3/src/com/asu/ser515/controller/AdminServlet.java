@@ -24,11 +24,10 @@ public class AdminServlet extends HttpServlet {
 		super.init(config);
 	}
 	
-	public void doPut(HttpServletRequest req, HttpServletResponse res) {
+	public void doPost(HttpServletRequest req, HttpServletResponse res) {
 		String user_id = req.getParameter("status");
 		DBConnService dbConn = new DBConnServiceImpl();
-		int dbRes = 0;
-		dbRes = dbConn.updateUserStatus(user_id);
+		int dbRes = dbConn.updateUserStatus(user_id);
 		HttpSession session = req.getSession(false);
 		List<String> status = (ArrayList<String>) session.getAttribute("status");
 		List<String> userId = (ArrayList<String>) session.getAttribute("userId");

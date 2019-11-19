@@ -22,56 +22,54 @@
 	List<String> status = (ArrayList<String>) request.getSession().getAttribute("status");
 	%>
 	<div class="container">
-		<form method="GET">
-			<table class="table table-bordered" id="quizTable">
-				<%
-					int size = firstName.size();
-					if (size == 0) {
-				%>
-				<p align="center">No Users found!!</p>
-				<%
-					} else {
-				%>
+		<table class="table table-bordered" id="quizTable">
+			<%
+				int size = firstName.size();
+				if (size == 0) {
+			%>
+			<p align="center">No Users found!!</p>
+			<%
+				} else {
+			%>
 
-				<p align="center">You have following Users !</p>
-				<tr>
-					<th>User ID</th>
-					<th>Firstname</th>
-	    			<th>Lastname</th>
-	    			<th>UserType</th>
-	    			<th>UserName</th>
-	    			<th>Password</th>
-	    			<th>Status</th>
-				</tr>
-				<%
-					for (int i = 0; i < size; i++) {
-				%>
-				<tr>
-					<td><a ><%=userId.get(i)%></a></td>
-					<td><a ><%=firstName.get(i)%></a></td>
-					<td><a ><%=lastName.get(i)%></a></td>
-					<td><a ><%=userType.get(i)%></a></td>
-					<td><a ><%=UserNameList.get(i)%></a></td>
-					<td><a ><%=passwordList.get(i)%></a></td>
-					<td>
-						<form method="PUT" action="admin">
+			<p align="center">You have following Users !</p>
+			<tr>
+				<th>User ID</th>
+				<th>Firstname</th>
+				<th>Lastname</th>
+				<th>UserType</th>
+				<th>UserName</th>
+				<th>Password</th>
+				<th>Status</th>
+			</tr>
+			<%
+				for (int i = 0; i < size; i++) {
+			%>
+			<tr>
+				<td><a><%=userId.get(i)%></a></td>
+				<td><a><%=firstName.get(i)%></a></td>
+				<td><a><%=lastName.get(i)%></a></td>
+				<td><a><%=userType.get(i)%></a></td>
+				<td><a><%=UserNameList.get(i)%></a></td>
+				<td><a><%=passwordList.get(i)%></a></td>
+				<td>
+					<form method="POST" action="admin">
 						<% if("N".equals(status.get(i))){ %>
-							<input name="status" value="<%=userId.get(i)%>" type="submit"
-									class="btn btn-success"/>
+						<input name="status" value="<%=userId.get(i)%>" hidden /> <input
+							type="submit" value="Activate" class="btn btn-success" />
 						<%}
-						else if("Y".equals(status.get(i))){%>
-							<input name="status" value="<%=userId.get(i)%>" type="submit"
-									class="btn btn-danger"/>
+					else if("Y".equals(status.get(i))){%>
+						<input name="status" value="<%=userId.get(i)%>" hidden /> <input
+							type="submit" value="De-Activate" class="btn btn-danger" />
 						<%}%>
-						</form>
-					</td>
-				</tr>
-				<%
-					}
-					}
-				%>
-			</table>
-		</form>
+					</form>
+				</td>
+			</tr>
+			<%
+				}
+				}
+			%>
+		</table>
 	</div>
 </body>
 <script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
