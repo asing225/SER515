@@ -19,6 +19,7 @@
 	List<String> UserNameList = (ArrayList<String>) request.getSession().getAttribute("userNameList");
 	List<String> passwordList = (ArrayList<String>) request.getSession().getAttribute("passwordList");
 	List<Integer> status = (ArrayList<Integer>) request.getSession().getAttribute("status");
+	List<Integer> userId = (ArrayList<Integer>) request.getSession().getAttribute("userId");
 	%>
 	<div class="container">
 		<form method="GET">
@@ -52,11 +53,11 @@
 					<td><a ><%=passwordList.get(i)%></a></td>
 					<td>
 					<% if(status.get(i) == 0){ %>
-						<input id="activate<%=i%>" value="Activate" type="button"
+						<input name="activate" value="<%=userId.get(i)%>" type="submit"
 								class="btn btn-success" onclick="activateUser(this.id)"/>
 					<%}
 					else{%>
-						<input id="deactivate<%=i%>" value="De-activate" type="button"
+						<input name="deactivate" value="<%=userId.get(i)%>" type="submit"
 								class="btn btn-danger" onclick="deactivateUser(this.id)"/>
 					<%} %>
 					</td>

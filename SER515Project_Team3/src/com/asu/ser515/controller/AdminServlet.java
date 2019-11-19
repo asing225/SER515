@@ -17,7 +17,14 @@ public class AdminServlet extends HttpServlet {
 	}
 	
 	public void doPut(HttpServletRequest req, HttpServletResponse res) {
-		
+		String activateId = req.getParameter("activate");
+		String deactivateId = req.getParameter("deactivate");
+		if(activateId != null) {
+			System.out.println("--->" + activateId);
+		}
+		else if(deactivateId != null) {
+			System.out.println("--->" + deactivateId);
+		}
 	}
 
 }
