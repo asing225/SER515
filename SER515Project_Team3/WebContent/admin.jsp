@@ -13,12 +13,12 @@
 		<%=(String) session.getAttribute("firstname")%></h1>
 
 	<%
-		List<String> firstName = (ArrayList<String>) request.getSession().getAttribute("firstNameList");
+	List<String> firstName = (ArrayList<String>) request.getSession().getAttribute("firstNameList");
 	List<String> lastName = (ArrayList<String>) request.getSession().getAttribute("lastNameList");
 	List<String> userType = (ArrayList<String>) request.getSession().getAttribute("userTypeList");
 	List<String> UserNameList = (ArrayList<String>) request.getSession().getAttribute("userNameList");
 	List<String> passwordList = (ArrayList<String>) request.getSession().getAttribute("passwordList");
-
+	List<Integer> status = (ArrayList<Integer>) request.getSession().getAttribute("status");
 	%>
 	<div class="container">
 		<form method="GET">
@@ -34,11 +34,12 @@
 
 				<p align="center">You have following Users !</p>
 				<tr>
-				<th>Firstname</th>
-    			<th>Lastname</th>
-    			<th>UserType</th>
-    			<th>UserName</th>
-    			<th>Password</th>
+					<th>Firstname</th>
+	    			<th>Lastname</th>
+	    			<th>UserType</th>
+	    			<th>UserName</th>
+	    			<th>Password</th>
+	    			<th>Status</th>
 				</tr>
 				<%
 					for (int i = 0; i < size; i++) {
@@ -49,6 +50,16 @@
 					<td><a ><%=userType.get(i)%></a></td>
 					<td><a ><%=UserNameList.get(i)%></a></td>
 					<td><a ><%=passwordList.get(i)%></a></td>
+					<td>
+					<% if(status.get(i) == 0){ %>
+						<input id="activate<%=i%>" value="Activate" type="button"
+								class="btn btn-success" onclick="activateUser(this.id)"/>
+					<%}
+					else{%>
+						<input id="deactivate<%=i%>" value="De-activate" type="button"
+								class="btn btn-danger" onclick="deactivateUser(this.id)"/>
+					<%} %>
+					</td>
 				</tr>
 
 				<%
@@ -61,6 +72,7 @@
 </body>
 <script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/admin.js"></script>
 <script type="text/javascript" src="./js/header.js"></script>
 </html>
 
