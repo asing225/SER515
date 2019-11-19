@@ -53,19 +53,19 @@
 					<td><a ><%=userType.get(i)%></a></td>
 					<td><a ><%=UserNameList.get(i)%></a></td>
 					<td><a ><%=passwordList.get(i)%></a></td>
-					<%-- <td>
-					<% if(status.get(i) == 0){ %>
-						<input name="activate" value="<%=userId.get(i)%>" type="submit"
-								class="btn btn-success" onclick="activateUser(this.id)"/>
-					<%}
-					else{%>
-						<input name="deactivate" value="<%=userId.get(i)%>" type="submit"
-								class="btn btn-danger" onclick="deactivateUser(this.id)"/>
-					<%} %>
+					<td>
+						<form method="PUT" action="admin">
+						<% if("N".equals(status.get(i))){ %>
+							<input name="status" value="<%=userId.get(i)%>" type="submit"
+									class="btn btn-success"/>
+						<%}
+						else if("Y".equals(status.get(i))){%>
+							<input name="status" value="<%=userId.get(i)%>" type="submit"
+									class="btn btn-danger"/>
+						<%}%>
+						</form>
 					</td>
-					 --%>
 				</tr>
-
 				<%
 					}
 					}
