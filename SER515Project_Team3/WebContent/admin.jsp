@@ -13,13 +13,13 @@
 		<%=(String) session.getAttribute("firstname")%></h1>
 
 	<%
+	List<String> userId = (ArrayList<String>) request.getSession().getAttribute("userId");
 	List<String> firstName = (ArrayList<String>) request.getSession().getAttribute("firstNameList");
 	List<String> lastName = (ArrayList<String>) request.getSession().getAttribute("lastNameList");
 	List<String> userType = (ArrayList<String>) request.getSession().getAttribute("userTypeList");
 	List<String> UserNameList = (ArrayList<String>) request.getSession().getAttribute("userNameList");
 	List<String> passwordList = (ArrayList<String>) request.getSession().getAttribute("passwordList");
-	List<Integer> status = (ArrayList<Integer>) request.getSession().getAttribute("status");
-	List<Integer> userId = (ArrayList<Integer>) request.getSession().getAttribute("userId");
+	List<String> status = (ArrayList<String>) request.getSession().getAttribute("status");
 	%>
 	<div class="container">
 		<form method="GET">
@@ -35,6 +35,7 @@
 
 				<p align="center">You have following Users !</p>
 				<tr>
+					<th>User ID</th>
 					<th>Firstname</th>
 	    			<th>Lastname</th>
 	    			<th>UserType</th>
@@ -46,12 +47,13 @@
 					for (int i = 0; i < size; i++) {
 				%>
 				<tr>
+					<td><a ><%=userId.get(i)%></a></td>
 					<td><a ><%=firstName.get(i)%></a></td>
 					<td><a ><%=lastName.get(i)%></a></td>
 					<td><a ><%=userType.get(i)%></a></td>
 					<td><a ><%=UserNameList.get(i)%></a></td>
 					<td><a ><%=passwordList.get(i)%></a></td>
-					<td>
+					<%-- <td>
 					<% if(status.get(i) == 0){ %>
 						<input name="activate" value="<%=userId.get(i)%>" type="submit"
 								class="btn btn-success" onclick="activateUser(this.id)"/>
@@ -61,6 +63,7 @@
 								class="btn btn-danger" onclick="deactivateUser(this.id)"/>
 					<%} %>
 					</td>
+					 --%>
 				</tr>
 
 				<%

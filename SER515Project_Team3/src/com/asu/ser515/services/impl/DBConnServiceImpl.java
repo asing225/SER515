@@ -423,12 +423,14 @@ public class DBConnServiceImpl implements DBConnService {
 		Connection conn = null;
 		Statement stmt = null;
 		@SuppressWarnings("unchecked")
-		List<String>[] userList = new ArrayList[5];
+		List<String>[] userList = new ArrayList[7];
+		ArrayList<String> userID = new ArrayList<String>();
 		ArrayList<String> firstName = new ArrayList<String>();
 		ArrayList<String> lastName = new ArrayList<String>();
 		ArrayList<String> userType = new ArrayList<String>();
 		ArrayList<String> userName = new ArrayList<String>();
 		ArrayList<String> password = new ArrayList<String>();
+		ArrayList<String> active_Flg = new ArrayList<String>();
 		DBConnServiceHelper dbHelper = new DBConnServiceHelper();
 		try {
 			try {
@@ -440,17 +442,21 @@ public class DBConnServiceImpl implements DBConnService {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(__getUserList);
 			while (rs.next()) {
+				userID.add(String.valueOf(rs.getInt("User_Id")));
 				firstName.add(rs.getString("firstName"));
 				lastName.add(rs.getString("lastName"));
 				userType.add(dbHelper.mapDBtoUsertype(rs.getInt("userType")));
 				userName.add(rs.getString("userName"));
 				password.add(rs.getString("password"));
+				active_Flg.add(rs.getString("active_flg"));
 			}
-			userList[0] = firstName;
-			userList[1] = lastName;
-			userList[2] = userType;
-			userList[3] = userName;
-			userList[4] = password;
+			userList[0]= userID;
+			userList[1] = firstName;
+			userList[2] = lastName;
+			userList[3] = userType;
+			userList[4] = userName;
+			userList[5] = password;
+			userList[6] = active_Flg;
 			return userList;
 		} catch (SQLException sqe) {
 			sqe.printStackTrace();
