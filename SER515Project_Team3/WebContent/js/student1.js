@@ -103,7 +103,7 @@ function calculate() {
 		    } 
 		else {
 			alert('Quiz completed redirecting to Student Landing Page')
-			location.replace("http://localhost:8080/SER515Project_Team3/login")
+			location.replace("http://localhost:8080/SER515Project_Team3/studentLandingPage.jsp")
 		}
 } 
 function choose() {
