@@ -21,7 +21,7 @@
 	</div>
 		<div class="row" style="height: 30vh;">
         	<div id = "container">
-				<form method="GET">
+				<form method="POST">
 				<table id="quizTable" class="table table-bordered">
 				<a id="size"><% listquestions.size(); %></a>
 					<%
