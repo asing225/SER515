@@ -2,20 +2,16 @@
 	box-sizing: border-box;
 }
 
-body {
-	margin: 0;
-	font-family: Arial, Helvetica, sans-serif;
-}
 
 .header {
 	overflow: hidden;
-	background-color: #f1f1f1;
+	background-color: #2D112B;
 	padding: 20px 10px;
 }
 
 .header a {
 	float: left;
-	color: black;
+	color: white;
 	text-align: center;
 	padding: 12px;
 	text-decoration: none;
@@ -42,6 +38,20 @@ body {
 .header-right {
 	float: right;
 }
+
+footer {
+	
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 5vh;
+	background-color: #2D112B;
+	color: white;
+	text-align: center;
+	position: fixed;
+	z-index: 2;
+	
+  }
 
 @media screen and (max-width: 500px) {
 	.header a {
