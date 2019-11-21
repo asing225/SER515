@@ -19,16 +19,20 @@
 	List<String> answers = (ArrayList<String>) request.getAttribute("Answers");	
 	%>
 	
-	<table class="table table=bordered table-hover col-md-4">
+	<table class="table table=bordered table-hover col-sm-4">
 	<%
 	for(int i=0; i<questions.size(); i++){
 	%>
 	<tr>
-		<th>
+		<th>Question</th>
+		<td>
 		<%
 			out.print(questions.get(i));
 		%>
-		</th>
+		</td>
+	</tr>
+	<tr>
+		<th>Answer</th>
 		<td>
 		<%
 		out.print(answers.get(i));
