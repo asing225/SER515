@@ -1,6 +1,7 @@
 package com.asu.ser515.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import com.asu.ser515.model.Grade1Student;
 import com.asu.ser515.model.Quiz;
 import com.asu.ser515.model.User;
+import com.asu.ser515.services.DBConnService;
+import com.asu.ser515.services.helper.LoginServletHelper;
 import com.asu.ser515.services.helper.StudentServletHelper;
 import com.asu.ser515.services.impl.DBConnServiceImpl;
 
@@ -49,6 +52,18 @@ public class StudentServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
+	public void doPost(HttpServletRequest req, HttpServletResponse res) {
+		try {
+			System.out.println("132424");
+			getServletContext().getRequestDispatcher("/studentLandingPage.jsp").forward(req, res);
+		} catch (IOException ioExc) {
+			ioExc.printStackTrace();
+		} catch (ServletException servletExc) {
+			servletExc.printStackTrace();
+		}
+	}
+	
 	
 
 }

@@ -103,7 +103,15 @@ function calculate() {
 		    } 
 		else {
 			alert('Quiz completed redirecting to Student Landing Page')
-			location.replace("/login")
+			//location.href ="http://localhost:8080/SER515/login"
+			 $.ajax({
+			      url: "http://localhost:8080/SER515/student",
+			      async : false,
+			      type: 'POST',
+			      success: function(data){
+			    	  document.location.href = "/SER515/studentLandingPage.jsp"
+			      },
+			});
 		}
 } 
 function choose() {

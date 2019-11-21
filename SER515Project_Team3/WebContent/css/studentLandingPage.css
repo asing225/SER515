@@ -7,4 +7,9 @@ background-color: rgb(245, 180, 150);
 
 .list-group-item {
 	background-color: rgb(241, 199, 179);
+	width :300;	
+}
+
+.list-group {
+    text-align: justify;
 }
