@@ -1,7 +1,9 @@
 * {
 	box-sizing: border-box;
 }
-
+html{
+	font-family: Arial, Helvetica, sans-serif;
+}
 
 .header {
 	overflow: hidden;
@@ -18,6 +20,8 @@
 	font-size: 18px;
 	line-height: 25px;
 	border-radius: 4px;
+	margin-right: 20;
+	
 }
 
 .header a.logo {
@@ -37,6 +41,11 @@
 
 .header-right {
 	float: right;
+}
+
+.container{
+	margin-left : 20;
+	margin-bottom: 30;
 }
 
 footer {

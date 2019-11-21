@@ -2,9 +2,11 @@
     box-sizing: border-box;
   }
   
-  html,
-  body {
+  html,body {
+    scroll-behavior: smooth;
     background-color: #FEDCC8;
+    font-family: Arial, Helvetica, sans-serif;
+    
   }
   
   .parallax {
@@ -14,11 +16,12 @@
     overflow-x: hidden;
     overflow-y: auto;
     position: absolute;
-    padding-top: 7vh;
+    top: 9vh;
     left: 50%;
     right: 0;
     bottom: 0;
     margin-left: -1500px;
+    
   }
   
     h1{
@@ -51,13 +54,12 @@
     display: block;
     position: absolute;
     top: 100%;
-    left: 0;
-    right: 0;
-    height: 2500px;
-    z-index: 2;
-    overflow: visible;
-    padding-left: 85vh;
+    padding-left: 40%;
+    padding-right: 10%;
     padding-top: 10vh;
+    max-width: 100%;
+    height: auto;
+    width: auto;
   }
 
   
@@ -117,7 +119,7 @@ h2 {
 	background-color: #2D112B;
     padding: 20px 10px;
     pointer-events: visible;
-    z-index: 1000000;
+    position: relative;
 }
 
 .header a {
@@ -154,7 +156,6 @@ h2 {
 
 .anchor{
     pointer-events: visible;
-    z-index: 4;
 }
 
 footer {
@@ -170,7 +171,34 @@ footer {
 	z-index: 2;
 	
   }
-
+  @media screen and (min-width: 1440px) {
+    .parallax__cover {
+      background: #2D112B;
+      display: block;
+      position: absolute;
+      top: 100%;
+      padding-right: 5%;
+      padding-left: 40%;
+      padding-top: 10vh;
+      max-width: 100%;
+      height: auto;
+      width: auto;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .parallax__cover {
+      background: #2D112B;
+      display: block;
+      position: absolute;
+      top: 100%;
+      padding-right: 0%;
+      padding-left: 50%;
+      padding-top: 10vh;
+      max-width: 100%;
+      height: auto;
+      width: auto;
+    }
+  }
 @media screen and (max-width: 500px) {
 	.header a {
 		float: none;
