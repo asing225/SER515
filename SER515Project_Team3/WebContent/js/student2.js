@@ -105,7 +105,14 @@
  		    } 
  		else {
  			alert('Quiz completed redirecting to Student Landing Page')
- 			location.replace("http://localhost:8080/SER515Project_Team3/login")
+ 			 $.ajax({
+			      url: "http://localhost:8080/SER515/student",
+			      async : false,
+			      type: 'POST',
+			      success: function(data){
+			    	  document.location.href = "/SER515/studentLandingPage.jsp"
+			      },
+			});
  		}
  }
  function choose() {
