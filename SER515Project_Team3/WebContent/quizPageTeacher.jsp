@@ -19,16 +19,20 @@
 	List<String> answers = (ArrayList<String>) request.getAttribute("Answers");	
 	%>
 	
-	<table class="table table=bordered table-hover col-md-4">
+	<table class="table table=bordered table-hover col-sm-4">
 	<%
 	for(int i=0; i<questions.size(); i++){
 	%>
 	<tr>
-		<th>
+		<th>Question</th>
+		<td>
 		<%
 			out.print(questions.get(i));
 		%>
-		</th>
+		</td>
+	</tr>
+	<tr>
+		<th>Answer</th>
 		<td>
 		<%
 		out.print(answers.get(i));
@@ -43,4 +47,5 @@
 <script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./js/header.js"></script>
+<link rel="stylesheet" href="./css/studentLandingPage.css">
 </html>

@@ -23,6 +23,134 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ var count = 1
+ var selections = []; 
+ var solution = [];
+ var size = document.getElementById("questions").children.length
+ console.log(size)
+ size = size - 2
+ var val = "problem"
+ var ans = "answer"
+
+ 	if(count == 1){
+ 		          $('#prev').hide();
+ 		$('#submit').hide();
+ 		        } else if(count > 1){
+ 		          
+ 		          $('#prev').hide();
+ 		          $('#next').show();
+ 		        }
+ console.log(size);
+ for(i = 1;i<size;i++){
+ 	var value = val.concat(i);
+ 	$('#'+value+'').hide();
+ }
+ for(i=0;i<size;i++){
+ 	var answer = ans.concat(i);
+ 	solution[i] = document.getElementById(answer).getAttribute('value');
+ }
+ console.log(selections[count-1])
+ if (isNaN(selections[count-1])) {
+ 	console.log("chicken")
+       
+     } 
+
+ console.log(selections[0])
+ function nextQuestion() {
+ var val = "problem"
+ 	choose();
+ console.log(size)
+ // If no user selection, progress is stopped
+ console.log("lolololol")
+ console.log(selections[count-1])
+     if (selections[count-1] != solution[count-1]) {
+       alert('Wrong Answer!');
+     } 
+ else {
+       
+     
+ if(count<size){
+
+ var value = val.concat(count-1);
+ console.log(value)
+ $('#'+value+'').hide();
+
+ var value1 = val.concat(count);
+ console.log(count)
+ $('#'+value1+'').show();
+ count = count + 1
+ console.log(count)
+ }
+ if(count == 1){
+ 	          $('#prev').hide();
+ 	$('#submit').hide();
+ 	        } else{
+ 	          
+ 	          $('#prev').show();
+ 	          $('#next').show();
+ 			$('#submit').hide();
+ 	        }
+ if(count == size){
+ 	$('#prev').show();
+ 	$('#next').hide();
+ 	$('#submit').show();
+ }
+ }
+ }
+ function calculate() {
+
+ 	choose();
+ 	if (selections[count-1] != solution[count-1]) {
+ 		      alert('Wrong Answer!');
+ 		    } 
+ 		else {
+ 			alert('Quiz completed redirecting to Student Landing Page')
+ 			 $.ajax({
+			      url: "http://localhost:8080/SER515/student",
+			      async : false,
+			      type: 'POST',
+			      success: function(data){
+			    	  document.location.href = "/SER515/studentLandingPage.jsp"
+			      },
+			});
+ 		}
+ }
+ function choose() {
+ 		var val = "solution"
+ 		var valu = val.concat(count-1);
+ 	    selections[count-1] = document.getElementById(valu).value;
+ 		console.log("goodyear")
+ 		console.log(count)
+ 		console.log(selections[0])
+ 	  }
+
+ function prevQuestion() {
+ 	var val = "problem"
+
+ 	if(count>=1){
+ 		count = count - 1
+ 	if(count>=1){
+ 	var value = val.concat(count-1);
+ 	console.log(value)
+ 	$('#'+value+'').show();
+ 	var value1 = val.concat(count);
+ 	$('#'+value1+'').hide();
+ 	}
+ 	else{
+ 		count = count + 1
+ 	}
+ 	}
+ 	if(count <= 1){
+ 		          $('#prev').hide();
+ 					$('#next').show();
+ 		        } else if(count > 1){
+ 		          
+ 		          $('#prev').hide();
+ 		          $('#next').show();
+ 		        }
+
+ 	}
+
 'use strict';
 var demoWorkspace = Blockly.inject('blocklyDiv', {
 	media : './lib/blockly-master/media/',

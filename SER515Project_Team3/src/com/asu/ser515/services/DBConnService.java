@@ -10,12 +10,14 @@ import com.asu.ser515.model.User;
 /**
  * Interface to handle DB connectivity
  * 
- * @author anurag mishra
+ * @author anurag933103
  * @date 09/28/2019
  * 
  * @author kushagrjolly
  * @date 09/29/2019
  * 
+ * @author anurag933103
+ * @date 11/17/2019
  */
 
 public interface DBConnService {
@@ -26,4 +28,6 @@ public interface DBConnService {
 	public List<String>[] quizQuestionJsonExtraction(int quizId);
 	public ArrayList<Quiz> getQuiz(int usertype);
 	public Quiz getQuestion(int quiz_id);
+	public List<String>[] getUserList();
+	public int updateUserStatus(String userId);
 }
