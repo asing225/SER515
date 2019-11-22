@@ -17,9 +17,12 @@
 	</div>
 	<div class="row" style="height: 40vh;">
 		<div class="col-md-6" id="blocklyDiv" style="height: 40vh;"></div>
-		<div class="col-md-6" style="height: 40vh;; background-color: black;">
-			<p style="color: white;">Console</p>
-			<p style="color: white;" id="console"></p>
+		<div class="col-md-6" style="height: 40vh;; background-color: green;">
+			<h2 style="color: white;"><b>Console</b></h2>
+			<h4 style="color: white;" id="check"></h3>
+				<h3 style="color: white;" id="error1"></h3>
+				<h3 style="color: white;" id="error2"></h3>
+			<h3 style="color: white;" id="console"></h3>
 		</div>
 	</div>
 	<button class="btn btn-primary" onclick="runCode()" id="runButton">Calculate</button>
@@ -27,12 +30,33 @@
 
 	<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox"
 		style="display: none"> <!-- Dropdown for basic math operators -->
-	<category name="Blocks" colour="%{BKY_MATH_HUE}">
-    <block type="math_number"> <field name="NUM">123</field> </block>
-    <block type="math_arithmetic"></block>
-    <sep></sep>
-    <block type="text_print"></block>
-	</category> <sep></sep> </xml>
+	<!--- <category name="Blocks" colour="%{BKY_MATH_HUE}"> -->
+    <block type="math_number"> <field name="NUM">1</field> </block>
+		<block type="math_number"> <field name="NUM">2</field> </block>
+		<block type="math_number"> <field name="NUM">3</field> </block>
+		<block type="math_number"> <field name="NUM">4</field> </block>
+		<block type="math_number"> <field name="NUM">5</field> </block>
+		<block type="math_number"> <field name="NUM">6</field> </block>
+		<block type="math_number"> <field name="NUM">7</field> </block>
+		<block type="math_number"> <field name="NUM">8</field> </block>
+		<block type="math_number"> <field name="NUM">9</field> </block>
+		<block type="math_number"> <field name="NUM">10</field> </block>
+		<block type="math_number"> <field name="NUM">11</field> </block>
+		<block type="math_number"> <field name="NUM">12</field> </block>
+		<block type="math_number"> <field name="NUM">13</field> </block>
+		<block type="math_number"> <field name="NUM">14</field> </block>
+		<block type="math_number"> <field name="NUM">15</field> </block>
+		<block type="math_number"> <field name="NUM">16</field> </block>
+		<block type="math_number"> <field name="NUM">17</field> </block>
+		<block type="math_number"> <field name="NUM">18</field> </block>
+		<block type="math_number"> <field name="NUM">19</field> </block>
+		<block type="math_number"> <field name="NUM">20</field> </block>
+		<!-- <block type="block_one"> <field name="NUM">1</field> </block> -->
+		<block type="math_subtraction"></block>
+		<sep></sep>
+		<block type="math_arithmetic"></block>
+
+	<!--</category>--> <sep></sep> </xml>
 	<!--<script>
     	var demoWorkspace = Blockly.inject('blocklyDiv',
         {media: './lib/blockly-master/media/',
