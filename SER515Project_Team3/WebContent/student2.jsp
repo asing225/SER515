@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <title>Student | Grade 1</title>
 <link rel="stylesheet" href="./css/bootstrap.min.css">
-<link rel="stylesheet" href="./css/student1.css">
+
 </head>
 <body>
 	<div id="header"></div>
@@ -101,5 +101,6 @@
 	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./js/header.js"></script>
 	<script src="./js/student2.js"></script>
+	<link rel="stylesheet" href="./css/student1.css">
 </body>
 </html>

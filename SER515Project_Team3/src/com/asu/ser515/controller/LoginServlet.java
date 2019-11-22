@@ -58,6 +58,23 @@ public class LoginServlet extends HttpServlet {
 			if (user.getUserType() == 3 || user.getUserType() == 4) {
 				session.setAttribute("ListQuiz", serviceImpl.getQuiz(user.getUserType()));
 			}
+			else if(user.getUserType()==1) {
+				List<String>[] userEntry =serviceImpl.getUserList();
+				List<String> userId = userEntry[0];
+				List<String> firstName = userEntry[1];
+				List<String> lastName = userEntry[2];
+				List<String> userType = userEntry[3];
+				List<String> UserNameList = userEntry[4];
+				List<String> passwordList = userEntry[5];
+				List<String> active_flg = userEntry[6];
+				session.setAttribute("userId", userId);
+				session.setAttribute("firstNameList", firstName);
+				session.setAttribute("lastNameList", lastName);
+				session.setAttribute("userTypeList", userType);
+				session.setAttribute("userNameList", UserNameList);
+				session.setAttribute("passwordList", passwordList);
+				session.setAttribute("status", active_flg);
+			}
 		}
 		else if("Logout".equalsIgnoreCase(action)) {
 			session.invalidate();

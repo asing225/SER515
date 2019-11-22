@@ -12,6 +12,7 @@ import com.asu.ser515.model.Question;
 import com.asu.ser515.model.Quiz;
 import com.asu.ser515.model.User;
 import com.asu.ser515.services.DBConnService;
+import com.asu.ser515.services.helper.DBConnServiceHelper;
 
 /**
  * Implementation to handle DB connectivity
@@ -46,6 +47,8 @@ public class DBConnServiceImpl implements DBConnService {
 	private static String __getQuizID;
 	private static String __getQuiz;
 	private static String __getQuestions;
+	private static String __getUserList;
+	private static String __updateUser;
 
 	// static block to be executed when class loads to read DB configs from
 	// properties file.
@@ -65,6 +68,8 @@ public class DBConnServiceImpl implements DBConnService {
 			__getQuizID = dbProperties.getProperty("getQuizID");
 			__getQuiz = dbProperties.getProperty("getQuiz");
 			__getQuestions = dbProperties.getProperty("getQuestions");
+			__getUserList = dbProperties.getProperty("getUserList");
+			__updateUser = dbProperties.getProperty("updateUser");
 
 		} catch (Throwable t) {
 			t.printStackTrace();
@@ -416,5 +421,105 @@ public class DBConnServiceImpl implements DBConnService {
 		return quiz;
 	}
 
-
+	public List<String>[] getUserList() {
+		Connection conn = null;
+		Statement stmt = null;
+		@SuppressWarnings("unchecked")
+		List<String>[] userList = new ArrayList[7];
+		ArrayList<String> userID = new ArrayList<String>();
+		ArrayList<String> firstName = new ArrayList<String>();
+		ArrayList<String> lastName = new ArrayList<String>();
+		ArrayList<String> userType = new ArrayList<String>();
+		ArrayList<String> userName = new ArrayList<String>();
+		ArrayList<String> password = new ArrayList<String>();
+		ArrayList<String> active_Flg = new ArrayList<String>();
+		DBConnServiceHelper dbHelper = new DBConnServiceHelper();
+		try {
+			try {
+				Class.forName(__jdbcDriver);
+			} catch (Throwable t) {
+				t.printStackTrace();
+			}
+			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(__getUserList);
+			while (rs.next()) {
+				userID.add(String.valueOf(rs.getInt("User_Id")));
+				firstName.add(rs.getString("firstName"));
+				lastName.add(rs.getString("lastName"));
+				userType.add(dbHelper.mapDBtoUsertype(rs.getInt("userType")));
+				userName.add(rs.getString("userName"));
+				password.add(rs.getString("password"));
+				active_Flg.add(rs.getString("active_flg"));
+			}
+			userList[0]= userID;
+			userList[1] = firstName;
+			userList[2] = lastName;
+			userList[3] = userType;
+			userList[4] = userName;
+			userList[5] = password;
+			userList[6] = active_Flg;
+			return userList;
+		} catch (SQLException sqe) {
+			sqe.printStackTrace();
+			return null;
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			} finally {
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e3) {
+					e3.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public int updateUserStatus(String userId) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			try {
+				Class.forName(__jdbcDriver);
+			} catch (Throwable t) {
+				t.printStackTrace();
+			}
+			conn = DriverManager.getConnection(__jdbcUrl, __jdbcUser, __jdbcPasswd);
+			ps = conn.prepareStatement(__updateUser);
+			ps.setString(1, userId);
+			int rs = ps.executeUpdate();
+		    if (rs == 1) {
+		    	return 1;
+		    }
+		    else {
+		    	return 0;
+		    }
+		} catch (SQLException sqe) {
+			sqe.printStackTrace();
+			return -1;
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			} finally {
+				try {
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (Exception e3) {
+					e3.printStackTrace();
+				}
+			}
+		}
+	}
 }

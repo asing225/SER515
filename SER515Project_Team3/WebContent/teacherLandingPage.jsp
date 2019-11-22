@@ -19,7 +19,6 @@
 		List<Integer> quizIds = (ArrayList<Integer>) request.getSession().getAttribute("quizIds");
 	%>
 	<div class="container">
-		<h2>Quiz</h2>
 		<form method="GET">
 			<table class="table table-bordered" id="quizTable">
 				<%
@@ -50,5 +49,6 @@
 <script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./js/header.js"></script>
+<link rel="stylesheet" href="./css/studentLandingPage.css">
 </html>
 

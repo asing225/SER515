@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <title>Student | Grade 1</title>
 <link rel="stylesheet" href="./css/bootstrap.min.css">
-<link rel="stylesheet" href="./css/student1.css">
+
 </head>
 <body>
 	<div id="header"></div>
@@ -21,7 +21,7 @@
 	</div>
 		<div class="row" style="height: 30vh;">
         	<div id = "container">
-				<form method="GET">
+				<form method="POST">
 				<table id="quizTable" class="table table-bordered">
 				<a id="size"><% listquestions.size(); %></a>
 					<%
@@ -52,11 +52,11 @@
 					<%
 						}
 					%>
-					<input class="btn btn-primary" id = "next" onclick = "nextQuestion()" style = "color: white;" placeholder = "Next">
-					<input class="btn btn-primary" id = "prev" onclick = "prevQuestion()" style = "color: white;" placeholder = "Prev">
+					<input class="btn" id = "next" onclick = "nextQuestion()"  placeholder = "Next">
+					<input class="btn" id = "prev" onclick = "prevQuestion()"  placeholder = "Prev">
 					
 					</div>
-					<input class="btn btn-primary" id="submit" onclick = "calculate()" placeholder = "Submit">
+					<input class="btn " id="submit" onclick = "calculate()" placeholder = "Submit">
 					<%
 					}
 					%>
@@ -66,8 +66,8 @@
           	
         </div>
 <div class="row" style="height: 40vh;">
-		<div class="col-md-6" id="blocklyDiv" style="height: 40vh;"></div>
-		<div class="col-md-6" style="height: 40vh;; background-color: green;">
+		<div class="col-md-6" id="blocklyDiv" style="height: 40vh; background-color: rgb(245, 180, 150);"></div>
+		<div class="col-md-6" style="height: 40vh; background-color: green;">
 			<h2 style="color: white;"><b>Console</b></h2>
 			<h4 style="color: white;" id="check"></h3>
 				<h3 style="color: white;" id="error1"></h3>
@@ -75,8 +75,8 @@
 			<h3 style="color: white;" id="console"></h3>
 		</div>
 	</div>
-	<button class="btn btn-primary" onclick="runCode()" id="runButton">Calculate</button>
-	<button class="btn btn-primary" onclick="clearConsole()" id="clearButton">Clear</button>
+	<button class="btn " onclick="runCode()" id="runButton">Calculate</button>
+	<button class="btn " onclick="clearConsole()" id="clearButton">Clear</button>
 
 	<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox"
 		style="display: none"> <!-- Dropdown for basic math operators -->
@@ -128,5 +128,6 @@
 	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./js/header.js"></script>
 	<script src="./js/student1.js"></script>
+	<link rel="stylesheet" href="./css/student1.css">
 </body>
 </html>
